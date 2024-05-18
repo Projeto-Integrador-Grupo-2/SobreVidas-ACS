@@ -7,7 +7,6 @@
   src: url('fonts/Lexend_Deca/static/LexendDeca-Bold.ttf')
 }
 
-
 body {
     background-color: #fffAfA;
 }
@@ -17,19 +16,25 @@ b {
   font-weight: bold;
 }
 
+.login:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .titulo {
   font-size: 40px;
   color: #1790F7;
   font-family: 'Lexend Deca', cursive;
   text-align: center;
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translate(-50%);
-  top: 38%;
+  top: 38.25%;
 }
 
 .login {
-  width: 360px;
+  background-color: #fffAfA;
+  width: 309px;
   font-size: 20px;
   font-family: 'Lexend Deca', cursive;
   color: #1790F7;
@@ -37,7 +42,7 @@ b {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  top: 64%;
+  top: 61.625%;
   border: 3px solid #1790F7;
   border-radius: 40px;
   padding: 20px 0;
@@ -47,7 +52,7 @@ b {
   width: 110px;
   height: auto;
   position: absolute;
-  top: 25%;
+  top: 26.625%;
   left: 50%;
   transform: translate(-50%);
 }
@@ -58,4 +63,13 @@ b {
   left: 0px;
   top: 85%;
   display: inline-block;
+}
+
+.topbar {
+  position: absolute;
+  width: 360px;
+  height: 55px;
+  left: 0px;
+  top: 0px;
+  background-color: #1790F7;
 }
