@@ -1,8 +1,61 @@
+@font-face {
+  font-family: 'Lexend Deca';
+  src: url('fonts/Lexend_Deca/static/LexendDeca-SemiBold.ttf')
+}
+@font-face {
+  font-family: 'Lexend Deca Bold';
+  src: url('fonts/Lexend_Deca/static/LexendDeca-Bold.ttf')
+}
+
+
 body {
-    background-color: #ffffff;
+    background-color: #fffAfA;
+}
+
+b {
+  font-family: 'Lexend Deca Bold';
+  font-weight: bold;
+}
+
+.titulo {
+  font-size: 40px;
+  color: #1790F7;
+  font-family: 'Lexend Deca', cursive;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 38%;
 }
 
 .login {
-    border: 3px solid #1790F7;
-    width: 120px;
+  width: 360px;
+  font-size: 20px;
+  font-family: 'Lexend Deca', cursive;
+  color: #1790F7;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 64%;
+  border: 3px solid #1790F7;
+  border-radius: 40px;
+  padding: 20px 0;
+}
+
+.logo {
+  width: 110px;
+  height: auto;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.ondas {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 85%;
+  display: inline-block;
 }
