@@ -127,17 +127,26 @@ b {
   
   #placeholder {
     position: absolute;
-    width: 320px;
-    height: 200px;
+    width: 380px;
+    height: auto;
     top: 16%;
     left: 50%;
     border-radius: 15px;
     transform: translate(-50%);
   }
+  
+  .dashboard {
+    position: absolute;
+    top: 380px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 280px;
+    height: 470px;
+}
 
   #botao_mapa {
     position: absolute;
-    top: 50%;
+    top: 0%;
     left: 50%;
     transform: translate(-50%);
     width: 280px;
@@ -150,7 +159,7 @@ b {
   #map_icon {
     width: 50px;
     height: auto;
-    position: relative;
+    position: absolute;
     left: 50%;
     transform: translate(-50%);
     top: 30px;
@@ -160,18 +169,17 @@ b {
     font-family: 'Lexend Deca Bold', cursive;
     color: #686868;
     font-size: 20px;
-    position: relative;
+    position: absolute;
     left: 50%;
     transform: translate(-50%);
-    top: 15px;
+    top: 85px;
     text-align: center;
+    white-space: nowrap;
   }
 
   #botao_cadastro {
     position: absolute;
     top: 160px;
-    left: 0%;
-    transform: translate(0%);
     width: 135px;
     height: 170px;
     background-color: #ffffff;
@@ -229,6 +237,10 @@ b {
     transform: translate(-50%);
     top: 22.5px;
     text-align: center;
+  }
+  
+  #bottom-ret {
+    top: 800px;
   }
 }
 
@@ -375,5 +387,8 @@ b {
     transform: translate(-50%);
     top: 40px;
     text-align: center;
+  }
+  #bottom-ret {
+    top: 1200px;
   }
 }
