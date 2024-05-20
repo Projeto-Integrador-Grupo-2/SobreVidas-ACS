@@ -67,14 +67,6 @@ b {
   transform: translate(-50%);
 }
 
-#ondas {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  bottom: 0px;
-  display: inline-block;
-}
-
 .ret {
   position: absolute;
   left: 0px;
@@ -101,31 +93,6 @@ b {
   z-index: 1;
 }
 
-#vetor_local {
-  position: absolute;
-  left: 5%;
-  top: 11%;
-}
-
-#local {
-  font-family: 'Lexend Deca', cursive;
-  color: #1790F7;
-  position: absolute;
-  left: 11%;
-  top: 9.7%;
-  font-size: 16px;
-}
-
-#placeholder {
-  position: absolute;
-  width: 360px;
-  height: 200px;
-  top: 16%;
-  left: 50%;
-  border-radius: 15px;
-  transform: translate(-50%);
-}
-
 /* CELULAR CELULAR CELULAR CELUAR*/
 @media screen and (max-width: 600px) {
   .notif_ring {
@@ -134,13 +101,149 @@ b {
     transform: translate(-96%);
     top: 14px;
   }
+
+  #ondas {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+  display: inline-block;
+  }
   
+  #vetor_local {
+    position: absolute;
+    left: 5%;
+    top: 11%;
+  }
+  
+  #local {
+    font-family: 'Lexend Deca', cursive;
+    color: #1790F7;
+    position: absolute;
+    left: 11%;
+    top: 9.5%;
+    font-size: 16px;
+  }
+  
+  #placeholder {
+    position: absolute;
+    width: 320px;
+    height: 200px;
+    top: 16%;
+    left: 50%;
+    border-radius: 15px;
+    transform: translate(-50%);
+  }
+
+  #botao_mapa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 280px;
+    height: 150px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  }
+  
+  #map_icon {
+    width: 50px;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 30px;
+  }
+
+  #titulo-botao-mapa {
+    font-family: 'Lexend Deca Bold', cursive;
+    color: #686868;
+    font-size: 20px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 15px;
+    text-align: center;
+  }
+
+  #botao_cadastro {
+    position: absolute;
+    top: 160px;
+    left: 0%;
+    transform: translate(0%);
+    width: 135px;
+    height: 170px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  }
+  
+  #cad_icon {
+    width: 50px;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 30px;
+  }
+  
+  #titulo-botao-cad {
+    font-family: 'Lexend Deca Bold', cursive;
+    color: #686868;
+    font-size: 15px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 30px;
+    text-align: center;
+  }
+
+  #botao_graficos {
+    position: absolute;
+    top: 160px;
+    left: 100%;
+    transform: translate(-100%);
+    width: 135px;
+    height: 170px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  }
+  
+  #graf_icon {
+    width: 80px;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 30px;
+  }
+
+  #titulo-botao-graf {
+    font-family: 'Lexend Deca Bold', cursive;
+    color: #686868;
+    font-size: 15px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 22.5px;
+    text-align: center;
+  }
 }
 
 
 /* PC PC PC PC PC PC PC PC PC PC*/
 
 @media screen and (min-width: 601px) {
+  #ondas {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 75%;
+    display: inline-block;
+  }
+
   .notif_ring {
     position: absolute;
     left: 98%;
@@ -148,4 +251,129 @@ b {
     top: 14px;
   }
 
+  #placeholder {
+    position: absolute;
+    width: 600px;
+    height: auto;
+    top: 16%;
+    left: 50%;
+    border-radius: 15px;
+    transform: translate(-50%);
+  }
+
+  #vetor_local {
+    position: absolute;
+    left: 5%;
+    top: 11%;
+  }
+
+  #local {
+    font-family: 'Lexend Deca', cursive;
+    color: #1790F7;
+    position: absolute;
+    left: 7%;
+    top: 9.5%;
+    font-size: 16px;
+  }
+  
+  .dashboard {
+    position: absolute;
+    top: 500px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 600px;
+    height: 600px;
+  }
+
+  #botao_mapa {
+    position: absolute;
+    width: 600px;
+    height: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  }
+  
+  #map_icon {
+    width: 110px;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50px;
+  }
+
+  #titulo-botao-mapa {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 190px;
+    font-family: 'Lexend Deca Bold', cursive;
+    color: #686868;
+    font-size: 30px;
+  }
+
+  #botao_cadastro {
+    position: absolute;
+    top: 315px;
+    left: 0%;
+    transform: translate(0%);
+    width: 290px;
+    height: 270px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  }
+  
+  #cad_icon {
+    width: 85px;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 40px;
+  }
+  
+  #titulo-botao-cad {
+    font-family: 'Lexend Deca Bold', cursive;
+    color: #686868;
+    font-size: 25px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 50px;
+    text-align: center;
+  }
+
+  #botao_graficos {
+    position: absolute;
+    top: 315px;
+    left: 100%;
+    transform: translate(-100%);
+    width: 290px;
+    height: 270px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  }
+  
+  #graf_icon {
+    width: 130px;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 40px;
+  }
+
+  #titulo-botao-graf {
+    font-family: 'Lexend Deca Bold', cursive;
+    color: #686868;
+    font-size: 25px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 40px;
+    text-align: center;
+  }
 }
