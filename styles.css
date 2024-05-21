@@ -29,13 +29,12 @@ b {
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0); /* Transparente */
-  pointer-events: none; /* Permite cliques no link por baixo */
+  pointer-events: none;
 }
 
 #titulo {
   font-size: 35px;
   color: #1790F7;
-  font-family: 'Lexend Deca', cursive;
   text-align: center;
   position: absolute;
   left: 50%;
@@ -47,7 +46,6 @@ b {
   background-color: #fffAfA;
   width: 290px;
   font-size: 15px;
-  font-family: 'Lexend Deca', cursive;
   color: #1790F7;
   text-align: center;
   position: absolute;
@@ -85,7 +83,6 @@ b {
 }
 
 .titulo_bar {
-  font-family: 'Lexend Deca', cursive;
   color: #fffAfA;
   font-size: 16px;
   position: absolute;
@@ -118,7 +115,6 @@ b {
   }
   
   #local {
-    font-family: 'Lexend Deca', cursive;
     color: #1790F7;
     position: absolute;
     left: 11%;
@@ -167,7 +163,6 @@ b {
   }
 
   #titulo-botao-mapa {
-    font-family: 'Lexend Deca Bold', cursive;
     color: #686868;
     font-size: 20px;
     position: absolute;
@@ -198,7 +193,6 @@ b {
   }
   
   #titulo-botao-cad {
-    font-family: 'Lexend Deca Bold', cursive;
     color: #686868;
     font-size: 15px;
     position: relative;
@@ -230,7 +224,6 @@ b {
   }
 
   #titulo-botao-graf {
-    font-family: 'Lexend Deca Bold', cursive;
     color: #686868;
     font-size: 15px;
     position: relative;
@@ -276,12 +269,11 @@ b {
 
   #vetor_local {
     position: absolute;
-    left: 5%;
-    top: 11%;
+    left: 105px;
+    top: 100px;
   }
 
   #local {
-    font-family: 'Lexend Deca', cursive;
     color: #1790F7;
     position: absolute;
     left: 7%;
@@ -321,7 +313,6 @@ b {
     left: 50%;
     transform: translate(-50%);
     top: 190px;
-    font-family: 'Lexend Deca Bold', cursive;
     color: #686868;
     font-size: 30px;
   }
@@ -348,7 +339,6 @@ b {
   }
   
   #titulo-botao-cad {
-    font-family: 'Lexend Deca Bold', cursive;
     color: #686868;
     font-size: 25px;
     position: relative;
@@ -380,7 +370,6 @@ b {
   }
 
   #titulo-botao-graf {
-    font-family: 'Lexend Deca Bold', cursive;
     color: #686868;
     font-size: 25px;
     position: relative;
