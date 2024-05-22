@@ -393,3 +393,54 @@ b {
     height: auto;
   }
 }
+  .info_perfil {
+    color: #877e7f;
+    position: relative;
+
+  }
+  .img_perfil {
+    width: 300px;
+    height: 200px;
+    transform: translate(100px);
+    top: 50px;
+    position: relative;
+    left: 550px;
+    p {
+      text-align: center;
+    }
+  }
+  .atendidos {
+    position: relative;
+    line-height: normal;
+    max-width: 203px;
+    margin: 0;
+    padding: 2px;
+    background-color: #d9d9d9;
+    border-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
+  }
+  .encaminhados {
+    position: relative;
+    line-height: normal;
+    max-width: 203px;
+    margin: 0;
+    padding: 2px;
+    background-color: #d9d9d9;
+    border-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+  }
+  .absenteístas {
+    position: relative;
+    line-height: normal;
+    max-width: 203px;
+    margin: 0;
+    padding: 2px;
+    background-color: #d9d9d9;
+    border-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+  }
+  .nome {
+    font-style: normal;
+    font-weight: 600;
+  }
+}
