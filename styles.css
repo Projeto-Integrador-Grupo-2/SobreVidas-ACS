@@ -9,7 +9,7 @@
 
 body {
     background-color: #fffAfA;
-    font-family: 'Lexend Deca', cursive;
+    font-family: 'Lexend Deca', cusrive;
 }
 
 b {
@@ -67,17 +67,18 @@ b {
 }
 
 .ret {
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
   width: 100%;
   height: 55px;
   background-color: #1790F7;
+  z-index: 2;
 }
 
 .logo_topbar {
-  position: absolute;
-  left: 10px;
+  position: relative;
+  left: 56px;
   top: 6px;
   z-index: 1;
 }
@@ -86,7 +87,7 @@ b {
   color: #fffAfA;
   font-size: 16px;
   position: absolute;
-  left: 64px;
+  left: 110px;
   top: 6px;
   z-index: 1;
 }
@@ -252,9 +253,10 @@ b {
 
   .notif_ring {
     position: absolute;
-    left: 98%;
-    transform: translate(-98%);
-    top: 14px;
+    left: 97%;
+    transform: translateX(-97%);
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   #placeholder {
@@ -310,9 +312,10 @@ b {
 
   #titulo-botao-mapa {
     position: absolute;
+    margin: 0px;
     left: 50%;
     transform: translate(-50%);
-    top: 190px;
+    top: 70%;
     color: #686868;
     font-size: 30px;
   }
@@ -381,5 +384,12 @@ b {
   #bottom-ret {
     top: 1200px;
   }
+  #opcoes {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    width: 30px;
+    height: auto;
+  }
 }
-
