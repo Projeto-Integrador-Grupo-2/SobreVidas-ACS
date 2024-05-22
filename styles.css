@@ -381,11 +381,6 @@ b {
   #bottom-ret {
     top: 1200px;
   }
-  .info_perfil {
-    color: #877e7f;
-    position: relative;
-
-  }
   .img_perfil {
     width: 300px;
     height: 200px;
@@ -427,8 +422,5 @@ b {
     border-radius: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
   }
-  .nome {
-    font-style: normal;
-    font-weight: 600;
-  }
+  
 }
