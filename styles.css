@@ -396,6 +396,8 @@ b {
   .info_perfil {
     color: #877e7f;
     position: relative;
+    left: 650px;
+    top: 170px;
 
   }
   .img_perfil {
@@ -405,9 +407,7 @@ b {
     top: 50px;
     position: relative;
     left: 550px;
-    p {
-      text-align: center;
-    }
+    text-align: center;
   }
   .atendidos {
     position: relative;
@@ -427,7 +427,7 @@ b {
     padding: 2px;
     background-color: #d9d9d9;
     border-radius: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
   }
   .absenteístas {
     position: relative;
@@ -437,7 +437,11 @@ b {
     padding: 2px;
     background-color: #d9d9d9;
     border-radius: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
   }
-  
-}
+  .info_pessoal {
+    position: absolute;
+    left: 850px;
+    top: 375px;
+
+  }
