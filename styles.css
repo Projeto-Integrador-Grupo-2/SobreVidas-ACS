@@ -408,6 +408,7 @@ b {
     position: relative;
     left: 550px;
     text-align: center;
+    ;
   }
   .atendidos {
     position: relative;
@@ -443,19 +444,19 @@ b {
   .atendido {
     color: #877e7f;
     position: relative;
-    left: 900px;
+    left: 880px;
     top: 170px;
   }
 
 .encaminhado {
   color: #877e7f;
   position: relative;
-  left: 900px;
+  left: 880px;
   top: 55px;
 }
 
 .logout {
   position: relative;
-  left: 900px;
+  left: 870px;
   top: 200px;
 }
