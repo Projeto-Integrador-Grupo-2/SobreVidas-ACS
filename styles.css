@@ -412,8 +412,10 @@ b {
   .atendidos {
     position: relative;
     line-height: normal;
+    left: 650px;
+    top: 200px;
     max-width: 203px;
-    margin: 0;
+    margin: 1;
     padding: 2px;
     background-color: #d9d9d9;
     border-radius: 0;
@@ -422,26 +424,38 @@ b {
   .encaminhados {
     position: relative;
     line-height: normal;
+    left: 650px;
+    top: 220px;
     max-width: 203px;
-    margin: 0;
+    margin: 1;
     padding: 2px;
     background-color: #d9d9d9;
     border-radius: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
   }
-  .absenteístas {
-    position: relative;
-    line-height: normal;
-    max-width: 203px;
-    margin: 0;
-    padding: 2px;
-    background-color: #d9d9d9;
-    border-radius: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
-  }
+
   .info_pessoal {
     position: absolute;
     left: 850px;
     top: 375px;
-
   }
+
+  .atendido {
+    color: #877e7f;
+    position: relative;
+    left: 900px;
+    top: 170px;
+  }
+
+.encaminhado {
+  color: #877e7f;
+  position: relative;
+  left: 900px;
+  top: 55px;
+}
+
+.logout {
+  position: relative;
+  left: 900px;
+  top: 200px;
+}
