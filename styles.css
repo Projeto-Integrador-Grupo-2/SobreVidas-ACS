@@ -9,7 +9,7 @@
 
 body {
     background-color: #fffAfA;
-    font-family: 'Lexend Deca', cusrive;
+    font-family: 'Lexend Deca', cursive;
 }
 
 b {
@@ -17,7 +17,11 @@ b {
   font-weight: bold;
 }
 
-#login:hover {
+a {
+  text-decoration: none;
+}
+
+#login {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -259,6 +263,30 @@ b {
     transform: translateY(-50%);
   }
 
+  #opcoes_icon {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+  }
+
+  #opcoes-content {
+    position: relative;
+    width: auto;
+    height: auto;
+    background-color: #1790F7;
+    display: none;
+    border-radius: 8px;
+  }
+
+  .paginas {
+    color: white;
+    line-height: 25px;
+  }
+
   #placeholder {
     position: absolute;
     width: 600px;
@@ -381,9 +409,11 @@ b {
     top: 40px;
     text-align: center;
   }
+
   #bottom-ret {
     top: 1200px;
   }
+
 /* buscaPacientes */
   .parte-azul-busca {
     width: 1490px;
@@ -592,22 +622,6 @@ b {
     position: absolute;
     border: white 1px  solid;
   }
-  #opcoes_icon {
-    position: relative;
-    top: 10px;
-    left: 15px;
-    width: 30px;
-    height: auto;
-  }
-
-  #opcoes-content {
-    position: relative;
-    display: none;
-  }
-
-  .opcoes:hover #opcoes-content {
-    display: block;
-  }
 
   .info_perfil {
     color: #877e7f;
@@ -624,7 +638,6 @@ b {
     position: relative;
     left: 550px;
     text-align: center;
-    ;
   }
   .atendidos {
     position: relative;
