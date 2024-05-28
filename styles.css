@@ -667,7 +667,7 @@ b {
   }
 
   .img_mapa {
-    position: relative;
-    top: 100px;
-  }
-} 
+    width: 500px;
+    height: auto;
+  } 
+}
