@@ -697,7 +697,16 @@ a {
   }
 
   .img_mapa {
-    width: 500px;
-    height: auto;
-  } 
+    position: relative;
+    top: 50px;
+    left: 35px;
+  }
+
+  .name_regions {
+    color: #877e7f;
+    position: absolute;
+    top: 150px;
+    left: 700px;
+  }
+
 }
