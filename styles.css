@@ -140,7 +140,7 @@ b {
     transform: translate(-50%);
     width: 280px;
     height: 470px;
-}
+  }
 
   #botao_mapa {
     position: absolute;
@@ -392,7 +392,7 @@ b {
     width: 30px;
     height: auto;
   }
-}
+
   .info_perfil {
     color: #877e7f;
     position: relative;
@@ -448,15 +448,16 @@ b {
     top: 170px;
   }
 
-.encaminhado {
-  color: #877e7f;
-  position: relative;
-  left: 880px;
-  top: 55px;
-}
+  .encaminhado {
+    color: #877e7f;
+    position: relative;
+    left: 880px;
+    top: 55px;
+  }
 
-.logout {
-  position: relative;
-  left: 870px;
-  top: 200px;
+  .logout {
+    position: relative;
+    left: 870px;
+    top: 200px;
+  }
 }
