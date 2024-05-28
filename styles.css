@@ -384,13 +384,22 @@ b {
   #bottom-ret {
     top: 1200px;
   }
-  #opcoes {
+
+  #opcoes_icon {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 10px;
     left: 15px;
     width: 30px;
     height: auto;
+  }
+
+  #opcoes-content {
+    position: relative;
+    display: none;
+  }
+
+  .opcoes:hover #opcoes-content {
+    display: block;
   }
 
   .info_perfil {
