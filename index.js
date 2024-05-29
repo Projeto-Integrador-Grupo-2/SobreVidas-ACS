@@ -19,3 +19,46 @@ document.addEventListener("click", function(event) {
       menuaberto = false;
     }
 })
+
+const slides = document.querySelector('.slides');
+const slideCount = document.querySelectorAll('.slide').length;
+const navDots = document.querySelectorAll('.nav-dot');
+let currentIndex = 0;
+let slideInterval;
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % slideCount;
+    updateSlidePosition();
+}
+
+function updateSlidePosition() {
+    const offset = -currentIndex * 100;
+    slides.style.transform = `translateX(${offset}%)`;
+    updateNavDots();
+}
+
+function updateNavDots() {
+    navDots.forEach(dot => dot.classList.remove('active'));
+    navDots[currentIndex].classList.add('active');
+}
+
+function goToSlide(index) {
+    currentIndex = index;
+    updateSlidePosition();
+    resetInterval();
+}
+
+function resetInterval() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 10000);
+}
+
+navDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index'));
+        goToSlide(index);
+    });
+});
+
+slideInterval = setInterval(nextSlide, 10000);
+updateNavDots();

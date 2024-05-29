@@ -70,31 +70,8 @@ a {
   z-index: 2;
 }
 
-.logo_topbar {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 4%;
-  z-index: 1;
-}
-
-.titulo_bar {
-  color: #fffAfA;
-  font-size: 16px;
-  position: relative;
-  left: 110px;
-  top: 6px;
-  z-index: 1;
-}
-
 /* CELULAR CELULAR CELULAR CELUAR*/
 @media screen and (max-width: 600px) {
-  .notif_ring {
-    position: absolute;
-    left: 96%;
-    transform: translate(-96%);
-    top: 14px;
-  }
 
   #ondas {
   position: absolute;
@@ -102,6 +79,46 @@ a {
   left: 0px;
   bottom: 0px;
   display: inline-block;
+  }
+
+  .logo_topbar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 2%;
+    z-index: 1;
+  }
+  
+  .titulo_bar {
+    color: #fffAfA;
+    font-size: 16px;
+    position: relative;
+    left: 17%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px;
+    display: inline-block;
+    z-index: 1;
+  }
+
+  #opcoes_icon {
+    display: none;
+  }
+  
+  #opcoes-content {
+    display: none;
+  }
+
+  .notif_ring {
+    position: absolute;
+    left: 96%;
+    transform: translate(-96%);
+    top: 14px;
+  }
+
+  .navbar {
+    position: fixed;
+    bottom: 100%;
   }
   
   #vetor_local {
@@ -117,20 +134,55 @@ a {
     top: 9.5%;
     font-size: 16px;
   }
-  
-  #placeholder {
+
+  .slider {
     position: absolute;
-    width: 380px;
-    height: auto;
+    width: 280px;
+    height: 177px;
     top: 16%;
     left: 50%;
-    border-radius: 15px;
-    transform: translate(-50%);
+    transform: translateX(-50%);
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 1s ease;
+  }
+
+  .slide {
+    width: 280px;
+    height: 177px;
+  }
+
+  .navigation {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-dot {
+    height: 8px;
+    width: 8px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .nav-dot.active {
+    background-color: #717171;
   }
   
   .dashboard {
     position: absolute;
-    top: 380px;
+    top: 43%;
     left: 50%;
     transform: translate(-50%);
     width: 280px;
@@ -246,6 +298,26 @@ a {
     display: inline-block;
   }
 
+  .titulo_bar {
+    color: #fffAfA;
+    font-size: 16px;
+    position: relative;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0px;
+    display: inline-block;
+    z-index: 1;
+  }
+
+  .logo_topbar {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4%;
+    z-index: 1;
+  }
+
   .notif_ring {
     position: absolute;
     left: 97%;
@@ -272,6 +344,7 @@ a {
     background-color: #1790F7;
     display: none;
     border-radius: 8px;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
   }
 
   .paginas {
@@ -279,15 +352,50 @@ a {
     line-height: 25px;
   }
 
-  #placeholder {
+  .slider {
     position: absolute;
     width: 600px;
-    height: auto;
-    top: 16%;
+    height: 378px;
+    top: 13%;
     left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
     border-radius: 15px;
-    transform: translate(-50%);
   }
+
+  .slides {
+    display: flex;
+    transition: transform 1s ease;
+  }
+
+  .slide {
+    width: 600px;
+    height: 378px;
+  }
+
+  .navigation {
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.nav-dot.active {
+    background-color: #717171;
+}
 
   .info {
     position: absolute;
