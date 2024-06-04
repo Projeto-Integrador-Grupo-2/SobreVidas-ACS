@@ -417,7 +417,7 @@ a {
   
   .dashboard {
     position: absolute;
-    top: 60%;
+    top: 59%;
     left: 50%;
     transform: translate(-50%);
     width: 600px;
@@ -520,9 +520,7 @@ a {
 
 /* buscaPacientes */
   .parte-azul-busca {
-    position: absolute;
-    top: 5%;
-    width: 100%;
+    width: 1490px;
     height: 350px;
     padding: 5px;
     box-sizing: border-box;
