@@ -728,7 +728,7 @@ a {
     position: absolute;
     border: white 1px  solid;
   }
-
+  /*perfil*/
   .info_perfil {
     color: #877e7f;
     position: relative;
@@ -795,24 +795,28 @@ a {
     left: 870px;
     top: 200px;
   }
-
+   /*mapa*/
   .ttmap {
     color: #877e7f;
-    position: relative;
-    top: 50px;
+    position: absolute;
+    top: 6%;
   }
 
   .img_mapa {
-    position: relative;
-    top: 50px;
-    left: 35px;
+    position: absolute;
+    top: 15%;
+    left: 2%;
   }
 
   .name_regions {
     color: #877e7f;
     position: absolute;
-    top: 150px;
-    left: 700px;
+    top: 12%;
+    left: 38%;
   }
-
+  .cadastrar {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+  }
 }
