@@ -117,12 +117,17 @@ a {
   }
 
   .navbar {
-    width: 100%;
     position: fixed;
+    justify-content: space-between;
+    display: flex;
     left: 0px;
-    bottom: 1.5%;
-    margin: 0px;
-    padding: 0px;
+    width: 100%;
+    bottom: 2%;
+  }
+
+  .no-link {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
   }
   
   #vetor_local {
