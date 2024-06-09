@@ -381,10 +381,10 @@ a {
   }
 
   .slider {
-    position: absolute;
+    position: relative;
     width: 600px;
     height: 378px;
-    top: 13%;
+    top: 70px;
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
@@ -402,8 +402,8 @@ a {
   }
 
   .navigation {
-    position: absolute;
-    top: 54%;
+    position: relative;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -444,8 +444,8 @@ a {
   }
   
   .dashboard {
-    position: absolute;
-    top: 59%;
+    position: relative;
+    top: 120px;
     left: 50%;
     transform: translate(-50%);
     width: 600px;
