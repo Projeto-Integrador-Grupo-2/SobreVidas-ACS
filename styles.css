@@ -373,7 +373,7 @@ a {
     background-color: #1790F7;
     display: none;
     border-radius: 8px;
-    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 3px 15px 5px 0px rgba(0,0,0,0.5);
   }
 
   .paginas {
