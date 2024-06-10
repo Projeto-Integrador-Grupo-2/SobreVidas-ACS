@@ -874,7 +874,26 @@ a {
   .salvar {
     color: #1790F7;
     position: absolute;
-    top: 60%;
-    left: 30%;
+    top: 80%;
+    left: 80%;
+  }
+
+  .filtro {
+    color: #686868;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+  }
+
+  .filtrar {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+  }
+
+  .imagem_paciente {
+    position: absolute;
+    top: 40%;
+    left: 50%;
   }
 }
