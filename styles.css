@@ -672,7 +672,6 @@ a {
     text-align: center;
     padding: 0px;
     margin: 15px;
-
   }
 
   .preencherLados{
@@ -754,28 +753,28 @@ a {
     position: absolute;
     border: white 1px  solid;
   }
-  /*perfil*/
+  /*PERFIL*/
   .info_perfil {
     color: #877e7f;
-    position: relative;
-    left: 650px;
-    top: 170px;
+    position: absolute;
+    left: 36%;
+    top: 40%;
 
   }
   .img_perfil {
     width: 300px;
     height: 200px;
-    transform: translate(100px);
-    top: 50px;
-    position: relative;
-    left: 550px;
+    top: 8%;
+    position: absolute;
+    left: 44%;
     text-align: center;
+    transform: translate(-50%);
   }
   .atendidos {
-    position: relative;
+    position: absolute;
     line-height: normal;
-    left: 650px;
-    top: 200px;
+    left: 36%;
+    top: 60%;
     max-width: 203px;
     margin: 1;
     padding: 2px;
@@ -784,10 +783,10 @@ a {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
   }
   .encaminhados {
-    position: relative;
+    position: absolute;
     line-height: normal;
-    left: 650px;
-    top: 220px;
+    left: 36%;
+    top: 67%;
     max-width: 203px;
     margin: 1;
     padding: 2px;
@@ -798,30 +797,30 @@ a {
 
   .info_pessoal {
     position: absolute;
-    left: 850px;
-    top: 375px;
+    left: 45%;
+    top: 40%;
   }
 
   .atendido {
     color: #877e7f;
-    position: relative;
-    left: 880px;
-    top: 170px;
+    position: absolute;
+    left: 48%;
+    top: 60%;
   }
 
   .encaminhado {
     color: #877e7f;
-    position: relative;
-    left: 880px;
-    top: 55px;
+    position: absolute;
+    left: 46%;
+    top: 69%;
   }
 
   .logout {
-    position: relative;
-    left: 870px;
-    top: 200px;
+    position: absolute;
+    left: 48%;
+    top: 75%;
   }
-   /*mapa*/
+   /*MAPA*/
   .ttmap {
     color: #877e7f;
     position: absolute;
@@ -840,9 +839,39 @@ a {
     top: 12%;
     left: 38%;
   }
+
+  /*CADASTRO*/
+
   .cadastrar {
+    color: #686868;
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 2%;
+  }
+
+  .cadastro {
+    position: absolute;
+    top: 12%;
+    left: 2%;
+  }
+
+  .nome_endereço {
+    color: #686868;
+    position: absolute;
+    top: 5%;
+    left: 30%;
+  }
+
+  .Endereço {
+    position: absolute;
+    top: 12%;
+    left: 30%;
+  }
+
+  .salvar {
+    color: #1790F7;
+    position: absolute;
+    top: 60%;
+    left: 30%;
   }
 }
