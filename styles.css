@@ -82,10 +82,10 @@ a {
   }
 
   .logo_topbar {
-    position: absolute;
+    position: relative;
     top: 50%;
     transform: translateY(-50%);
-    left: 2%;
+    left: 10px;
     z-index: 1;
   }
   
@@ -93,11 +93,10 @@ a {
     color: #fffAfA;
     font-size: 16px;
     position: relative;
-    left: 17%;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 10px;
+    bottom: 5px;
     margin: 0px;
-    display: inline-block;
+    display: inline;
     z-index: 1;
   }
 
@@ -136,30 +135,35 @@ a {
     left: 0px;
     bottom: 0%;
     width: 100%;
-    height: 11%;
+    height: 12%;
     background-color: #FFFAFA;
     z-index: 1;
   }
+
+  .info {
+    position: relative;
+    top: 70px;
+    left: 5px;
+    width: 85px;
+    height: 30px;
+  }
   
   #vetor_local {
-    position: absolute;
-    left: 5%;
-    top: 11%;
+    position: relative;
   }
   
   #local {
     color: #1790F7;
-    position: absolute;
-    left: 11%;
-    top: 9.5%;
+    position: relative;
     font-size: 16px;
+    display: inline;
   }
 
   .slider {
-    position: absolute;
-    width: 280px;
-    height: 177px;
-    top: 16%;
+    position: relative;
+    width: 85%;
+    height: auto;
+    top: 80px;
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
@@ -172,13 +176,13 @@ a {
   }
 
   .slide {
-    width: 280px;
-    height: 177px;
+    width: 100%;
+    height: auto;
   }
 
   .navigation {
-    position: absolute;
-    top: 40%;
+    position: relative;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -201,11 +205,11 @@ a {
   }
   
   .dashboard {
-    position: absolute;
-    top: 43%;
+    position: relative;
+    top: 130px;
     left: 50%;
     transform: translate(-50%);
-    width: 280px;
+    width: 75%;
     height: 470px;
   }
 
@@ -214,7 +218,7 @@ a {
     top: 0%;
     left: 50%;
     transform: translate(-50%);
-    width: 280px;
+    width: 100%;
     height: 150px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -244,7 +248,7 @@ a {
   #botao_cadastro {
     position: absolute;
     top: 160px;
-    width: 135px;
+    width: 48.25%;
     height: 170px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -275,7 +279,7 @@ a {
     top: 160px;
     left: 100%;
     transform: translate(-100%);
-    width: 135px;
+    width: 48.25%;
     height: 170px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -330,35 +334,32 @@ a {
     color: #fffAfA;
     font-size: 16px;
     position: relative;
-    left: 6%;
-    top: 50%;
-    transform: translateY(-50%);
+    display: inline;
+    bottom: 5px;
+    left: 9px;
     margin: 0px;
-    display: inline-block;
     z-index: 1;
   }
 
   .logo_topbar {
-    position: absolute;
+    position: relative;
     top: 50%;
     transform: translateY(-50%);
-    left: 3%;
+    left: 10px;
     z-index: 1;
   }
 
   .notif_ring {
     position: absolute;
     left: 97%;
-    transform: translateX(-97%);
     top: 50%;
     transform: translateY(-50%);
   }
 
   #opcoes_icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 15px;
+    position: relative;
+    top: 0px;
+    left: 10px;
     width: 30px;
     height: auto;
     cursor: pointer;
@@ -372,7 +373,7 @@ a {
     background-color: #1790F7;
     display: none;
     border-radius: 8px;
-    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 3px 15px 5px 0px rgba(0,0,0,0.5);
   }
 
   .paginas {
@@ -381,10 +382,10 @@ a {
   }
 
   .slider {
-    position: absolute;
+    position: relative;
     width: 600px;
     height: 378px;
-    top: 13%;
+    top: 70px;
     left: 50%;
     transform: translateX(-50%);
     overflow: hidden;
@@ -402,8 +403,8 @@ a {
   }
 
   .navigation {
-    position: absolute;
-    top: 54%;
+    position: relative;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -424,12 +425,13 @@ a {
   .nav-dot.active {
       background-color: #717171;
   }
+
   .info {
-    position: absolute;
+    position: relative;
     top: 100px;
-    left: 180px;
-    width: auto;
-    height: auto;
+    left: 150px;
+    width: 85px;
+    height: 30px;
   }
   
   #vetor_local {
@@ -439,13 +441,14 @@ a {
   #local {
     color: #1790F7;
     position: relative;
+    bottom: 10%;
     font-size: 16px;
-    display: inline-block;
+    display: inline;
   }
   
   .dashboard {
-    position: absolute;
-    top: 59%;
+    position: relative;
+    top: 120px;
     left: 50%;
     transform: translate(-50%);
     width: 600px;
@@ -485,7 +488,7 @@ a {
     top: 315px;
     left: 0%;
     transform: translate(0%);
-    width: 290px;
+    width: 295px;
     height: 270px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -516,7 +519,7 @@ a {
     top: 315px;
     left: 100%;
     transform: translate(-100%);
-    width: 290px;
+    width: 295px;
     height: 270px;
     background-color: #ffffff;
     border-radius: 10px;

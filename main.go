@@ -25,9 +25,9 @@ func main() {
 
 	alimentaBancoDeDados()
 
-	log.Println("Server rodando na porta 8080")
-	// Inicia o servidor na porta 8080
-	err := http.ListenAndServe(":8080", nil)
+	log.Println("Server rodando na porta 8052")
+	// Inicia o servidor na porta 8052
+	err := http.ListenAndServe(":8052", nil)
 	if err != nil {
 		log.Fatal(err)
 	}

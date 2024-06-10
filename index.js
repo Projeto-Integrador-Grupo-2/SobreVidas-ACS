@@ -50,7 +50,7 @@ function goToSlide(index) {
 
 function resetInterval() {
     clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 10000);
+    slideInterval = setInterval(nextSlide, 15000);
 }
 
 navDots.forEach(dot => {

@@ -1,0 +1,229 @@
+2024-06-04 21:45:10.355 -03 [4277] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-04 21:45:10.358 -03 [4277] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-04 21:45:10.361 -03 [4277] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-04 21:45:10.371 -03 [4285] LOG:  database system was shut down at 2024-06-04 21:44:44 -03
+2024-06-04 21:45:10.384 -03 [4277] LOG:  database system is ready to accept connections
+2024-06-04 21:45:34.031 -03 [4662] FATAL:  role "postgres" does not exist
+2024-06-04 21:50:29.604 -03 [4283] LOG:  checkpoint starting: time
+2024-06-04 21:50:40.461 -03 [4283] LOG:  checkpoint complete: wrote 110 buffers (0.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=10.804 s, sync=0.040 s, total=10.858 s; sync files=59, longest=0.011 s, average=0.001 s; distance=437 kB, estimate=437 kB; lsn=0/155C620, redo lsn=0/155C5E8
+2024-06-04 21:57:09.392 -03 [4283] LOG:  checkpoint starting: time
+2024-06-04 21:57:09.548 -03 [4283] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.112 s, sync=0.006 s, total=0.157 s; sync files=2, longest=0.003 s, average=0.003 s; distance=0 kB, estimate=393 kB; lsn=0/155C7D0, redo lsn=0/155C798
+2024-06-04 22:11:37.577 -03 [4283] LOG:  checkpoint starting: time
+2024-06-04 22:11:37.714 -03 [4283] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.107 s, sync=0.006 s, total=0.137 s; sync files=2, longest=0.004 s, average=0.003 s; distance=0 kB, estimate=354 kB; lsn=0/155C980, redo lsn=0/155C948
+2024-06-04 22:25:00.553 -03 [4277] LOG:  received fast shutdown request
+2024-06-04 22:25:00.563 -03 [4277] LOG:  aborting any active transactions
+2024-06-04 22:25:00.567 -03 [4277] LOG:  background worker "logical replication launcher" (PID 4288) exited with exit code 1
+2024-06-04 22:25:00.570 -03 [4283] LOG:  shutting down
+2024-06-04 22:25:00.572 -03 [4283] LOG:  checkpoint starting: shutdown immediate
+2024-06-04 22:25:00.589 -03 [4283] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.003 s, total=0.019 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=318 kB; lsn=0/155CAF8, redo lsn=0/155CAF8
+2024-06-04 22:25:00.597 -03 [4277] LOG:  database system is shut down
+2024-06-04 22:39:59.135 -03 [24587] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-04 22:39:59.139 -03 [24587] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-04 22:39:59.143 -03 [24587] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-04 22:39:59.149 -03 [24593] LOG:  database system was shut down at 2024-06-04 22:37:06 -03
+2024-06-04 22:39:59.167 -03 [24587] LOG:  database system is ready to accept connections
+2024-06-04 22:40:30.993 -03 [24876] ERROR:  syntax error at or near "[" at character 11
+2024-06-04 22:40:30.993 -03 [24876] STATEMENT:  DROP USER [IF EXISTS] postgres;
+2024-06-04 22:44:59.250 -03 [24591] LOG:  checkpoint starting: time
+2024-06-04 22:44:59.284 -03 [24591] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.002 s, total=0.035 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/155D640, redo lsn=0/155D608
+2024-06-04 22:47:55.920 -03 [27411] ERROR:  current user cannot be dropped
+2024-06-04 22:47:55.920 -03 [27411] STATEMENT:  DROP USER postgres
+2024-06-04 22:52:32.050 -03 [28630] ERROR:  role "postgres" cannot be dropped because some objects depend on it
+2024-06-04 22:52:32.050 -03 [28630] DETAIL:  owner of sequence paciente_id_seq
+	owner of table paciente
+2024-06-04 22:52:32.050 -03 [28630] STATEMENT:  DROP USER IF EXISTS postgres;
+2024-06-04 22:52:49.209 -03 [28630] ERROR:  role "postgres" cannot be dropped because some objects depend on it
+2024-06-04 22:52:49.209 -03 [28630] DETAIL:  owner of sequence paciente_id_seq
+	owner of table paciente
+2024-06-04 22:52:49.209 -03 [28630] STATEMENT:  DROP USER IF EXISTS postgres;
+2024-06-04 22:56:48.555 -03 [24587] LOG:  received fast shutdown request
+2024-06-04 22:56:48.559 -03 [24587] LOG:  aborting any active transactions
+2024-06-04 22:56:48.559 -03 [27485] FATAL:  terminating connection due to administrator command
+2024-06-04 22:56:48.559 -03 [24876] FATAL:  terminating connection due to administrator command
+2024-06-04 22:56:48.559 -03 [26605] FATAL:  terminating connection due to administrator command
+2024-06-04 22:56:48.567 -03 [24587] LOG:  background worker "logical replication launcher" (PID 24596) exited with exit code 1
+2024-06-04 22:56:48.568 -03 [24591] LOG:  shutting down
+2024-06-04 22:56:48.570 -03 [24591] LOG:  checkpoint starting: shutdown immediate
+2024-06-04 22:56:48.583 -03 [24591] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.016 s; sync files=1, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/155D6F0, redo lsn=0/155D6F0
+2024-06-04 22:56:48.591 -03 [24587] LOG:  database system is shut down
+2024-06-04 22:57:00.505 -03 [30047] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-04 22:57:00.507 -03 [30047] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-04 22:57:00.510 -03 [30047] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-04 22:57:00.516 -03 [30053] LOG:  database system was shut down at 2024-06-04 22:56:48 -03
+2024-06-04 22:57:00.530 -03 [30047] LOG:  database system is ready to accept connections
+2024-06-04 22:57:05.224 -03 [30063] ERROR:  role "postgres" cannot be dropped because some objects depend on it
+2024-06-04 22:57:05.224 -03 [30063] DETAIL:  owner of sequence paciente_id_seq
+	owner of table paciente
+2024-06-04 22:57:05.224 -03 [30063] STATEMENT:  DROP USER IF EXISTS postgres;
+2024-06-04 23:02:00.613 -03 [30051] LOG:  checkpoint starting: time
+2024-06-04 23:02:00.957 -03 [30051] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.308 s, sync=0.013 s, total=0.344 s; sync files=5, longest=0.011 s, average=0.003 s; distance=3 kB, estimate=3 kB; lsn=0/155E620, redo lsn=0/155E5E8
+2024-06-04 23:04:07.063 -03 [494] FATAL:  lock file "postmaster.pid" already exists
+2024-06-04 23:04:07.063 -03 [494] HINT:  Is another postmaster (PID 30047) running in data directory "/data/data/com.termux/files/home/Sobrevidas-ACS/postgres"?
+2024-06-04 23:04:19.126 -03 [746] FATAL:  role "postgres" does not exist
+2024-06-04 23:04:23.112 -03 [752] FATAL:  role "postgres" does not exist
+2024-06-04 23:05:02.603 -03 [1435] FATAL:  database "sobrevidas" does not exist
+2024-06-04 23:06:17.936 -03 [2131] ERROR:  syntax error at or near "-" at character 45
+2024-06-04 23:06:17.936 -03 [2131] STATEMENT:  ALTER DATABASE postgres
+	RENAME TO Sobrevidas-ACS;
+2024-06-04 23:06:39.640 -03 [2131] ERROR:  current database cannot be renamed
+2024-06-04 23:06:39.640 -03 [2131] STATEMENT:  ALTER DATABASE postgres
+	RENAME TO SobrevidasACS;
+2024-06-04 23:07:00.957 -03 [30051] LOG:  checkpoint starting: time
+2024-06-04 23:07:01.289 -03 [30051] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.309 s, sync=0.003 s, total=0.332 s; sync files=4, longest=0.002 s, average=0.001 s; distance=2 kB, estimate=3 kB; lsn=0/155F1D0, redo lsn=0/155F198
+2024-06-04 23:07:37.093 -03 [2638] FATAL:  database "u0_a317" does not exist
+2024-06-04 23:08:46.419 -03 [2982] ERROR:  database "postgres" is being accessed by other users
+2024-06-04 23:08:46.419 -03 [2982] DETAIL:  There is 1 other session using the database.
+2024-06-04 23:08:46.419 -03 [2982] STATEMENT:  ALTER DATABASE postgres
+	RENAME TO SobrevidasACS
+	;
+2024-06-04 23:09:13.481 -03 [3570] FATAL:  database "SobrevidasACS" does not exist
+2024-06-04 23:09:24.085 -03 [30047] LOG:  received fast shutdown request
+2024-06-04 23:09:24.093 -03 [30047] LOG:  aborting any active transactions
+2024-06-04 23:09:24.096 -03 [30047] LOG:  background worker "logical replication launcher" (PID 30056) exited with exit code 1
+2024-06-04 23:09:24.100 -03 [30051] LOG:  shutting down
+2024-06-04 23:09:24.104 -03 [30051] LOG:  checkpoint starting: shutdown immediate
+2024-06-04 23:09:24.510 -03 [30051] LOG:  checkpoint complete: wrote 930 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.023 s, sync=0.377 s, total=0.411 s; sync files=300, longest=0.030 s, average=0.002 s; distance=4277 kB, estimate=4277 kB; lsn=0/198C8D0, redo lsn=0/198C8D0
+2024-06-04 23:09:24.522 -03 [30047] LOG:  database system is shut down
+2024-06-04 23:09:31.529 -03 [3617] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-04 23:09:31.531 -03 [3617] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-04 23:09:31.534 -03 [3617] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-04 23:09:31.541 -03 [3623] LOG:  database system was shut down at 2024-06-04 23:09:24 -03
+2024-06-04 23:09:31.562 -03 [3617] LOG:  database system is ready to accept connections
+2024-06-04 23:09:34.301 -03 [3640] FATAL:  database "SobrevidasACS" does not exist
+2024-06-04 23:11:58.333 -03 [3617] LOG:  received fast shutdown request
+2024-06-04 23:11:58.341 -03 [3617] LOG:  aborting any active transactions
+2024-06-04 23:11:58.348 -03 [3617] LOG:  background worker "logical replication launcher" (PID 3626) exited with exit code 1
+2024-06-04 23:11:58.348 -03 [3621] LOG:  shutting down
+2024-06-04 23:11:58.349 -03 [3621] LOG:  checkpoint starting: shutdown immediate
+2024-06-04 23:11:58.361 -03 [3621] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.001 s, total=0.014 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/198C980, redo lsn=0/198C980
+2024-06-04 23:11:58.369 -03 [3617] LOG:  database system is shut down
+2024-06-04 23:14:19.562 -03 [4979] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-04 23:14:19.564 -03 [4979] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-04 23:14:19.567 -03 [4979] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-04 23:14:19.573 -03 [4985] LOG:  database system was shut down at 2024-06-04 23:11:58 -03
+2024-06-04 23:14:19.589 -03 [4979] LOG:  database system is ready to accept connections
+2024-06-04 23:14:24.650 -03 [5011] FATAL:  database "sonr" does not exist
+2024-06-04 23:15:26.861 -03 [5051] ERROR:  role "role" does not exist
+2024-06-04 23:15:26.861 -03 [5051] STATEMENT:  ALTER USER ROLE
+	;
+2024-06-04 23:16:16.917 -03 [4983] LOG:  checkpoint starting: immediate force wait
+2024-06-04 23:16:16.940 -03 [4983] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.005 s, total=0.024 s; sync files=6, longest=0.002 s, average=0.001 s; distance=5 kB, estimate=5 kB; lsn=0/198DEA8, redo lsn=0/198DE70
+2024-06-04 23:17:04.740 -03 [5954] FATAL:  database "postgres" does not exist
+2024-06-04 23:21:17.005 -03 [4983] LOG:  checkpoint starting: time
+2024-06-04 23:21:17.441 -03 [4983] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.410 s, sync=0.009 s, total=0.436 s; sync files=5, longest=0.006 s, average=0.002 s; distance=0 kB, estimate=4 kB; lsn=0/198E070, redo lsn=0/198E038
+2024-06-04 23:44:42.165 -03 [4983] LOG:  checkpoint starting: time
+2024-06-04 23:44:43.008 -03 [4983] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.817 s, sync=0.010 s, total=0.844 s; sync files=8, longest=0.005 s, average=0.002 s; distance=39 kB, estimate=39 kB; lsn=0/1997FD0, redo lsn=0/1997F98
+2024-06-04 23:45:05.118 -03 [4979] LOG:  received fast shutdown request
+2024-06-04 23:45:05.120 -03 [4979] LOG:  aborting any active transactions
+2024-06-04 23:45:05.120 -03 [11819] FATAL:  terminating connection due to administrator command
+2024-06-04 23:45:05.120 -03 [11133] FATAL:  terminating connection due to administrator command
+2024-06-04 23:45:05.131 -03 [4979] LOG:  background worker "logical replication launcher" (PID 4988) exited with exit code 1
+2024-06-04 23:45:05.132 -03 [4983] LOG:  shutting down
+2024-06-04 23:45:05.134 -03 [4983] LOG:  checkpoint starting: shutdown immediate
+2024-06-04 23:45:05.143 -03 [4983] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.012 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=35 kB; lsn=0/1998098, redo lsn=0/1998098
+2024-06-04 23:45:05.152 -03 [4979] LOG:  database system is shut down
+2024-06-04 23:49:51.051 -03 [14417] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-04 23:49:51.052 -03 [14417] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-04 23:49:51.057 -03 [14417] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-04 23:49:51.064 -03 [14423] LOG:  database system was shut down at 2024-06-04 23:45:05 -03
+2024-06-04 23:49:51.096 -03 [14417] LOG:  database system is ready to accept connections
+2024-06-04 23:50:04.744 -03 [14749] FATAL:  role "sobrevidas" does not exist
+2024-06-04 23:52:34.761 -03 [16613] ERROR:  relation "paciente" does not exist at character 13
+2024-06-04 23:52:34.761 -03 [16613] STATEMENT:  INSERT INTO paciente (nome, cpf, data_nascimento, telefone_celular, sexo, esta_fumante, faz_uso_alcool, esta_situacao_rua) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing
+2024-06-04 23:52:34.762 -03 [16613] ERROR:  relation "paciente" does not exist at character 13
+2024-06-04 23:52:34.762 -03 [16613] STATEMENT:  INSERT INTO paciente (nome, cpf, data_nascimento, telefone_celular, sexo, esta_fumante, faz_uso_alcool, esta_situacao_rua) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing
+2024-06-04 23:52:34.762 -03 [16613] ERROR:  relation "paciente" does not exist at character 13
+2024-06-04 23:52:34.762 -03 [16613] STATEMENT:  INSERT INTO paciente (nome, cpf, data_nascimento, telefone_celular, sexo, esta_fumante, faz_uso_alcool, esta_situacao_rua) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing
+2024-06-04 23:52:34.762 -03 [16613] ERROR:  relation "paciente" does not exist at character 13
+2024-06-04 23:52:34.762 -03 [16613] STATEMENT:  INSERT INTO paciente (nome, cpf, data_nascimento, telefone_celular, sexo, esta_fumante, faz_uso_alcool, esta_situacao_rua) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing
+2024-06-04 23:52:34.763 -03 [16613] ERROR:  relation "paciente" does not exist at character 13
+2024-06-04 23:52:34.763 -03 [16613] STATEMENT:  INSERT INTO paciente (nome, cpf, data_nascimento, telefone_celular, sexo, esta_fumante, faz_uso_alcool, esta_situacao_rua) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing
+2024-06-04 23:54:51.160 -03 [14421] LOG:  checkpoint starting: time
+2024-06-04 23:54:55.832 -03 [14421] LOG:  checkpoint complete: wrote 49 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.635 s, sync=0.022 s, total=4.672 s; sync files=46, longest=0.004 s, average=0.001 s; distance=168 kB, estimate=168 kB; lsn=0/19C2238, redo lsn=0/19C2200
+2024-06-05 00:02:10.680 -03 [14421] LOG:  checkpoint starting: time
+2024-06-05 00:02:33.095 -03 [14421] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=22.380 s, sync=0.017 s, total=22.416 s; sync files=5, longest=0.017 s, average=0.004 s; distance=2 kB, estimate=151 kB; lsn=0/19C2C30, redo lsn=0/19C2BF8
+2024-06-05 00:47:24.140 -03 [14421] LOG:  checkpoint starting: time
+2024-06-05 00:47:24.497 -03 [14421] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.323 s, sync=0.004 s, total=0.357 s; sync files=4, longest=0.002 s, average=0.001 s; distance=0 kB, estimate=136 kB; lsn=0/19C2DE0, redo lsn=0/19C2DA8
+2024-06-05 00:52:24.541 -03 [14421] LOG:  checkpoint starting: time
+2024-06-05 00:52:24.666 -03 [14421] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.104 s, sync=0.007 s, total=0.126 s; sync files=2, longest=0.005 s, average=0.004 s; distance=0 kB, estimate=123 kB; lsn=0/19C2F90, redo lsn=0/19C2F58
+2024-06-05 01:00:00.950 -03 [6582] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-05 01:00:00.952 -03 [6582] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-05 01:00:00.964 -03 [6582] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-05 01:00:00.976 -03 [6588] LOG:  database system was interrupted; last known up at 2024-06-05 00:52:24 -03
+2024-06-05 01:00:01.135 -03 [6588] LOG:  database system was not properly shut down; automatic recovery in progress
+2024-06-05 01:00:01.147 -03 [6588] LOG:  redo starts at 0/19C2F58
+2024-06-05 01:00:01.147 -03 [6588] LOG:  invalid record length at 0/19C3040: expected at least 24, got 0
+2024-06-05 01:00:01.147 -03 [6588] LOG:  redo done at 0/19C3008 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2024-06-05 01:00:01.155 -03 [6586] LOG:  checkpoint starting: end-of-recovery immediate wait
+2024-06-05 01:00:01.172 -03 [6586] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.002 s, total=0.022 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/19C3040, redo lsn=0/19C3040
+2024-06-05 01:00:01.181 -03 [6582] LOG:  database system is ready to accept connections
+2024-06-05 01:00:30.805 -03 [6582] LOG:  received fast shutdown request
+2024-06-05 01:00:30.808 -03 [6582] LOG:  aborting any active transactions
+2024-06-05 01:00:30.811 -03 [6582] LOG:  background worker "logical replication launcher" (PID 6592) exited with exit code 1
+2024-06-05 01:00:30.816 -03 [6586] LOG:  shutting down
+2024-06-05 01:00:30.820 -03 [6586] LOG:  checkpoint starting: shutdown immediate
+2024-06-05 01:00:30.838 -03 [6586] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.005 s, total=0.022 s; sync files=3, longest=0.003 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/19C3180, redo lsn=0/19C3180
+2024-06-05 01:00:30.847 -03 [6582] LOG:  database system is shut down
+2024-06-05 12:02:00.477 -03 [5188] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-05 12:02:00.480 -03 [5188] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-05 12:02:00.483 -03 [5188] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-05 12:02:00.489 -03 [5195] LOG:  database system was shut down at 2024-06-05 01:00:30 -03
+2024-06-05 12:02:00.509 -03 [5188] LOG:  database system is ready to accept connections
+2024-06-05 12:04:16.726 -03 [5188] LOG:  received fast shutdown request
+2024-06-05 12:04:16.728 -03 [5188] LOG:  aborting any active transactions
+2024-06-05 12:04:16.732 -03 [5188] LOG:  background worker "logical replication launcher" (PID 5201) exited with exit code 1
+2024-06-05 12:04:16.734 -03 [5192] LOG:  shutting down
+2024-06-05 12:04:16.736 -03 [5192] LOG:  checkpoint starting: shutdown immediate
+2024-06-05 12:04:16.757 -03 [5192] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.011 s, total=0.023 s; sync files=3, longest=0.009 s, average=0.004 s; distance=0 kB, estimate=0 kB; lsn=0/19C32C0, redo lsn=0/19C32C0
+2024-06-05 12:04:16.765 -03 [5188] LOG:  database system is shut down
+2024-06-05 18:08:32.706 -03 [30765] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-05 18:08:32.708 -03 [30765] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-05 18:08:32.711 -03 [30765] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-05 18:08:32.725 -03 [30771] LOG:  database system was shut down at 2024-06-05 12:04:16 -03
+2024-06-05 18:08:32.742 -03 [30765] LOG:  database system is ready to accept connections
+2024-06-05 18:11:05.221 -03 [30765] LOG:  received fast shutdown request
+2024-06-05 18:11:05.224 -03 [30765] LOG:  aborting any active transactions
+2024-06-05 18:11:05.224 -03 [31725] FATAL:  terminating connection due to administrator command
+2024-06-05 18:11:05.224 -03 [31512] FATAL:  terminating connection due to administrator command
+2024-06-05 18:11:05.235 -03 [30765] LOG:  background worker "logical replication launcher" (PID 30774) exited with exit code 1
+2024-06-05 18:11:05.235 -03 [30769] LOG:  shutting down
+2024-06-05 18:11:05.237 -03 [30769] LOG:  checkpoint starting: shutdown immediate
+2024-06-05 18:11:05.256 -03 [30769] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.004 s, total=0.022 s; sync files=6, longest=0.002 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/19C3400, redo lsn=0/19C3400
+2024-06-05 18:11:05.263 -03 [30765] LOG:  database system is shut down
+2024-06-07 19:22:06.787 -03 [16852] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-07 19:22:06.790 -03 [16852] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-07 19:22:06.794 -03 [16852] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-07 19:22:06.807 -03 [16858] LOG:  database system was shut down at 2024-06-05 18:11:05 -03
+2024-06-07 19:22:06.828 -03 [16852] LOG:  database system is ready to accept connections
+2024-06-07 19:27:06.903 -03 [16856] LOG:  checkpoint starting: time
+2024-06-07 19:27:06.945 -03 [16856] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.024 s, sync=0.002 s, total=0.043 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/19C34E8, redo lsn=0/19C34B0
+2024-06-07 19:27:18.758 -03 [16852] LOG:  received fast shutdown request
+2024-06-07 19:27:18.765 -03 [16852] LOG:  aborting any active transactions
+2024-06-07 19:27:18.765 -03 [16978] FATAL:  terminating connection due to administrator command
+2024-06-07 19:27:18.767 -03 [16957] FATAL:  terminating connection due to administrator command
+2024-06-07 19:27:18.774 -03 [16852] LOG:  background worker "logical replication launcher" (PID 16862) exited with exit code 1
+2024-06-07 19:27:18.775 -03 [16856] LOG:  shutting down
+2024-06-07 19:27:18.776 -03 [16856] LOG:  checkpoint starting: shutdown immediate
+2024-06-07 19:27:18.783 -03 [16856] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.009 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/19C3598, redo lsn=0/19C3598
+2024-06-07 19:27:18.790 -03 [16852] LOG:  database system is shut down
+2024-06-07 19:27:20.421 -03 [18949] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-07 19:27:20.423 -03 [18949] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-07 19:27:20.427 -03 [18949] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-07 19:27:20.433 -03 [18955] LOG:  database system was shut down at 2024-06-07 19:27:18 -03
+2024-06-07 19:27:20.457 -03 [18949] LOG:  database system is ready to accept connections
+2024-06-07 19:28:00.141 -03 [18949] LOG:  received fast shutdown request
+2024-06-07 19:28:00.151 -03 [18949] LOG:  aborting any active transactions
+2024-06-07 19:28:00.151 -03 [19016] FATAL:  terminating connection due to administrator command
+2024-06-07 19:28:00.151 -03 [19011] FATAL:  terminating connection due to administrator command
+2024-06-07 19:28:00.159 -03 [18949] LOG:  background worker "logical replication launcher" (PID 18958) exited with exit code 1
+2024-06-07 19:28:00.160 -03 [18953] LOG:  shutting down
+2024-06-07 19:28:00.162 -03 [18953] LOG:  checkpoint starting: shutdown immediate
+2024-06-07 19:28:00.194 -03 [18953] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.001 s, total=0.035 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/19C3648, redo lsn=0/19C3648
+2024-06-07 19:28:00.205 -03 [18949] LOG:  database system is shut down
+2024-06-07 19:49:13.924 -03 [22905] LOG:  starting PostgreSQL 16.3 on aarch64-unknown-linux-android, compiled by Android (10552028, +pgo, +bolt, +lto, -mlgo, based on r487747d) clang version 17.0.2 (https://android.googlesource.com/toolchain/llvm-project d9f89f4d16663d5012e5c09495f3b30ece3d2362), 64-bit
+2024-06-07 19:49:13.925 -03 [22905] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-06-07 19:49:13.928 -03 [22905] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2024-06-07 19:49:13.935 -03 [22912] LOG:  database system was shut down at 2024-06-07 19:28:00 -03
+2024-06-07 19:49:13.945 -03 [22905] LOG:  database system is ready to accept connections
+2024-06-07 19:54:14.036 -03 [22910] LOG:  checkpoint starting: time
+2024-06-07 19:54:14.171 -03 [22910] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.112 s, sync=0.006 s, total=0.135 s; sync files=3, longest=0.003 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/19C37F8, redo lsn=0/19C37C0
