@@ -9,9 +9,10 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
+
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-	"strings"
 )
 
 var db = fazConexaoComBanco()
@@ -33,7 +34,7 @@ func main() {
 	}
 }
 
-func pacientes (w http.ResponseWriter, r *http.Request) {
+func pacientes(w http.ResponseWriter, r *http.Request) {
 
 	err := r.ParseForm()
 	if err != nil {
@@ -64,7 +65,7 @@ func fazConexaoComBanco() *sql.DB {
 	}
 
 	// cria tabela paciente com atributos como: id, nome, cpf, data de nascimento, telefone, sexo e booleanos referente a situação fisica
-	_, err = database.Query("CREATE TABLE IF NOT EXISTS paciente (id SERIAL PRIMARY KEY, nome VARCHAR(255) UNIQUE NOT NULL, cpf VARCHAR(15) UNIQUE NOT NULL, data_nascimento VARCHAR(12), telefone_celular VARCHAR(20), sexo VARCHAR(10), esta_fumante boolean, faz_uso_alcool boolean, esta_situacao_rua boolean)")
+	_, err = database.Query("CREATE TABLE IF NOT EXISTS paciente (id SERIAL PRIMARY KEY, data_cadastro varchar(10) NOT NULL, nome VARCHAR(255) NOT NULL, nome_da_mae varchar(255) NOT NULL,cpf VARCHAR(15) UNIQUE NOT NULL, sexo VARCHAR(10) NOT NULL, email varchar(255), telefone_celular VARCHAR(20), data_nascimento VARCHAR(12) NOT NULL, cidade varchar(255) NOT NULL, cep varchar(9) NOT NULL, rua varchar(255) NOT NULL, num_casa int)")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -74,7 +75,7 @@ func fazConexaoComBanco() *sql.DB {
 
 func cadastraPaciente(paciente Paciente) {
 	// insere paciente no banco de dados
-	_, err := db.Exec(`INSERT INTO paciente (nome, cpf, data_nascimento, telefone_celular, sexo, esta_fumante, faz_uso_alcool, esta_situacao_rua) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) on conflict do nothing`, paciente.Nome, paciente.Cpf, paciente.DataNascimento, paciente.Telefone, paciente.Sexo, paciente.EstaFumante, paciente.FazUsoAlcool, paciente.EstaSituacaoDeRua)
+	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -82,7 +83,7 @@ func cadastraPaciente(paciente Paciente) {
 
 func buscaPacientePorNome(nome string) Pacientes {
 	// retorna pacientes por nome
-	busca, err := db.Query(`SELECT * FROM paciente WHERE nome LIKE concat('%', text($1), '%')`, nome)
+	busca, err := db.Query(`SELECT * FROM paciente WHERE LOWER(nome) LIKE LOWER(concat('%', text($1), '%'))`, nome)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -95,26 +96,29 @@ func buscaPacientePorNome(nome string) Pacientes {
 		var paciente Paciente
 
 		// Armazena os valores em variáveis
-		var Id uint64
-		var Nome, Cpf, DataNascimento, Telefone, Sexo string
-		var EstaFumante, FazUsoAlcool, EstaSituacaoDeRua bool
+		var Id, Num_casa uint64
+		var Data, Nome, Nome_mae, Cpf, Sexo, email, Telefone, DataNascimento, Cidade, CEP, Rua string
 
 		// Faz o Scan do SELECT
-		err = busca.Scan(&Id, &Nome, &Cpf, &DataNascimento, &Telefone, &Sexo, &EstaFumante, &FazUsoAlcool, &EstaSituacaoDeRua)
+		err = busca.Scan(&Id, &Data, &Nome, &Nome_mae, &Cpf, &Sexo, &email, &Telefone, &DataNascimento, &Cidade, &CEP, &Rua, &Num_casa)
 		if err != nil {
 			panic(err.Error())
 		}
 
 		// Envia os resultados para a struct
 		paciente.Id = Id
+		paciente.DataCadastro = Data
 		paciente.Nome = Nome
+		paciente.NomeMae = Nome_mae
 		paciente.Cpf = Cpf
-		paciente.DataNascimento = DataNascimento
-		paciente.Telefone = Telefone
 		paciente.Sexo = Sexo
-		paciente.EstaFumante = EstaFumante
-		paciente.FazUsoAlcool = FazUsoAlcool
-		paciente.EstaSituacaoDeRua = EstaSituacaoDeRua
+		paciente.DataNascimento = DataNascimento
+		paciente.Email = email
+		paciente.Telefone = Telefone
+		paciente.Cidade = Cidade
+		paciente.CEP = CEP
+		paciente.Rua = Rua
+		paciente.Numero = Num_casa
 
 		// Junta a Struct com Array
 		pacientes.Pacientes = append(pacientes.Pacientes, paciente)
@@ -141,15 +145,19 @@ func alimentaBancoDeDados() {
 }
 
 type Paciente struct {
-	Id                uint64
-	Nome              string `json:"nome"`
-	Cpf               string `json:"cpf"`
-	DataNascimento    string `json:"data_nasc"`
-	Telefone          string `json:"celular"`
-	Sexo              string `json:"sexo"`
-	EstaFumante       bool   `json:"esta_fumante"`
-	FazUsoAlcool      bool   `json:"faz_uso_alcool"`
-	EstaSituacaoDeRua bool   `json:"esta_situacao_de_rua"`
+	Id             uint64
+	DataCadastro   string `json:"Data_cad"`
+	Nome           string `json:"nome"`
+	NomeMae        string `json:"Nome_mae"`
+	Cpf            string `json:"cpf"`
+	Sexo           string `json:"sexo"`
+	Email          string `json:"email"`
+	Telefone       string `json:"celular"`
+	DataNascimento string `json:"data_nasc"`
+	Cidade         string `json:"Cidade"`
+	CEP            string `json:"CEP"`
+	Rua            string `json:"Rua"`
+	Numero         uint64 `json:"Num_casa"`
 }
 
 type Pacientes struct {
