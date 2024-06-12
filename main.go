@@ -22,7 +22,7 @@ func main() {
 	// Configuração do servidor para servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
 	fs := http.FileServer(http.Dir("./"))
 	http.Handle("/", fs)
-	http.HandleFunc("/paciente", pacientes)
+	http.HandleFunc("/listaPacientes", pacientes)
 
 	alimentaBancoDeDados()
 
@@ -44,7 +44,7 @@ func pacientes(w http.ResponseWriter, r *http.Request) {
 
 	Pacientes := buscaPacientePorNome(busca)
 
-	templates.ExecuteTemplate(w, "pacientes.html", Pacientes)
+	templates.ExecuteTemplate(w, "listaPacientes.html", Pacientes)
 }
 
 func fazConexaoComBanco() *sql.DB {
