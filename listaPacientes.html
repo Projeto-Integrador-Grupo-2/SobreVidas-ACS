@@ -1,86 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
-=======
     <title>Lista de Pacientes</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <script src="index.js" defer></script>
 </head>
 <body>
     <div class="ret">
-        <img id="opcoes_icon" src="assets/Hamburger_icon_white.svg" alt="Ícone de opções">
-        <div id="opcoes-content">
-            <ul style="color: white;">
-                <li><a class="paginas" href="home_page.html">Início</a></li>
-                <li><a class="paginas" href="listaPacientes.html">Pacientes</a></li>
-                <li><a class="paginas" href="perfil.html">Perfil</a></li>
-            </ul>
-        </div>
-        <img class="logo_topbar" src="assets/logo_sobrevidas.svg" alt="logo">
-        <h1 class="titulo_bar">Sobrevidas ACS</h1>
-        <a href=#>
-            <img class="notif_ring" src="assets/notif_ring.svg" alt="Notificações">
-        </a>
+      <img id="opcoes_icon" src="assets/Hamburger_icon_white.svg" alt="Ícone de opções">
+      <div id="opcoes-content">
+        <ul style="color: white;">
+          <li><a class="paginas" href="home_page.html">Início</a></li>
+          <li><a class="paginas" href="listaPacientes.html">Pacientes</a></li>
+          <li><a class="paginas" href="perfil.html">Perfil</a></li>
+        </ul>
+      </div>
+      <img class="logo_topbar" src="assets/logo_sobrevidas.svg" alt="logo">
+      <h1 class="titulo_bar">Sobrevidas ACS</h1>
+      <a href=#>
+        <img class="notif_ring" src="assets/notif_ring.svg" alt="Notificações">
+      </a>
     </div>
-
     <div class="topo">
-        <h1 class="titulo-topo">Pacientes</h1>
-        <form action="" method="get" class="barrabusca">
-            <label>
-              <input type="search" placeholder="Buscar pelo nome" name="busca" class="campo">
-              <button type="submit" class="search_button"><img style="width: 30px;height: auto;" src="assets/lupa.svg"></button>
-            </label>
-        </form>
+      <h2 class="titulo-topo">Pacientes</h2>
+      <form action="" method="get" class="barrabusca">
+        <label>
+          <input type="search" placeholder="Buscar pelo nome" name="busca" class="campo">
+          <button type="submit" class="search_button"><img style="width: 30px;height: auto;" src="assets/lupa.svg"></button>
+        </label>
+      </form>
     </div>
-
-    <table style="width: 100%;">
-        <tr>
-            <th>Data de cadastro</th>
-            <th>Nome do Paciente</th>
-            <th>Nome da Mãe</th>
-            <th>CPF</th>
-            <th>Sexo</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Data de Nascimento</th>
-            <th>Cidade</th>
-            <th>CEP</th>
-            <th>Rua</th>
-            <th>Número</th>
-        </tr>
-        {{range .Pacientes}}
-        <tr>
-            <td>{{.DataCadastro}}</td>
-            <td>{{.Nome}}</td>
-            <td>{{.NomeMae}}</td>
-            <td>{{.Cpf}}</td>
-            <td>{{.Sexo}}</td>
-            <td>{{.DataNascimento}}</td>
-            <td>{{.Email}}</td>
-            <td>{{.Telefone}}</td>
-            <td>{{.Cidade}}</td>
-            <td>{{.CEP}}</td>
-            <td>{{.Rua}}</td>
-            <td>{{.Numero}}</td>
-            {{end}}
-        </tr>    
-    </table>
-
-<div class="rect"></div>
-<div class="navbar">
+    
+    {{range .Pacientes}}
+    <div class="quadro">
+      <img class="im" style="position:absolute;width:130px;height:auto;left:5px;top:13px;" src="assets/image 23.svg">
+      <ul class="infos">
+        <a class="no-link" href="#">
+          <li class="nome">{{.Nome}}</li>
+        </a>
+        <li class="infopaciente">{{.Sexo}}</li>
+        <li class="infopaciente">{{.Email}}</li>
+        <li class="infopaciente">{{.Telefone}}</li>
+        <li class="infopaciente">{{.Rua}}</li>
+      </ul>
+    </div>
+    {{end}}
+    
+    
+  <div class="rect"></div>
+  <div class="navbar">
     <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
-    <a class="no-link" href="listaPacientes.html"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
+    <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
     <a class="no-link" href="perfil.html"><img src="assets/Perfil.svg" alt="Perfil"></a>
-</div>
-
+  </div>
 </body>
->>>>>>> 5e3e20fd1f6bd89b3fa2330b27b51090740507d5
+</html>
