@@ -58,7 +58,7 @@ func fazConexaoComBanco() *sql.DB {
 	usuarioBancoDeDados := os.Getenv("USUARIO")
 	senhaDoUsuario := os.Getenv("SENHA")
 	nomeDoBancoDeDados := os.Getenv("NOME_BANCO_DE_DADOS")
-	dadosParaConexao := "user=" + usuarioBancoDeDados + " dbname=" + nomeDoBancoDeDados + " password=" + senhaDoUsuario + " host=localhost port=5432 sslmode=disable"
+	dadosParaConexao := "user=" + usuarioBancoDeDados + " dbname=" + nomeDoBancoDeDados + " password=" + senhaDoUsuario + " host=192.168.1.172 port=5432 sslmode=disable"
 	database, err := sql.Open("postgres", dadosParaConexao)
 	if err != nil {
 		fmt.Println(err)
