@@ -83,7 +83,7 @@ func cadastraPaciente(paciente Paciente) {
 
 func buscaPacientePorNome(nome string) Pacientes {
 	// retorna pacientes por nome
-	busca, err := db.Query(`SELECT * FROM paciente WHERE LOWER(nome) LIKE LOWER(concat('%', text($1), '%'))`, nome)
+	busca, err := db.Query(`SELECT * FROM paciente WHERE LOWER(nome) LIKE LOWER(concat(text($1), '%'))`, nome)
 	if err != nil {
 		fmt.Println(err)
 	}
