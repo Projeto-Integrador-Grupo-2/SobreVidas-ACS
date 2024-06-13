@@ -411,6 +411,11 @@ table, th, td, tr {
     transform: translateX(-98%);
     top: 20px;
   }
+  
+  .erro {
+    position: absolute;
+    top: 50%;
+  }
 }
 
 
