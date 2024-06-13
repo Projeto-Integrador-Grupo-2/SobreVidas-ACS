@@ -25,43 +25,45 @@
     </div>
 
     <div class="cadastrar">
-        <h1>Cadastrar Paciente</h1>
+        
     </div>
-    <div class="cadastro">
-        <p>Data do dia do cadastro</p>
-        <input style="width: 250px; height: 40px; font-size: 20px;" type="date" placeholder="Data de hoje">
-        <p>Nome</p>
-        <input style="width: 250px; height: 40px; font-size: 20px;" type="text" placeholder="Nome do paciente">
-        <p>Nome da mãe</p>
-        <input style="width: 250px; height: 40px; font-size: 20px;" type="text" placeholder="Nome da mãe">
-        <p>CPF</p>
-        <input style="width: 250px; height: 40px; font-size: 20px;" type="text" placeholder="CPF do paciente">
-        <p>Sexo</p>
-        <input style="width: 250px; height: 40px; font-size: 20px;" type="text" placeholder="Sexo">
-        <p>E-mail</p>
-        <input type="text" style="width: 250px; height: 40px; font-size: 20px;" placeholder="E-mail">
-        <p>Telefone para contato</p>
-        <input type="text" style="width: 250px; height: 40px; font-size: 20px;" placeholder="Telefone">
-        <P>Data de nascimento</P>
-        <input type="date" style="width: 250px; height: 40px; font-size: 20px;">
-    </div>
-    <div class="nome_endereço">
-        <h1>Endereço</h1>
-    </div>
+    
+    <form action="/cadastro" method="post">
+        <div class="cadastro">
+            <h3 class="cadastro-head">Cadastrar Paciente</h3>
+            <h4 class="cad-subtitle">Data do cadastro</h4>
+            <input class="cadastro-content" name="data_cadastro"type="date">
+            <h4 class="cad-subtitle">Nome</h4>
+            <input class="cadastro-content" name="nome" type="text" placeholder="Nome do paciente">
+            <h4 class="cad-subtitle">Nome da mãe</h4>
+            <input class="cadastro-content" name="nome_mae" type="text" placeholder="Nome da mãe">
+            <h4 class="cad-subtitle">CPF</h4>
+            <input class="cadastro-content" name="cpf" type="text" placeholder="CPF do paciente">
+            <h4 class="cad-subtitle">Sexo</h4>
+            <input class="cadastro-content" name="sexo" type="text" placeholder="Sexo">
+            <h4 class="cad-subtitle">E-mail</h4>
+            <input class="cadastro-content" name="email" type="text" placeholder="E-mail">
+            <h4 class="cad-subtitle">Telefone para contato</h4>
+            <input class="cadastro-content" name="telefone" type="text" placeholder="Telefone">
+            <h4 class="cad-subtitle">Data de nascimento</h4>
+            <input class="cadastro-content" name="data_nascimento" type="date">
+        </div>
+        <div class="endereço">
+            <h3 class="cadastro-head">Endereço</h3>
+            <h4 class="cad-subtitle">Cidade</h4>
+            <input class="cadastro-content" name="cidade" type="text" placeholder="Cidade">
+            <h4 class="cad-subtitle">CEP</h4>
+            <input class="cadastro-content" name="cep" type="text" placeholder="CEP">
+            <h4 class="cad-subtitle">Logradouro</h4>
+            <input class="cadastro-content" name="logradouro" type="text" placeholder="Rua">
+            <h4 class="cad-subtitle">Número</h4>
+            <input class="cadastro-content" name="numero" type="number" placeholder="Número">
+            <button class="salvar" type="submit" style="font-size: 20px;">SALVAR</button>
+        </div>
 
-    <div class="Endereço">
-        <p>Cidade</p>
-        <input type="text" style="width: 250px; height: 40px; font-size: 20px;" placeholder="Cadastrar">
-        <p>CEP</p>
-        <input type="text" style="width: 250px; height: 40px; font-size: 20px;" placeholder="CEP">
-        <p>Logradouro</p>
-        <input type="text" style="width: 250px; height: 40px; font-size: 20px;" placeholder="RUA">
-        <p>Número</p>
-        <input type="text" style="width: 250px; height: 40px; font-size: 20px;" placeholder="Número">
-       
-    </div>
+    </form>
 
-    <div class="filtro">
+    <!--<div class="filtro">
         <h1>Filtro</h1>
     </div>
 
@@ -81,9 +83,7 @@
         <p>Insira imagens da lesão do paciente aqui, <br> caso o mesmo tenha autorizado</p>
         <input type="button" style="width: 250px; height: 40px;" value="+">
     </div>
-    <div class="salvar">
-        <h2>SALVAR</h2>
-    </div>
+    -->
 
     <div class="rect"></div>
     <div class="navbar">

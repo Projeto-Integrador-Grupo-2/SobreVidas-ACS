@@ -411,11 +411,6 @@ table, th, td, tr {
     transform: translateX(-98%);
     top: 20px;
   }
-  
-  .erro {
-    position: absolute;
-    top: 50%;
-  }
 }
 
 
@@ -785,6 +780,65 @@ table, th, td, tr {
     left: 410px;
   }
 
+  .grid_pacientes {
+    position: relative;
+    top: 150px;
+    width: 95%;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .quadro {
+    position: relative;
+    width: 30%;
+    height: 200px;
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 15px;
+    top: 0px;
+  }
+  
+  .infos {
+    list-style-type: none;
+  }
+  
+  .nome {
+    position: relative;
+    font-size: 15px; 
+    left: 30%;
+    display: inline-block;
+    color: #1790F7;
+  }
+  
+  .nome :visited {
+    color: #1790F7;
+  }
+  
+  .infopaciente{
+    position: relative;
+    color: #868484;
+    font-size: 10px;
+    left: 30%;
+    width: 69%;
+    display: block;
+    line-height: 20px;
+  }
+  .infos > :nth-child(2) {
+    padding-top: 16px;
+  }
+  .infos > :last-child {
+    padding-bottom: 30px;
+  }
+  .opicon {
+    position: absolute;
+    left: 98%;
+    transform: translateX(-98%);
+    top: 20px;
+  }
+
 
 
   /*PERFIL*/
@@ -876,55 +930,79 @@ table, th, td, tr {
 
   /*CADASTRO*/
 
-  .cadastrar {
-    color: #686868;
-    position: absolute;
-    top: 5%;
-    left: 2%;
-  }
-
   .cadastro {
     position: absolute;
-    top: 12%;
-    left: 2%;
+    width: 30%;
+    left: 80px;
+    height: auto;
+    top: 50px;
+    display: inline-block;
   }
 
-  .nome_endereço {
-    color: #686868;
+  .cadastro-head {
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 30px;
+  }
+
+  .cad-subtitle {
+    margin: 0px;
+    padding-bottom: 10px;
+  }
+  
+  .cadastro-content {
+    position: relative;
+    color: grey;
+    width: 250px; 
+    height: 45px; 
+    font-size: 15px;
+    font-family: 'Lexend Deca', cursive;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  .endereço {
     position: absolute;
-    top: 5%;
-    left: 30%;
+    width: 30%;
+    left: 500px;
+    top: 50px;
+    height: auto;
+    display: inline-block;
   }
 
-  .Endereço {
-    position: absolute;
-    top: 12%;
-    left: 30%;
-  }
-
+  
   .salvar {
     color: #1790F7;
-    position: absolute;
-    top: 80%;
-    left: 80%;
+    position: relative;
+    width: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: auto;
+    background: none;
+    border: 2px solid #1790F7;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Lexend Deca', cursive;
+    display: block;
   }
 
   .filtro {
     color: #686868;
     position: absolute;
-    top: 5%;
-    left: 50%;
+    top: 60px;
+    left: 55%;
   }
 
   .filtrar {
     position: absolute;
-    top: 12%;
-    left: 50%;
+    top: 150px;
+    left: 55%;
   }
 
   .imagem_paciente {
     position: absolute;
-    top: 40%;
-    left: 50%;
+    top: 70%;
+    left: 55%;
   }
 }

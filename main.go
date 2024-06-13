@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/joho/godotenv"
@@ -23,6 +24,7 @@ func main() {
 	fs := http.FileServer(http.Dir("./"))
 	http.Handle("/", fs)
 	http.HandleFunc("/listaPacientes", pacientes)
+	http.HandleFunc("/cadastro", cadastroPacienteHandler)
 
 	alimentaBancoDeDados()
 
@@ -45,6 +47,45 @@ func pacientes(w http.ResponseWriter, r *http.Request) {
 	Pacientes := buscaPacientePorNome(busca)
 
 	templates.ExecuteTemplate(w, "listaPacientes.html", Pacientes)
+}
+
+func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+		return
+	}
+
+	err := r.ParseForm()
+	if err != nil {
+		http.Error(w, "Erro ao processar o formulário", http.StatusBadRequest)
+		return
+	}
+
+	numero, err := strconv.ParseUint(r.FormValue("numero"), 10, 64)
+	if err != nil {
+		http.Error(w, "Número inválido", http.StatusBadRequest)
+		return
+	}
+
+	paciente := Paciente{
+		DataCadastro:   r.FormValue("data_cadastro"),
+		Nome:           r.FormValue("nome"),
+		NomeMae:        r.FormValue("nome_mae"),
+		Cpf:            r.FormValue("cpf"),
+		Sexo:           r.FormValue("sexo"),
+		Email:          r.FormValue("email"),
+		Telefone:       r.FormValue("telefone"),
+		DataNascimento: r.FormValue("data_nascimento"),
+		Cidade:         r.FormValue("cidade"),
+		CEP:            r.FormValue("cep"),
+		Rua:            r.FormValue("logradouro"),
+		Numero:         numero,
+	}
+
+	cadastraPaciente(paciente)
+
+	http.Redirect(w, r, "/listaPacientes", http.StatusSeeOther)
+
 }
 
 func fazConexaoComBanco() *sql.DB {

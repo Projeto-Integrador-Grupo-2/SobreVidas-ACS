@@ -34,21 +34,24 @@
       </form>
     </div>
     
-    {{range .Pacientes}}
-    <div class="quadro">
-      <img style="position:absolute;width:110px;height:auto;left:5px;top:13px;border-radius:10px;" src="assets/image 23.svg">
-      <ul class="infos">
-        <a class="no-link" href="#">
-          <li class="nome">{{.Nome}}</li>
-        </a>
-        <li class="infopaciente">{{.Sexo}}</li>
-        <li class="infopaciente">{{.Rua}}, N° {{.Numero}}</li>
-        <li class="infopaciente">{{.Email}}</li>
-        <li class="infopaciente">{{.Telefone}}</li>
-      </ul>
-      <img class="opicon" src="assets/opcoes.svg">
+    <div class="grid_pacientes">
+      {{range .Pacientes}}
+      <div class="quadro">
+        <img style="position:absolute;width:110px;height:auto;left:5px;top:13px;border-radius:10px;" src="assets/image 23.svg">
+        <ul class="infos">
+          <a class="no-link" href="#">
+            <li class="nome">{{.Nome}}</li>
+          </a>
+          <li class="infopaciente">{{.Sexo}}</li>
+          <li class="infopaciente">{{.Rua}}, N° {{.Numero}}</li>
+          <li class="infopaciente">{{.Email}}</li>
+          <li class="infopaciente">{{.Telefone}}</li>
+        </ul>
+        <img class="opicon" src="assets/opcoes.svg">
+      </div>
+      {{end}}
     </div>
-    {{end}}
+    
     
     
   <div class="rect"></div>
