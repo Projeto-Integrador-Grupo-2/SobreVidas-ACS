@@ -569,6 +569,83 @@ a {
     font-family: 'Lexend Deca', cursive;
     display: block;
   }
+
+  .img_perfil{
+    display: none;
+  }
+
+  .img_perfil_cllr {
+    position: relative;
+    top: 70px;
+    left: 65px;
+    display: inline-block;
+  }
+
+  .info_perfil {
+    position: relative;
+    top: 250px;
+    left: -230px;
+    color: #877e7f;
+    display: inline-block;
+    
+  }
+
+  .atendidos {
+    position: relative;
+    line-height: normal;
+    left: 20px;
+    top: 250px;
+    max-width: 203px;
+    margin: 1;
+    padding: 2px;
+    background-color: #d9d9d9;
+    border-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
+  }
+
+  .encaminhados {
+    position: relative;
+    line-height: normal;
+    left: 20px;
+    top: 260px;
+    max-width: 203px;
+    margin: 1;
+    padding: 2px;
+    background-color: #d9d9d9;
+    border-radius: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
+  }
+
+  .info_pessoal {
+    position: relative;
+    top: -59px;
+    left: 120px;
+    display: inline-block;
+  }
+
+  .atendido {
+    color: #877e7f;
+    position: relative;
+    left: 34px;
+    top: 0px;
+    display: inline-block;
+  }
+
+  .encaminhado {
+    color: #877e7f;
+    position: relative;
+    left: 0px;
+    top: 62px;
+    display: inline-block;
+  }
+
+  .logout {
+    position: relative;
+    left: 30px;
+    top: 70px;
+    display: inline-block;
+  }
+
 }
 
 
@@ -1099,22 +1176,25 @@ a {
 
 
   /*PERFIL*/
+  .img_perfil {
+    position: absolute;
+    top: 8%;
+    left: 44%;
+    text-align: center;
+    transform: translate(-50%);
+  }
+
   .info_perfil {
     color: #877e7f;
     position: absolute;
     left: 36%;
     top: 40%;
+  }
 
+  .img_perfil_cllr {
+    display: none;
   }
-  .img_perfil {
-    width: 300px;
-    height: 200px;
-    top: 8%;
-    position: absolute;
-    left: 44%;
-    text-align: center;
-    transform: translate(-50%);
-  }
+
   .atendidos {
     position: absolute;
     line-height: normal;
@@ -1127,6 +1207,7 @@ a {
     border-radius: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
   }
+
   .encaminhados {
     position: absolute;
     line-height: normal;
