@@ -28,36 +28,37 @@
     <form action="/cadastro" method="post">
         <div class="cadastro">
             <h3 class="cadastro-head">Cadastro de paciente</h3>
+            <input type="hidden" id="patientId" name="id">
             <label for="data_cadastro" class="cad-subtitle">Data do cadastro</label>
-            <input class="cadastro-content" name="data_cadastro"type="date">
+            <input id="data_cadastro" class="cadastro-content" name="data_cadastro" type="date">
             <label for="nome" class="cad-subtitle">Nome</label>
-            <input class="cadastro-content" name="nome" type="text" placeholder="Nome do paciente">
+            <input id="nome" class="cadastro-content" name="nome" type="text" placeholder="Nome do paciente">
             <label for="nome_mae" class="cad-subtitle">Nome da mãe</label>
-            <input class="cadastro-content" name="nome_mae" type="text" placeholder="Nome da mãe">
+            <input id="nome_mae" class="cadastro-content" name="nome_mae" type="text" placeholder="Nome da mãe">
             <label class="cad-subtitle">CPF</label>
             <input id="cpf" class="cadastro-content" name="cpf" type="text" placeholder="CPF do paciente">
             <label for="sexo" class="cad-subtitle">Sexo</label>
-            <select name="sexo" class="cadastro-content">
+            <select id="sexo" name="sexo" class="cadastro-content">
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
             </select>
             <label for="email" class="cad-subtitle">E-mail</label>
-            <input class="cadastro-content" name="email" type="text" placeholder="E-mail">
+            <input id="email" class="cadastro-content" name="email" type="text" placeholder="E-mail">
             <label for="telefone" class="cad-subtitle">Telefone</label>
             <input class="cadastro-content" id="telefone" name="telefone" type="text" placeholder="(99) 99999-9999">
             <label for="data_nascimento" class="cad-subtitle">Data de nascimento</label>
-            <input class="cadastro-content" name="data_nascimento" type="date">
+            <input id="data_nascimento" class="cadastro-content" name="data_nascimento" type="date">
         </div>
         <div class="endereco">
             <h3 class="cadastro-head">Endereço</h3>
             <label for="cidade" class="cad-subtitle">Cidade</label>
-            <input class="cadastro-content" name="cidade" type="text" placeholder="Cidade">
+            <input id="cidade" class="cadastro-content" name="cidade" type="text" placeholder="Cidade">
             <label for="cep" class="cad-subtitle">CEP</label>
             <input id="cep" class="cadastro-content" name="cep" type="text" placeholder="CEP">
             <label for="logradouro" class="cad-subtitle">Logradouro</label>
-            <input class="cadastro-content" name="logradouro" type="text" placeholder="Rua">
+            <input id="logradouro" class="cadastro-content" name="logradouro" type="text" placeholder="Rua">
             <label for="numero" class="cad-subtitle">Número</label>
-            <input class="cadastro-content" name="numero" type="number" placeholder="Número">
+            <input id="numero" class="cadastro-content" name="numero" type="number" placeholder="Número">
             <button class="salvar" type="submit">SALVAR</button>
         </div>
     </form>

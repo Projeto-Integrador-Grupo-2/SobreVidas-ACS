@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
-	"io"
 	"log"
 	"net/http"
 	"os"
@@ -26,8 +25,7 @@ func main() {
 	http.HandleFunc("/listaPacientes", pacientes)
 	http.HandleFunc("/cadastro", cadastroPacienteHandler)
 	http.HandleFunc("/deletePaciente", deletePacienteHandler)
-
-	alimentaBancoDeDados()
+	http.HandleFunc("/getPaciente", getPacienteHandler)
 
 	log.Println("Server rodando na porta 8052")
 	// Inicia o servidor na porta 8052
@@ -62,6 +60,16 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	idStr := r.FormValue("id")
+	var id uint64
+	if idStr != "" {
+		id, err = strconv.ParseUint(idStr, 10, 64)
+		if err != nil {
+			http.Error(w, "ID inválido", http.StatusBadRequest)
+			return
+		}
+	}
+
 	numero, err := strconv.ParseUint(r.FormValue("numero"), 10, 64)
 	if err != nil {
 		http.Error(w, "Número inválido", http.StatusBadRequest)
@@ -69,6 +77,7 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	paciente := Paciente{
+		Id:             id,
 		DataCadastro:   r.FormValue("data_cadastro"),
 		Nome:           r.FormValue("nome"),
 		NomeMae:        r.FormValue("nome_mae"),
@@ -83,35 +92,47 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 		Numero:         numero,
 	}
 
-	cadastraPaciente(paciente)
+	if id > 0 {
+		// Atualiza paciente existente
+		_, err = db.Exec(`UPDATE paciente SET data_cadastro=$1, nome=$2, nome_da_mae=$3, cpf=$4, sexo=$5, email=$6, telefone_celular=$7, data_nascimento=$8, cidade=$9, cep=$10, rua=$11, num_casa=$12 WHERE id=$13`,
+			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero, paciente.Id)
+	} else {
+		// Insere novo paciente
+		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
+	}
+
+	if err != nil {
+		http.Error(w, "Erro ao salvar paciente", http.StatusInternalServerError)
+		return
+	}
 
 	http.Redirect(w, r, "/listaPacientes", http.StatusSeeOther)
-
 }
 
 func deletePacienteHandler(w http.ResponseWriter, r *http.Request) {
-    if r.Method != http.MethodPost {
-        http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
-        return
-    }
+	if r.Method != http.MethodPost {
+		http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+		return
+	}
 
-    var requestData struct {
-        ID uint64 `json:"id"`
-    }
+	var requestData struct {
+		ID uint64 `json:"id"`
+	}
 
-    err := json.NewDecoder(r.Body).Decode(&requestData)
-    if err != nil {
-        http.Error(w, "Erro ao processar a solicitação", http.StatusBadRequest)
-        return
-    }
+	err := json.NewDecoder(r.Body).Decode(&requestData)
+	if err != nil {
+		http.Error(w, "Erro ao processar a solicitação", http.StatusBadRequest)
+		return
+	}
 
-    _, err = db.Exec("DELETE FROM paciente WHERE id = $1", requestData.ID)
-    if err != nil {
-        http.Error(w, "Erro ao excluir paciente", http.StatusInternalServerError)
-        return
-    }
+	_, err = db.Exec("DELETE FROM paciente WHERE id = $1", requestData.ID)
+	if err != nil {
+		http.Error(w, "Erro ao excluir paciente", http.StatusInternalServerError)
+		return
+	}
 
-    w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusOK)
 }
 
 func fazConexaoComBanco() *sql.DB {
@@ -125,7 +146,7 @@ func fazConexaoComBanco() *sql.DB {
 	usuarioBancoDeDados := os.Getenv("USUARIO")
 	senhaDoUsuario := os.Getenv("SENHA")
 	nomeDoBancoDeDados := os.Getenv("NOME_BANCO_DE_DADOS")
-	dadosParaConexao := "user=" + usuarioBancoDeDados + " dbname=" + nomeDoBancoDeDados + " password=" + senhaDoUsuario + " host=192.168.1.172 port=5432 sslmode=disable"
+	dadosParaConexao := "user=" + usuarioBancoDeDados + " dbname=" + nomeDoBancoDeDados + " password=" + senhaDoUsuario + " host=localhost port=5432 sslmode=disable"
 	database, err := sql.Open("postgres", dadosParaConexao)
 	if err != nil {
 		fmt.Println(err)
@@ -140,13 +161,13 @@ func fazConexaoComBanco() *sql.DB {
 	return database
 }
 
-func cadastraPaciente(paciente Paciente) {
-	// insere paciente no banco de dados
-	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
-	if err != nil {
-		fmt.Println(err)
-	}
-}
+//func cadastraPaciente(paciente Paciente) {
+// insere paciente no banco de dados
+//	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//}
 
 func buscaPacientePorNome(nome string) Pacientes {
 	// retorna pacientes por nome
@@ -194,22 +215,61 @@ func buscaPacientePorNome(nome string) Pacientes {
 	return pacientes
 }
 
-func alimentaBancoDeDados() {
-	var Pacientes Pacientes
-
-	// lê o arquivo paciente.json e passa para o Go
-	jsonFile, _ := os.Open("paciente.json")
-	byteJson, _ := io.ReadAll(jsonFile)
-
-	err := json.Unmarshal(byteJson, &Pacientes)
-	if err != nil {
-		log.Fatal(err)
+func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
+	idStr := r.URL.Query().Get("id")
+	if idStr == "" {
+		http.Error(w, "ID não fornecido", http.StatusBadRequest)
+		log.Println("ID não fornecido")
+		return
 	}
 
-	for i := 0; i < len(Pacientes.Pacientes); i++ {
-		cadastraPaciente(Pacientes.Pacientes[i])
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		http.Error(w, "ID inválido", http.StatusBadRequest)
+		log.Println("ID inválido:", err)
+		return
+	}
+
+	var paciente Paciente
+	err = db.QueryRow("SELECT id, data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa FROM paciente WHERE id = $1", id).Scan(
+		&paciente.Id, &paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.Email, &paciente.Telefone, &paciente.DataNascimento, &paciente.Cidade, &paciente.CEP, &paciente.Rua, &paciente.Numero,
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			http.Error(w, "Paciente não encontrado", http.StatusNotFound)
+			log.Println("Paciente não encontrado")
+		} else {
+			http.Error(w, "Erro ao buscar paciente", http.StatusInternalServerError)
+			log.Println("Erro ao buscar paciente:", err)
+		}
+		return
+	}
+
+	log.Printf("Dados do paciente: %+v", paciente)
+
+	w.Header().Set("Content-Type", "application/json")
+	err = json.NewEncoder(w).Encode(paciente)
+	if err != nil {
+		log.Println("Erro ao codificar resposta JSON:", err)
 	}
 }
+
+//func alimentaBancoDeDados() {
+//	var Pacientes Pacientes
+//
+// lê o arquivo paciente.json e passa para o Go
+//	jsonFile, _ := os.Open("paciente.json")
+//	byteJson, _ := io.ReadAll(jsonFile)
+
+//	err := json.Unmarshal(byteJson, &Pacientes)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+
+//	for i := 0; i < len(Pacientes.Pacientes); i++ {
+//		cadastraPaciente(Pacientes.Pacientes[i])
+//	}
+//}
 
 type Paciente struct {
 	Id             uint64
