@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastro</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-masker/build/vanilla-masker.min.js"></script>
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -23,44 +24,42 @@
             <img class="notif_ring" src="assets/notif_ring.svg" alt="Notificações">
         </a>
     </div>
-
-    <div class="cadastrar">
-        
-    </div>
     
     <form action="/cadastro" method="post">
         <div class="cadastro">
-            <h3 class="cadastro-head">Cadastrar Paciente</h3>
-            <h4 class="cad-subtitle">Data do cadastro</h4>
+            <h3 class="cadastro-head">Cadastro de paciente</h3>
+            <label for="data_cadastro" class="cad-subtitle">Data do cadastro</label>
             <input class="cadastro-content" name="data_cadastro"type="date">
-            <h4 class="cad-subtitle">Nome</h4>
+            <label for="nome" class="cad-subtitle">Nome</label>
             <input class="cadastro-content" name="nome" type="text" placeholder="Nome do paciente">
-            <h4 class="cad-subtitle">Nome da mãe</h4>
+            <label for="nome_mae" class="cad-subtitle">Nome da mãe</label>
             <input class="cadastro-content" name="nome_mae" type="text" placeholder="Nome da mãe">
-            <h4 class="cad-subtitle">CPF</h4>
-            <input class="cadastro-content" name="cpf" type="text" placeholder="CPF do paciente">
-            <h4 class="cad-subtitle">Sexo</h4>
-            <input class="cadastro-content" name="sexo" type="text" placeholder="Sexo">
-            <h4 class="cad-subtitle">E-mail</h4>
+            <label class="cad-subtitle">CPF</label>
+            <input id="cpf" class="cadastro-content" name="cpf" type="text" placeholder="CPF do paciente">
+            <label for="sexo" class="cad-subtitle">Sexo</label>
+            <select name="sexo" class="cadastro-content">
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+            </select>
+            <label for="email" class="cad-subtitle">E-mail</label>
             <input class="cadastro-content" name="email" type="text" placeholder="E-mail">
-            <h4 class="cad-subtitle">Telefone para contato</h4>
-            <input class="cadastro-content" name="telefone" type="text" placeholder="Telefone">
-            <h4 class="cad-subtitle">Data de nascimento</h4>
+            <label for="telefone" class="cad-subtitle">Telefone</label>
+            <input class="cadastro-content" id="telefone" name="telefone" type="text" placeholder="(99) 99999-9999">
+            <label for="data_nascimento" class="cad-subtitle">Data de nascimento</label>
             <input class="cadastro-content" name="data_nascimento" type="date">
         </div>
-        <div class="endereço">
+        <div class="endereco">
             <h3 class="cadastro-head">Endereço</h3>
-            <h4 class="cad-subtitle">Cidade</h4>
+            <label for="cidade" class="cad-subtitle">Cidade</label>
             <input class="cadastro-content" name="cidade" type="text" placeholder="Cidade">
-            <h4 class="cad-subtitle">CEP</h4>
-            <input class="cadastro-content" name="cep" type="text" placeholder="CEP">
-            <h4 class="cad-subtitle">Logradouro</h4>
+            <label for="cep" class="cad-subtitle">CEP</label>
+            <input id="cep" class="cadastro-content" name="cep" type="text" placeholder="CEP">
+            <label for="logradouro" class="cad-subtitle">Logradouro</label>
             <input class="cadastro-content" name="logradouro" type="text" placeholder="Rua">
-            <h4 class="cad-subtitle">Número</h4>
+            <label for="numero" class="cad-subtitle">Número</label>
             <input class="cadastro-content" name="numero" type="number" placeholder="Número">
-            <button class="salvar" type="submit" style="font-size: 20px;">SALVAR</button>
+            <button class="salvar" type="submit">SALVAR</button>
         </div>
-
     </form>
 
     <!--<div class="filtro">
@@ -84,7 +83,6 @@
         <input type="button" style="width: 250px; height: 40px;" value="+">
     </div>
     -->
-
     <div class="rect"></div>
     <div class="navbar">
         <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>

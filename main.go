@@ -25,6 +25,7 @@ func main() {
 	http.Handle("/", fs)
 	http.HandleFunc("/listaPacientes", pacientes)
 	http.HandleFunc("/cadastro", cadastroPacienteHandler)
+	http.HandleFunc("/deletePaciente", deletePacienteHandler)
 
 	alimentaBancoDeDados()
 
@@ -86,6 +87,31 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/listaPacientes", http.StatusSeeOther)
 
+}
+
+func deletePacienteHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+        return
+    }
+
+    var requestData struct {
+        ID uint64 `json:"id"`
+    }
+
+    err := json.NewDecoder(r.Body).Decode(&requestData)
+    if err != nil {
+        http.Error(w, "Erro ao processar a solicitação", http.StatusBadRequest)
+        return
+    }
+
+    _, err = db.Exec("DELETE FROM paciente WHERE id = $1", requestData.ID)
+    if err != nil {
+        http.Error(w, "Erro ao excluir paciente", http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusOK)
 }
 
 func fazConexaoComBanco() *sql.DB {
