@@ -646,6 +646,34 @@ a {
     display: inline-block;
   }
 
+  .img_mapa {
+    display: none;    
+  }
+
+  .img_mapa_cllr {
+    position: relative;
+    display: inline-block;
+    top: 40px;
+    left: 54px;
+  }
+
+  .name_regions {
+    position: relative;
+    color: #877e7f;
+    display: inline-block;
+    top: 40px;
+    left: 50px;
+    font-size: 12px;
+  }
+
+  .ttmap {
+    position: relative;
+    top: 40px;
+    left: 20px;
+    font-size: 12px;
+    color: #877e7f;
+    display: inline-block;
+  }
 }
 
 
