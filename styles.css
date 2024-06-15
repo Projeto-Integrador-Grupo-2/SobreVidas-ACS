@@ -947,19 +947,19 @@ a {
     transform: translateX(-50%);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   .quadro {
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
     position: relative;
-    width: 45%;
-    height: 200px;
     border: 1px solid black;
     margin: 10px;
     border-radius: 15px;
     top: 0px;
+    max-width: calc(33.333% - 20px);
   }
-  
+
   .infos {
     list-style-type: none;
   }
@@ -1268,5 +1268,12 @@ a {
     position: absolute;
     top: 70%;
     left: 55%;
+  }
+}
+
+@media (max-width:768px) {
+  .quadro {
+    flex: 1 1 calc(50% - 20px);
+    max-width: (50% - 20px);
   }
 }

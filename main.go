@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -27,6 +28,7 @@ func main() {
 	http.HandleFunc("/deletePaciente", deletePacienteHandler)
 	http.HandleFunc("/getPaciente", getPacienteHandler)
 
+	alimentaBancoDeDados()
 	log.Println("Server rodando na porta 8052")
 	// Inicia o servidor na porta 8052
 	err := http.ListenAndServe(":8052", nil)
@@ -161,13 +163,13 @@ func fazConexaoComBanco() *sql.DB {
 	return database
 }
 
-//func cadastraPaciente(paciente Paciente) {
-// insere paciente no banco de dados
-//	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
-//	if err != nil {
-//		fmt.Println(err)
-//	}
-//}
+func cadastraPaciente(paciente Paciente) {
+	// insere paciente no banco de dados
+	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
+	if err != nil {
+		fmt.Println(err)
+	}
+}
 
 func buscaPacientePorNome(nome string) Pacientes {
 	// retorna pacientes por nome
@@ -254,22 +256,22 @@ func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//func alimentaBancoDeDados() {
-//	var Pacientes Pacientes
-//
-// lê o arquivo paciente.json e passa para o Go
-//	jsonFile, _ := os.Open("paciente.json")
-//	byteJson, _ := io.ReadAll(jsonFile)
+func alimentaBancoDeDados() {
+	var Pacientes Pacientes
 
-//	err := json.Unmarshal(byteJson, &Pacientes)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
+	//Erro ao salvar pacientelê o arquivo paciente.json e passa para o Go
+	jsonFile, _ := os.Open("paciente.json")
+	byteJson, _ := io.ReadAll(jsonFile)
 
-//	for i := 0; i < len(Pacientes.Pacientes); i++ {
-//		cadastraPaciente(Pacientes.Pacientes[i])
-//	}
-//}
+	err := json.Unmarshal(byteJson, &Pacientes)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for i := 0; i < len(Pacientes.Pacientes); i++ {
+		cadastraPaciente(Pacientes.Pacientes[i])
+	}
+}
 
 type Paciente struct {
 	Id             uint64
