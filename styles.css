@@ -1177,7 +1177,7 @@ a {
     top: 25%;
     left: 50%;
     transform: translateX(-50%);
-    border: 1px solid #888;
+    border-radius: 10px;
     width: 80%;
     text-align: center;
   }

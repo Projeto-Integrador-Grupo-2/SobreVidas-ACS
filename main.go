@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
-	"io"
 	"log"
 	"net/http"
 	"os"
@@ -29,7 +28,6 @@ func main() {
 	http.HandleFunc("/deletePaciente", deletePacienteHandler)
 	http.HandleFunc("/getPaciente", getPacienteHandler)
 
-	alimentaBancoDeDados()
 	log.Println("Server rodando na porta 8052")
 	// Inicia o servidor na porta 8052
 	err := http.ListenAndServe(":8052", nil)
@@ -52,79 +50,79 @@ func pacientes(w http.ResponseWriter, r *http.Request) {
 }
 
 func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
-    if r.Method != http.MethodPost {
-        http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
-        return
-    }
+	if r.Method != http.MethodPost {
+		http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+		return
+	}
 
-    err := r.ParseForm()
-    if err != nil {
-        http.Error(w, "Erro ao processar o formulário", http.StatusBadRequest)
-        log.Println("Erro ao processar o formulário:", err)
-        return
-    }
+	err := r.ParseForm()
+	if err != nil {
+		http.Error(w, "Erro ao processar o formulário", http.StatusBadRequest)
+		log.Println("Erro ao processar o formulário:", err)
+		return
+	}
 
-    idStr := r.FormValue("id")
-    var id uint64
-    if idStr != "" {
-        id, err = strconv.ParseUint(idStr, 10, 64)
-        if err != nil {
-            http.Error(w, "ID inválido", http.StatusBadRequest)
-            log.Println("ID inválido:", err)
-            return
-        }
-    }
+	idStr := r.FormValue("id")
+	var id uint64
+	if idStr != "" {
+		id, err = strconv.ParseUint(idStr, 10, 64)
+		if err != nil {
+			http.Error(w, "ID inválido", http.StatusBadRequest)
+			log.Println("ID inválido:", err)
+			return
+		}
+	}
 
-    numero, err := strconv.ParseUint(r.FormValue("numero"), 10, 64)
-    if err != nil {
-        http.Error(w, "Número inválido", http.StatusBadRequest)
-        log.Println("Número inválido:", err)
-        return
-    }
-    
-    dataCadastro := normalizeDate(r.FormValue("data_cadastro"))
-    dataNascimento := normalizeDate(r.FormValue("data_nascimento"))
+	numero, err := strconv.ParseUint(r.FormValue("numero"), 10, 64)
+	if err != nil {
+		http.Error(w, "Número inválido", http.StatusBadRequest)
+		log.Println("Número inválido:", err)
+		return
+	}
 
-    paciente := Paciente{
-        Id:             id,
-        DataCadastro:   dataCadastro,
-        Nome:           r.FormValue("nome"),
-        NomeMae:        r.FormValue("nome_mae"),
-        Cpf:            r.FormValue("cpf"),
-        Sexo:           r.FormValue("sexo"),
-        Email:          r.FormValue("email"),
-        Telefone:       r.FormValue("telefone"),
-        DataNascimento: dataNascimento,
-        Cidade:         r.FormValue("cidade"),
-        CEP:            r.FormValue("cep"),
-        Rua:            r.FormValue("logradouro"),
-        Numero:         numero,
-    }
+	dataCadastro := normalizeDate(r.FormValue("data_cadastro"))
+	dataNascimento := normalizeDate(r.FormValue("data_nascimento"))
 
-    log.Printf("Paciente recebido: %+v", paciente)
+	paciente := Paciente{
+		Id:             id,
+		DataCadastro:   dataCadastro,
+		Nome:           r.FormValue("nome"),
+		NomeMae:        r.FormValue("nome_mae"),
+		Cpf:            r.FormValue("cpf"),
+		Sexo:           r.FormValue("sexo"),
+		Email:          r.FormValue("email"),
+		Telefone:       r.FormValue("telefone"),
+		DataNascimento: dataNascimento,
+		Cidade:         r.FormValue("cidade"),
+		CEP:            r.FormValue("cep"),
+		Rua:            r.FormValue("logradouro"),
+		Numero:         numero,
+	}
 
-    if id > 0 {
-        // Atualiza paciente existente
-        _, err = db.Exec(`UPDATE paciente SET data_cadastro=$1, nome=$2, nome_da_mae=$3, cpf=$4, sexo=$5, email=$6, telefone_celular=$7, data_nascimento=$8, cidade=$9, cep=$10, rua=$11, num_casa=$12 WHERE id=$13`,
-            paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero, paciente.Id)
-        if err != nil {
-            http.Error(w, "Erro ao atualizar paciente", http.StatusInternalServerError)
-            log.Println("Erro ao atualizar paciente:", err)
-            return
-        }
-    } else {
-        // Insere novo paciente
-        log.Println(idStr)
-        _, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
-            paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
-        if err != nil {
-            http.Error(w, "Erro ao salvar paciente", http.StatusInternalServerError)
-            log.Println("Erro ao salvar paciente:", err)
-            return
-        }
-    }
+	log.Printf("Paciente recebido: %+v", paciente)
 
-    http.Redirect(w, r, "/listaPacientes", http.StatusSeeOther)
+	if id > 0 {
+		// Atualiza paciente existente
+		_, err = db.Exec(`UPDATE paciente SET data_cadastro=$1, nome=$2, nome_da_mae=$3, cpf=$4, sexo=$5, email=$6, telefone_celular=$7, data_nascimento=$8, cidade=$9, cep=$10, rua=$11, num_casa=$12 WHERE id=$13`,
+			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero, paciente.Id)
+		if err != nil {
+			http.Error(w, "Erro ao atualizar paciente", http.StatusInternalServerError)
+			log.Println("Erro ao atualizar paciente:", err)
+			return
+		}
+	} else {
+		// Insere novo paciente
+		log.Println(idStr)
+		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
+		if err != nil {
+			http.Error(w, "Erro ao salvar paciente", http.StatusInternalServerError)
+			log.Println("Erro ao salvar paciente:", err)
+			return
+		}
+	}
+
+	http.Redirect(w, r, "/listaPacientes", http.StatusSeeOther)
 }
 
 func deletePacienteHandler(w http.ResponseWriter, r *http.Request) {
@@ -187,16 +185,16 @@ func normalizeDate(dateStr string) string {
 			return dateStr
 		}
 	}
-	return date.Format("2006-01-02")
+	return date.Format("2006/01/02")
 }
 
-func cadastraPaciente(paciente Paciente) {
+/*func cadastraPaciente(paciente Paciente) {
 	// insere paciente no banco de dados
 	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
 	if err != nil {
 		fmt.Println(err)
 	}
-}
+}*/
 
 func buscaPacientePorNome(nome string) Pacientes {
 	// retorna pacientes por nome
@@ -283,7 +281,7 @@ func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func alimentaBancoDeDados() {
+/*func alimentaBancoDeDados() {
 	var Pacientes Pacientes
 
 	//Erro ao salvar pacientelê o arquivo paciente.json e passa para o Go
@@ -298,7 +296,7 @@ func alimentaBancoDeDados() {
 	for i := 0; i < len(Pacientes.Pacientes); i++ {
 		cadastraPaciente(Pacientes.Pacientes[i])
 	}
-}
+}*/
 
 type Paciente struct {
 	Id             uint64

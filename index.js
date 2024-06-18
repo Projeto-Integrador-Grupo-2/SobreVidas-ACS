@@ -145,14 +145,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Verifique se cada campo está presente e defina um valor padrão se não estiver
                 document.getElementById('patientId').value = data.Id || '';
-                document.getElementById('data_cadastro').value = data.Data_cad;
+                document.getElementById('data_cadastro').value = formatarData(data.Data_cad);
                 document.getElementById('nome').value = data.nome || '';
                 document.getElementById('nome_mae').value = data.Nome_mae || '';
                 document.getElementById('cpf').value = data.cpf || '';
                 document.getElementById('sexo').value = data.sexo || '';
                 document.getElementById('email').value = data.email || '';
                 document.getElementById('telefone').value = data.celular || '';
-                document.getElementById('data_nascimento').value = data.data_nasc;
+                document.getElementById('data_nascimento').value = formatarData(data.data_nasc);
                 document.getElementById('cidade').value = data.Cidade || '';
                 document.getElementById('cep').value = data.CEP || '';
                 document.getElementById('logradouro').value = data.Rua || '';
@@ -163,6 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
+
+function formatarData(data) {
+    var partes = data.split('/');
+    return partes[0] + '-' + partes[1] + '-' + partes[2];
+}
 
 const slides = document.querySelector('.slides');
 const slideCount = document.querySelectorAll('.slide').length;
