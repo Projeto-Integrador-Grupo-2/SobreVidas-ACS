@@ -1212,9 +1212,9 @@ a {
   .img_perfil {
     position: absolute;
     top: 8%;
-    left: 44%;
+    left: 35%;
     text-align: center;
-    transform: translate(-50%);
+
   }
 
   .info_perfil {
@@ -1280,6 +1280,7 @@ a {
     top: 75%;
   }
    /*MAPA*/
+
   .ttmap {
     color: #877e7f;
     position: absolute;
@@ -1288,21 +1289,34 @@ a {
     left: 40px;
   }
 
+  /* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ #map {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  border: 2px solid grey;
+  top: 150px;
+  width: 80%;
+  margin-bottom: 100px;
+  height: 500px;
+}
+
   .img_mapa {
     position: absolute;
     top: 15%;
     left: 2%;
   }
 
-  .img_mapa_cllr { 
-    display: none;
-  }
 
   .name_regions {
     color: #877e7f;
-    position: absolute;
-    top: 12%;
-    left: 38%;
+    position: relative;
+    top: 110px;
+    left: 100px;
   }
 
   /*CADASTRO*/

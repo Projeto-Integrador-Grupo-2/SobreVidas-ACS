@@ -1,3 +1,16 @@
+let map;
+
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+
+  map = new Map(document.getElementById("map"), {
+    center: { lat: -16.6917438, lng: -49.2649191},
+    zoom: 13.21,
+  });
+}
+
+initMap();
+
 document.addEventListener('DOMContentLoaded', function() {
     var cpfInput = document.getElementById('cpf');
     var telefoneInput = document.getElementById('telefone');
