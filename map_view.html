@@ -7,6 +7,8 @@
     <title>Georreferenciamento</title>
     <link rel="stylesheet" href="styles.css">
     <script src="index.js" defer></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet'>
     
 </head>
 <body>
@@ -29,12 +31,41 @@
     <div class="ttmap">
         <p>GEORREFERENCIAMENTO - Vizualizar Regiões de Goiânia</p>
     </div>
-    <div class="img_mapa">
+    <div id='map'></div>
+    <style>
+      #map {
+        position: relative;
+        top: 50px;
+        width: 70%;
+        left: 50%;
+        transform: translate(-50%);
+        height: 300px;
+        border-radius: 10px;
+        border: 1px solid black;
+        margin-bottom: 10px;
+      }
+    </style>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiY2FybG9zbW9yYWlzIiwiYSI6ImNseGsxeTVhYTF6NngycnEzNGhjNDBqN3cifQ.E7Fm2W4k1AiXh8b5CfqB0Q';
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-49.25663270564422, -16.68116343525928],
+      zoom: 11.15,
+      attributionControl: false
+      });
+    </script>
+
+    
+    <!--<div class="img_mapa">
         <img src="assets/map_viewt.svg" alt="Mapa de Goiânia">
     </div>
+    
     <div class="img_mapa_cllr">
         <img src="assets/mapa2.svg" alt="mapa">
     </div>
+    -->
+    
     <div class="name_regions">
         <h1>NOROESTE</h1>
         <h1>NORTE</h1>

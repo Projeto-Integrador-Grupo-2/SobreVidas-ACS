@@ -674,6 +674,11 @@ a {
     color: #877e7f;
     display: inline-block;
   }
+  
+  #map {
+    width: 380px; 
+    height: 300px;
+  }
 }
 
 

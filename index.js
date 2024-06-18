@@ -128,16 +128,18 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 console.log('Dados do paciente:', data);
-
+                
+                
                 // Verifique se cada campo está presente e defina um valor padrão se não estiver
-                document.getElementById('data_cadastro').value = formatarData(data.Data_cad);
+                document.getElementById('patientId').value = data.Id || '';
+                document.getElementById('data_cadastro').value = data.Data_cad;
                 document.getElementById('nome').value = data.nome || '';
                 document.getElementById('nome_mae').value = data.Nome_mae || '';
                 document.getElementById('cpf').value = data.cpf || '';
                 document.getElementById('sexo').value = data.sexo || '';
                 document.getElementById('email').value = data.email || '';
                 document.getElementById('telefone').value = data.celular || '';
-                document.getElementById('data_nascimento').value = formatarData(data.data_nasc);
+                document.getElementById('data_nascimento').value = data.data_nasc;
                 document.getElementById('cidade').value = data.Cidade || '';
                 document.getElementById('cep').value = data.CEP || '';
                 document.getElementById('logradouro').value = data.Rua || '';
@@ -148,19 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
-
-/* FORMATAR DATA PARA PADRÃO HTML5*/
-function formatarData(data) {
-    // Verifica se a data está no formato com "-" (dd-mm-yy)
-    if (data.indexOf('-') !== -1) {
-        var partes = data.split('-');
-        return partes[2] + '-' + partes[1] + '-' + partes[0];
-    } else {
-        // Se já estiver no formato com "/" (dd/mm/yy), retorna sem alterações
-        var partes = data.split('/');
-        return partes[2] + '-' + partes[1] + '-' + partes[0];
-    }
-}
 
 const slides = document.querySelector('.slides');
 const slideCount = document.querySelectorAll('.slide').length;
