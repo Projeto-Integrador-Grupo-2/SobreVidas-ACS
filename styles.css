@@ -1019,9 +1019,9 @@ a {
   }
 
   .barrabusca {
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    position: absolute;
     left: 50%;
   }
 
