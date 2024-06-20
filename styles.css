@@ -574,28 +574,29 @@ a {
 
   .img_perfil {
     position: relative;
-    width: 170px;
+    transform: translateX(-50%);
+    width: 200px;
     height: auto;
     top: 60px;
-    left: 12px;
+    left: 50%;
     }
 
   .info_perfil {
     position: relative;
-    top: 166px;
+    top: 220px;
     left: -170px;
     color: #877e7f;
     display: inline-block;
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .atendidos {
     position: relative;
     line-height: normal;
-    left: 3px;
-    top: 35px;
-    font-size: 10px;
-    max-width: 130px;
+    left: 30px;
+    top: 70px;
+    font-size: 14px;
+    max-width: 160px;
     margin: 1;
     padding: 2px;
     background-color: #d9d9d9;
@@ -606,10 +607,10 @@ a {
   .encaminhados {
     position: relative;
     line-height: normal;
-    left: 3px;
-    top: 45px;
-    font-size: 10px;
-    max-width: 150px;
+    left: 30px;
+    top: 80px;
+    font-size: 14px;
+    max-width: 180px;
     margin: 1;
     padding: 2px;
     background-color: #d9d9d9;
@@ -619,47 +620,37 @@ a {
 
   .info_pessoal {
     position: relative;
-    font-size: 10px;
-    top: 40px;
-    left: 30px;
+    font-size: 14px;
+    top: 45px;
+    left: 130px;
     display: inline-block;
   }
 
   .atendido {
     color: #877e7f;
     position: relative;
-    left: 34px;
-    top: 0px;
+    left: 210px;
+    top: -30px;
     display: inline-block;
   }
 
   .encaminhado {
     color: #877e7f;
     position: relative;
-    left: 0px;
-    top: 62px;
+    left: 190px;
+    top: 30px;
     display: inline-block;
   }
 
   .logout {
     position: relative;
-    font-size: 10px;
-    left: 30px;
-    top: 70px;
+    font-size: 14px;
+    left: 160px;
+    top: 80px;
     display: inline-block;
   }
-
-  .img_mapa {
-    display: none;    
-  }
-
-  .img_mapa_cllr {
-    position: relative;
-    display: inline-block;
-    top: 40px;
-    left: 54px;
-  }
-
+  /* MAPA */ 
+  
   .name_regions {
     position: relative;
     color: #877e7f;
