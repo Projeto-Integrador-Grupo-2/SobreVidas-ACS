@@ -620,7 +620,7 @@ a {
 
   .info_pessoal {
     position: relative;
-    font-size: 16px;
+    font-size: 14px;
     top: 65px;
     left: 130px;
     display: inline-block;
@@ -629,15 +629,15 @@ a {
   .atendido {
     color: #877e7f;
     position: relative;
-    left: 210px;
-    top: -30px;
+    left: 200px;
+    top: -20px;
     display: inline-block;
   }
 
   .encaminhado {
     color: #877e7f;
     position: relative;
-    left: 190px;
+    left: 200px;
     top: 30px;
     display: inline-block;
   }
