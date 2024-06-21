@@ -577,13 +577,20 @@ a {
     transform: translateX(-50%);
     width: 200px;
     height: auto;
-    top: 60px;
+    top: 50px;
     left: 50%;
     }
 
+  .nome_perfil {
+    position: absolute;
+    font-size: 12px;
+    top: 27%;
+    left: 26%;
+  }
+
   .info_perfil {
     position: relative;
-    top: 220px;
+    top: 240px;
     left: -170px;
     color: #877e7f;
     display: inline-block;
@@ -1273,6 +1280,7 @@ a {
     left: 48%;
     top: 75%;
   }
+  
    /*MAPA*/
 
   .ttmap {
@@ -1283,10 +1291,6 @@ a {
     left: 40px;
   }
 
-  /* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
  #map {
   position: relative;
   left: 50%;
@@ -1297,14 +1301,7 @@ a {
   width: 80%;
   margin-bottom: 100px;
   height: 500px;
-}
-
-  .img_mapa {
-    position: absolute;
-    top: 15%;
-    left: 2%;
   }
-
 
   .name_regions {
     color: #877e7f;
