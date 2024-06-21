@@ -1211,30 +1211,41 @@ a {
 
   /*PERFIL*/
   .img_perfil {
-    position: absolute;
-    top: 8%;
-    left: 35%;
-    text-align: center;
+    position: relative;
+    display: inline-block;
+    transform: translateX(-50%);
+    top: 60px;
+    left: 50%;
+  }
 
+  .nome_perfil {
+    position: relative;
+    display: inline-block;
+    top: 90px;
+    left: 380px;
   }
 
   .info_perfil {
     color: #877e7f;
-    position: absolute;
-    left: 36%;
-    top: 40%;
+    position: relative;
+    display: inline-block;
+    top: 270px;
+    left: 90px;
   }
 
-  .img_perfil_cllr {
-    display: none;
+  .info_pessoal {
+    position: relative;
+    display: inline-block;
+    top: 270px;
+    left: 120px;
   }
 
   .atendidos {
-    position: absolute;
+    position: relative;
     line-height: normal;
-    left: 36%;
-    top: 60%;
-    max-width: 203px;
+    left: 730px;
+    top: 280px;
+    max-width: 195px;
     margin: 1;
     padding: 2px;
     background-color: #d9d9d9;
@@ -1243,10 +1254,11 @@ a {
   }
 
   .encaminhados {
-    position: absolute;
+    position: relative;
     line-height: normal;
-    left: 36%;
-    top: 67%;
+    display: inline-block;
+    left: 730px;
+    top: 290px;
     max-width: 203px;
     margin: 1;
     padding: 2px;
@@ -1255,32 +1267,28 @@ a {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
   }
 
-  .info_pessoal {
-    position: absolute;
-    left: 45%;
-    top: 40%;
-  }
-
   .atendido {
+    position: relative;
     color: #877e7f;
-    position: absolute;
-    left: 48%;
-    top: 60%;
-  }
+    display: inline-block;
+    left: 730px;
+    top: 225px;
+    }
 
   .encaminhado {
+    position: relative;
+    display: inline-block;
     color: #877e7f;
-    position: absolute;
-    left: 46%;
-    top: 69%;
+    left: 700px;
+    top: 294px;
   }
 
   .logout {
-    position: absolute;
-    left: 48%;
-    top: 75%;
+    position: relative;
+    left: 900px;
+    top: 300px;
   }
-  
+
    /*MAPA*/
 
   .ttmap {
