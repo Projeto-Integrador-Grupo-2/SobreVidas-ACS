@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -27,6 +28,8 @@ func main() {
 	http.HandleFunc("/cadastro", cadastroPacienteHandler)
 	http.HandleFunc("/deletePaciente", deletePacienteHandler)
 	http.HandleFunc("/getPaciente", getPacienteHandler)
+
+	alimentaBancoDeDados()
 
 	log.Println("Server rodando na porta 8052")
 	// Inicia o servidor na porta 8052
@@ -82,29 +85,33 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 
 	dataCadastro := normalizeDate(r.FormValue("data_cadastro"))
 	dataNascimento := normalizeDate(r.FormValue("data_nascimento"))
+	bebe := r.FormValue("bebe") == "on"
+	fuma := r.FormValue("fuma") == "on"
+	possui_feridas_boca := r.FormValue("possui_feridas_boca") == "on"
 
 	paciente := Paciente{
-		Id:             id,
-		DataCadastro:   dataCadastro,
-		Nome:           r.FormValue("nome"),
-		NomeMae:        r.FormValue("nome_mae"),
-		Cpf:            r.FormValue("cpf"),
-		Sexo:           r.FormValue("sexo"),
-		Email:          r.FormValue("email"),
-		Telefone:       r.FormValue("telefone"),
-		DataNascimento: dataNascimento,
-		Cidade:         r.FormValue("cidade"),
-		CEP:            r.FormValue("cep"),
-		Rua:            r.FormValue("logradouro"),
-		Numero:         numero,
+		Id:                id,
+		DataCadastro:      dataCadastro,
+		Nome:              r.FormValue("nome"),
+		NomeMae:           r.FormValue("nome_mae"),
+		Cpf:               r.FormValue("cpf"),
+		Sexo:              r.FormValue("sexo"),
+		Email:             r.FormValue("email"),
+		Telefone:          r.FormValue("telefone"),
+		DataNascimento:    dataNascimento,
+		Cidade:            r.FormValue("cidade"),
+		CEP:               r.FormValue("cep"),
+		Rua:               r.FormValue("logradouro"),
+		Numero:            numero,
+		Bebe:              bebe,
+		Fuma:              fuma,
+		PossuiFeridasBoca: possui_feridas_boca,
 	}
-
-	log.Printf("Paciente recebido: %+v", paciente)
 
 	if id > 0 {
 		// Atualiza paciente existente
-		_, err = db.Exec(`UPDATE paciente SET data_cadastro=$1, nome=$2, nome_da_mae=$3, cpf=$4, sexo=$5, email=$6, telefone_celular=$7, data_nascimento=$8, cidade=$9, cep=$10, rua=$11, num_casa=$12 WHERE id=$13`,
-			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero, paciente.Id)
+		_, err = db.Exec(`UPDATE paciente SET data_cadastro=$1, nome=$2, nome_da_mae=$3, cpf=$4, sexo=$5, email=$6, telefone_celular=$7, data_nascimento=$8, cidade=$9, cep=$10, rua=$11, num_casa=$12, bebe=$13, fuma=$14, possui_feridas_boca=$15 WHERE id=$16`,
+			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero, paciente.Bebe, paciente.Fuma, paciente.PossuiFeridasBoca, paciente.Id)
 		if err != nil {
 			http.Error(w, "Erro ao atualizar paciente", http.StatusInternalServerError)
 			log.Println("Erro ao atualizar paciente:", err)
@@ -112,9 +119,8 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		// Insere novo paciente
-		log.Println(idStr)
-		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
-			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
+		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa, bebe, fuma, possui_feridas_boca) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero, paciente.Bebe, paciente.Fuma, paciente.PossuiFeridasBoca)
 		if err != nil {
 			http.Error(w, "Erro ao salvar paciente", http.StatusInternalServerError)
 			log.Println("Erro ao salvar paciente:", err)
@@ -168,7 +174,7 @@ func fazConexaoComBanco() *sql.DB {
 	}
 
 	// cria tabela paciente com atributos como: id, nome, cpf, data de nascimento, telefone, sexo e booleanos referente a situação fisica
-	_, err = database.Query("CREATE TABLE IF NOT EXISTS paciente (id SERIAL PRIMARY KEY, data_cadastro varchar(10) NOT NULL, nome VARCHAR(255) NOT NULL, nome_da_mae varchar(255) NOT NULL,cpf VARCHAR(15) UNIQUE NOT NULL, sexo VARCHAR(10) NOT NULL, email varchar(255), telefone_celular VARCHAR(20), data_nascimento VARCHAR(12) NOT NULL, cidade varchar(255) NOT NULL, cep varchar(9) NOT NULL, rua varchar(255) NOT NULL, num_casa int)")
+	_, err = database.Query("CREATE TABLE IF NOT EXISTS paciente (id SERIAL PRIMARY KEY, data_cadastro varchar(10) NOT NULL, nome VARCHAR(255) NOT NULL, nome_da_mae varchar(255) NOT NULL,cpf VARCHAR(15) UNIQUE NOT NULL, sexo VARCHAR(10) NOT NULL, email varchar(255), telefone_celular VARCHAR(20), data_nascimento VARCHAR(12) NOT NULL, cidade varchar(255) NOT NULL, cep varchar(9) NOT NULL, rua varchar(255) NOT NULL, num_casa int, bebe bool, fuma bool, possui_feridas_boca bool)")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -188,13 +194,13 @@ func normalizeDate(dateStr string) string {
 	return date.Format("2006/01/02")
 }
 
-/*func cadastraPaciente(paciente Paciente) {
+func cadastraPaciente(paciente Paciente) {
 	// insere paciente no banco de dados
-	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero)
+	_, err := db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa, bebe, fuma, possui_feridas_boca) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) on conflict do nothing`, paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Rua, paciente.Numero, paciente.Bebe, paciente.Fuma, paciente.PossuiFeridasBoca)
 	if err != nil {
 		fmt.Println(err)
 	}
-}*/
+}
 
 func buscaPacientePorNome(nome string) Pacientes {
 	// retorna pacientes por nome
@@ -211,11 +217,12 @@ func buscaPacientePorNome(nome string) Pacientes {
 		var paciente Paciente
 
 		// Armazena os valores em variáveis
+		var Bebe, Fuma, Possui_feridas_boca bool
 		var Id, Num_casa uint64
 		var Data, Nome, Nome_mae, Cpf, Sexo, email, Telefone, DataNascimento, Cidade, CEP, Rua string
 
 		// Faz o Scan do SELECT
-		err = busca.Scan(&Id, &Data, &Nome, &Nome_mae, &Cpf, &Sexo, &email, &Telefone, &DataNascimento, &Cidade, &CEP, &Rua, &Num_casa)
+		err = busca.Scan(&Id, &Data, &Nome, &Nome_mae, &Cpf, &Sexo, &email, &Telefone, &DataNascimento, &Cidade, &CEP, &Rua, &Num_casa, &Bebe, &Fuma, &Possui_feridas_boca)
 		if err != nil {
 			panic(err.Error())
 		}
@@ -234,6 +241,9 @@ func buscaPacientePorNome(nome string) Pacientes {
 		paciente.CEP = CEP
 		paciente.Rua = Rua
 		paciente.Numero = Num_casa
+		paciente.Bebe = Bebe
+		paciente.Fuma = Fuma
+		paciente.PossuiFeridasBoca = Possui_feridas_boca
 
 		// Junta a Struct com Array
 		pacientes.Pacientes = append(pacientes.Pacientes, paciente)
@@ -258,8 +268,8 @@ func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var paciente Paciente
-	err = db.QueryRow("SELECT id, data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa FROM paciente WHERE id = $1", id).Scan(
-		&paciente.Id, &paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.Email, &paciente.Telefone, &paciente.DataNascimento, &paciente.Cidade, &paciente.CEP, &paciente.Rua, &paciente.Numero,
+	err = db.QueryRow("SELECT id, data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, rua, num_casa, bebe, fuma, possui_feridas_boca FROM paciente WHERE id = $1", id).Scan(
+		&paciente.Id, &paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.Email, &paciente.Telefone, &paciente.DataNascimento, &paciente.Cidade, &paciente.CEP, &paciente.Rua, &paciente.Numero, &paciente.Bebe, &paciente.Fuma, &paciente.PossuiFeridasBoca,
 	)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -272,8 +282,6 @@ func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("Dados do paciente: %+v", paciente)
-
 	w.Header().Set("Content-Type", "application/json")
 	err = json.NewEncoder(w).Encode(paciente)
 	if err != nil {
@@ -281,7 +289,7 @@ func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-/*func alimentaBancoDeDados() {
+func alimentaBancoDeDados() {
 	var Pacientes Pacientes
 
 	//Erro ao salvar pacientelê o arquivo paciente.json e passa para o Go
@@ -296,22 +304,25 @@ func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < len(Pacientes.Pacientes); i++ {
 		cadastraPaciente(Pacientes.Pacientes[i])
 	}
-}*/
+}
 
 type Paciente struct {
-	Id             uint64
-	DataCadastro   string `json:"Data_cad"`
-	Nome           string `json:"nome"`
-	NomeMae        string `json:"Nome_mae"`
-	Cpf            string `json:"cpf"`
-	Sexo           string `json:"sexo"`
-	Email          string `json:"email"`
-	Telefone       string `json:"celular"`
-	DataNascimento string `json:"data_nasc"`
-	Cidade         string `json:"Cidade"`
-	CEP            string `json:"CEP"`
-	Rua            string `json:"Rua"`
-	Numero         uint64 `json:"Num_casa"`
+	Id                uint64
+	DataCadastro      string `json:"Data_cad"`
+	Nome              string `json:"nome"`
+	NomeMae           string `json:"Nome_mae"`
+	Cpf               string `json:"cpf"`
+	Sexo              string `json:"sexo"`
+	Email             string `json:"email"`
+	Telefone          string `json:"celular"`
+	DataNascimento    string `json:"data_nasc"`
+	Cidade            string `json:"Cidade"`
+	CEP               string `json:"CEP"`
+	Rua               string `json:"Rua"`
+	Numero            uint64 `json:"Num_casa"`
+	Fuma              bool   `json:"Fuma"`
+	Bebe              bool   `json:"Bebe"`
+	PossuiFeridasBoca bool   `json:"Possui_feridas_boca"`
 }
 
 type Pacientes struct {

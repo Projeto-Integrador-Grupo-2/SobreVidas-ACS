@@ -1,88 +1,107 @@
 {
 	"pacientes": [
         {
-            "Data_cad": "17/10/2021",
+            "Data_cad": "2021/10/17",
             "nome": "Noah Marcelo Henry Viana",
             "Nome_mae": "Maria das Graças",
             "cpf": "692.698.321-63",
             "sexo": "Masculino",
             "email": "teste@gmail.com",
             "celular": "(62) 99697-2416",
-            "data_nasc": "17/03/1990",
+            "data_nasc": "1990/03/17",
             "Cidade": "Folha grossa",
             "CEP": "77900-000",
             "Rua": "Travessa do Araguaia",
-            "Num_casa": 3123
+            "Num_casa": 3123,
+            "Bebe": true,
+            "Fuma": true,
+            "Possui_feridas_boca": true
         },
         {
-            "Data_cad": "18/10/2021",
+            "Data_cad": "2021/10/18",
             "nome": "Ana Clara Ferreira",
             "Nome_mae": "Joana Maria da Silva",
             "cpf": "123.456.789-00",
             "sexo": "Feminino",
             "email": "ana.clara@gmail.com",
             "celular": "(11) 91234-5678",
-            "data_nasc": "05/06/1985",
+            "data_nasc": "1985/06/05",
             "Cidade": "São Paulo",
             "CEP": "01001-000",
             "Rua": "Rua das Flores",
-            "Num_casa": 45
+            "Num_casa": 45,
+            "Bebe": true,
+            "Fuma": false,
+            "Possui_feridas_boca": false
         },
         {
-            "Data_cad": "19/10/2021",
+            "Data_cad": "2021/10/19",
             "nome": "Lucas Matheus Santos",
             "Nome_mae": "Fernanda Oliveira",
             "cpf": "987.654.321-00",
             "sexo": "Masculino",
             "email": "lucas.matheus@gmail.com",
             "celular": "(21) 99876-5432",
-            "data_nasc": "22/09/1992",
+            "data_nasc": "1992/09/22",
             "Cidade": "Rio de Janeiro",
             "CEP": "20000-000",
             "Rua": "Avenida Atlântica",
-            "Num_casa": 789
+            "Num_casa": 789,
+            "Bebe": false,
+            "Fuma": false,
+            "Possui_feridas_boca": true
+
         },
         {
-            "Data_cad": "20/10/2021",
+            "Data_cad": "2021/10/20",
             "nome": "Mariana Alves Pereira",
             "Nome_mae": "Adriana Pereira",
             "cpf": "456.789.123-00",
             "sexo": "Feminino",
             "email": "mariana.alves@gmail.com",
             "celular": "(31) 91234-5678",
-            "data_nasc": "15/11/1988",
+            "data_nasc": "1988/11/15",
             "Cidade": "Belo Horizonte",
             "CEP": "30100-000",
             "Rua": "Rua da Liberdade",
-            "Num_casa": 123
+            "Num_casa": 123,
+            "Bebe": false,
+            "Fuma": true,
+            "Possui_feridas_boca": true
         },
         {
-            "Data_cad": "21/10/2021",
+            "Data_cad": "2021/10/21",
             "nome": "Gabriel Oliveira Lima",
             "Nome_mae": "Luciana Lima",
             "cpf": "321.654.987-00",
             "sexo": "Masculino",
             "email": "gabriel.oliveira@gmail.com",
             "celular": "(41) 99876-5432",
-            "data_nasc": "08/12/1994",
+            "data_nasc": "1994/12/08",
             "Cidade": "Curitiba",
             "CEP": "80000-000",
             "Rua": "Rua das Palmeiras",
-            "Num_casa": 567
+            "Num_casa": 567,
+            "Bebe": false,
+            "Fuma": true,
+            "Possui_feridas_boca": false
         },
         {
-          "Data_cad": "22/10/2021",
+          "Data_cad": "2021/10/22",
           "nome": "Beatriz Souza Costa",
           "Nome_mae": "Marcia Souza",
           "cpf": "654.321.987-00",
           "sexo": "Feminino",
           "email": "beatriz.souza@gmail.com",
           "celular": "(71) 91234-5678",
-          "data_nasc": "27/05/1996",
+          "data_nasc": "1996/05/27",
           "Cidade": "Salvador",
           "CEP": "40000-000",
           "Rua": "Rua do Pelourinho",
-          "Num_casa": 789
+          "Num_casa": 789,
+          "Bebe": true,
+          "Fuma": true,
+          "Possui_feridas_boca": false
         }
     ]
 }  

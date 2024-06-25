@@ -86,7 +86,6 @@ window.onclick = function(event) {
 
 function confirmDelete(event, id) {
     event.preventDefault();
-    console.log(`Paciente a ser excluído com ID: ${id}`); // Log do ID do paciente
     deletePatientId = id;
     document.getElementById("deleteModal").style.display = "block";
 }
@@ -131,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const patientId = urlParams.get('id');
 
     if (patientId) {
-        console.log(`Buscando dados do paciente com ID: ${patientId}`);
         fetch(`/getPaciente?id=${patientId}`)
             .then(response => {
                 if (!response.ok) {
@@ -139,11 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 return response.json();
             })
-            .then(data => {
-                console.log('Dados do paciente:', data);
-                
-                
-                // Verifique se cada campo está presente e defina um valor padrão se não estiver
+            .then(data => {                              
                 document.getElementById('patientId').value = data.Id || '';
                 document.getElementById('data_cadastro').value = formatarData(data.Data_cad);
                 document.getElementById('nome').value = data.nome || '';
@@ -157,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('cep').value = data.CEP || '';
                 document.getElementById('logradouro').value = data.Rua || '';
                 document.getElementById('numero').value = data.Num_casa || '';
+                document.getElementById('bebe').checked = data.Bebe;
+                document.getElementById('fuma').checked = data.Fuma || '';
+                document.getElementById('possui_feridas_boca').checked = data.Possui_feridas_boca || '';
             })
             .catch(error => {
                 console.error('Erro ao carregar dados do paciente:', error);
@@ -168,6 +165,7 @@ function formatarData(data) {
     var partes = data.split('/');
     return partes[0] + '-' + partes[1] + '-' + partes[2];
 }
+
 
 const slides = document.querySelector('.slides');
 const slideCount = document.querySelectorAll('.slide').length;
