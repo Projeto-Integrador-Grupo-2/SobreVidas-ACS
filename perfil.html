@@ -27,7 +27,7 @@
 
   <img src="assets/foto-perfil.svg" alt="foto de perfil" class="img_perfil">
 
-  <div class="nome_perfil"> <p>Lorrane Almeida dos Santos</p> </div>
+  <div class="nome_perfil"> <p>{{.Nome}}</p> </div>
 
   <div class="info_perfil">
   <p>e-mail</p>
@@ -38,11 +38,11 @@
 </div> 
  
 <div class="info_pessoal">
-  <p>usuário.email@gmail.com</p>
-  <p>Noroeste</p>
-  <p>***.***.***-**</p>
-  <p>0000001234</p>
-  <p>1234567</p> 
+  <p>{{.Email}}</p>
+  <p>{{.Regiao}}</p>
+  <p>{{.CPF}}</p>
+  <p>{{.INE}}</p>
+  <p>{{.CNES}}</p>  
 </div>
 
 <div class="atendidos"> <p>Pacientes atendidos</p> </div>
