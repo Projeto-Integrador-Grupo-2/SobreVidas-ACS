@@ -1212,81 +1212,93 @@ a {
   /*PERFIL*/
   .img_perfil {
     position: relative;
-    display: inline-block;
     transform: translateX(-50%);
     top: 60px;
     left: 50%;
-  }
-
-  .nome_perfil {
-    position: relative;
-    display: inline-block;
-    top: 90px;
-    left: 380px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   .info_perfil {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35%;
+    max-height: 350px;
+    margin-bottom: 40px;
+  }
+
+  .par_info {
+    margin: 20px;
+  }
+
+  .label {
     color: #877e7f;
-    position: relative;
-    display: inline-block;
-    top: 270px;
-    left: 90px;
+    font-family: 'Lexend Deca', cursive;
+    font-size: 20px;
   }
 
-  .info_pessoal {
-    position: relative;
+  .value {
     display: inline-block;
-    top: 270px;
-    left: 120px;
+    position: absolute;
+    left: 40%;
+    font-family: 'Lexend Deca', cursive;
+    font-size: 20px;
   }
 
-  .atendidos {
+  .stats {
     position: relative;
-    line-height: normal;
-    left: 730px;
-    top: 280px;
-    max-width: 195px;
-    margin: 1;
-    padding: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35%;
+    margin-bottom: 30px;
+    max-height: 300px;
+  }
+
+  .linha {
+    position: relative;
+  }
+
+  .graf_label {
+    position: relative;
+    max-width: 300px;
+  }
+
+  .graf_data {
+    top: 100%;
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    color: #877e7f;
+  }
+
+  .graf_atendidos {
+    position: relative;
+    min-width: 162px;
+    max-width: 80%;
+    height: 20px;
+    padding: 15px;
     background-color: #d9d9d9;
-    border-radius: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    margin-bottom: 20px;
   }
 
-  .encaminhados {
+  .graf_encaminhados {
     position: relative;
-    line-height: normal;
-    display: inline-block;
-    left: 730px;
-    top: 290px;
-    max-width: 203px;
-    margin: 1;
-    padding: 2px;
+    min-width: 200px;
+    max-width: 80%;
+    height: 20px;
+    padding: 15px;
     background-color: #d9d9d9;
-    border-radius: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5)
-  }
-
-  .atendido {
-    position: relative;
-    color: #877e7f;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     display: inline-block;
-    left: 730px;
-    top: 225px;
-    }
-
-  .encaminhado {
-    position: relative;
-    display: inline-block;
-    color: #877e7f;
-    left: 700px;
-    top: 294px;
   }
 
   .logout {
     position: relative;
-    left: 900px;
-    top: 300px;
+    left: 90%;
   }
 
    /*MAPA*/

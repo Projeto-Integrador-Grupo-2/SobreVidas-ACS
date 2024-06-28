@@ -11,6 +11,8 @@ async function initMap() {
 
 initMap();
 
+//MÁSCARAS
+
 document.addEventListener('DOMContentLoaded', function() {
     var cpfInput = document.getElementById('cpf');
     var telefoneInput = document.getElementById('telefone');
@@ -20,10 +22,24 @@ document.addEventListener('DOMContentLoaded', function() {
     VMasker(telefoneInput).maskPattern('(99) 99999-9999');
     VMasker(cepInput).maskPattern('99999-999');
 });
+//
 
+function mudarTamanho(num, elemento) {
+    if (!num || !elemento) {
+        return;
+    }
+    const numero = parseInt(num.textContent);
+    if (isNaN(numero)) {
+        return;
+    }
+    elemento.style.width = 162 + numero + 'px';
+}
 
-const menu = document.getElementById('opcoes_icon')
-const menucontent = document.getElementById('opcoes-content')
+mudarTamanho(document.getElementById("valor1"), document.getElementById("graf_atend"));
+mudarTamanho(document.getElementById("valor2"), document.getElementById("graf_encam"));
+
+const menu = document.getElementById('opcoes_icon');
+const menucontent = document.getElementById('opcoes-content');
 
 
 let menuaberto = false;
