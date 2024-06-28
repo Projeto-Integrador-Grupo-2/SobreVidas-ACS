@@ -11,6 +11,8 @@ async function initMap() {
 
 initMap();
 
+//MÁSCARAS
+
 document.addEventListener('DOMContentLoaded', function() {
     var cpfInput = document.getElementById('cpf');
     var telefoneInput = document.getElementById('telefone');
@@ -20,10 +22,24 @@ document.addEventListener('DOMContentLoaded', function() {
     VMasker(telefoneInput).maskPattern('(99) 99999-9999');
     VMasker(cepInput).maskPattern('99999-999');
 });
+//
 
+function mudarTamanho(num, elemento) {
+    if (!num || !elemento) {
+        return;
+    }
+    const numero = parseInt(num.textContent);
+    if (isNaN(numero)) {
+        return;
+    }
+    elemento.style.width = 162 + numero + 'px';
+}
 
-const menu = document.getElementById('opcoes_icon')
-const menucontent = document.getElementById('opcoes-content')
+mudarTamanho(document.getElementById("valor1"), document.getElementById("graf_atend"));
+mudarTamanho(document.getElementById("valor2"), document.getElementById("graf_encam"));
+
+const menu = document.getElementById('opcoes_icon');
+const menucontent = document.getElementById('opcoes-content');
 
 
 let menuaberto = false;
@@ -86,7 +102,6 @@ window.onclick = function(event) {
 
 function confirmDelete(event, id) {
     event.preventDefault();
-    console.log(`Paciente a ser excluído com ID: ${id}`); // Log do ID do paciente
     deletePatientId = id;
     document.getElementById("deleteModal").style.display = "block";
 }
@@ -131,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const patientId = urlParams.get('id');
 
     if (patientId) {
-        console.log(`Buscando dados do paciente com ID: ${patientId}`);
         fetch(`/getPaciente?id=${patientId}`)
             .then(response => {
                 if (!response.ok) {
@@ -139,11 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 return response.json();
             })
-            .then(data => {
-                console.log('Dados do paciente:', data);
-                
-                
-                // Verifique se cada campo está presente e defina um valor padrão se não estiver
+            .then(data => {                              
                 document.getElementById('patientId').value = data.Id || '';
                 document.getElementById('data_cadastro').value = formatarData(data.Data_cad);
                 document.getElementById('nome').value = data.nome || '';
@@ -157,6 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('cep').value = data.CEP || '';
                 document.getElementById('logradouro').value = data.Rua || '';
                 document.getElementById('numero').value = data.Num_casa || '';
+                document.getElementById('bebe').checked = data.Bebe;
+                document.getElementById('fuma').checked = data.Fuma || '';
+                document.getElementById('possui_feridas_boca').checked = data.Possui_feridas_boca || '';
             })
             .catch(error => {
                 console.error('Erro ao carregar dados do paciente:', error);
@@ -168,6 +181,7 @@ function formatarData(data) {
     var partes = data.split('/');
     return partes[0] + '-' + partes[1] + '-' + partes[2];
 }
+
 
 const slides = document.querySelector('.slides');
 const slideCount = document.querySelectorAll('.slide').length;

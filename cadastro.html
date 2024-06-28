@@ -6,8 +6,6 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-masker/build/vanilla-masker.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -61,27 +59,22 @@
             <input autocomplete="off" id="logradouro" class="cadastro-content" name="logradouro" type="text" placeholder="Rua">
             <label for="numero" class="cad-subtitle">Número</label>
             <input autocomplete="off" id="numero" class="cadastro-content" name="numero" type="number" placeholder="Número">
+            
+            
+            <label for="bebe">Alcoólatra:</label>
+            <input type="checkbox" id="bebe" name="bebe">
+
+            <label for="fuma">Tabagista:</label>
+            <input type="checkbox" id="fuma" name="fuma">
+
+            <label for="possui_feridas_boca">Possui feridas na boca:</label>
+            <input type="checkbox" id="possui_feridas_boca" name="possui_feridas_boca">
+            
             <button class="salvar" type="submit">SALVAR</button>
         </div>
     </form>
-
-    <!--<div class="filtro">
-        <h1>Filtro</h1>
-    </div>
-
-    <div class="filtrar">
-        <p>O paciente é tabagista? * </p>
-        <input type="button" value="sim">
-        <input type="button" value="não">
-        <p>O paciente é alcoolista? * </p>
-        <input type="button" value="sim">
-        <input type="button" value="não">
-        <p>o paciente possui lesão/lesões na boca? * </p>
-        <input type="button" value="sim">
-        <input type="button" value="não">
-    </div>
-
-    <div class="imagem_paciente">
+    
+<!--<div class="imagem_paciente">
         <p>Insira imagens da lesão do paciente aqui, <br> caso o mesmo tenha autorizado</p>
         <input type="button" style="width: 250px; height: 40px;" value="+">
     </div>
