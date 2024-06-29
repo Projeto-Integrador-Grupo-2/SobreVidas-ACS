@@ -18,7 +18,7 @@ import (
 )
 
 var db = fazConexaoComBanco()
-var templates = template.Must(template.ParseGlob("listaPacientes.html"))
+var templates = template.Must(template.ParseGlob("*.html"))
 
 func main() {
 	// Configuração do servidor para servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
@@ -28,6 +28,8 @@ func main() {
 	http.HandleFunc("/cadastro", cadastroPacienteHandler)
 	http.HandleFunc("/deletePaciente", deletePacienteHandler)
 	http.HandleFunc("/getPaciente", getPacienteHandler)
+	http.HandleFunc("/perfil", perfilHandler)
+	http.HandleFunc("/login", loginHandler)
 
 	alimentaBancoDeDados()
 
@@ -178,8 +180,125 @@ func fazConexaoComBanco() *sql.DB {
 	if err != nil {
 		log.Fatal(err)
 	}
+	_, err = database.Query(`CREATE TABLE IF NOT EXISTS agente (
+		id SERIAL PRIMARY KEY,
+		nome VARCHAR(255) NOT NULL,
+		email VARCHAR(255) NOT NULL,
+		regiao VARCHAR(100) NOT NULL,
+		cpf VARCHAR(15) UNIQUE NOT NULL,
+		ine VARCHAR(20) NOT NULL,
+		cnes VARCHAR(20) NOT NULL,
+		senha VARCHAR(255) NOT NULL
+		)`)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	return database
+}
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodGet {
+		log.Println("Acessando página de login")
+		err := templates.ExecuteTemplate(w, "login.html", nil)
+		if err != nil {
+			http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
+			log.Println("Erro ao renderizar template:", err)
+		}
+	} else if r.Method == http.MethodPost {
+		log.Println("Tentando realizar login")
+
+		email := r.FormValue("email")
+		password := r.FormValue("password")
+
+		agente := buscaAgentePorEmailESenha(email, password)
+		if agente != nil {
+			log.Println("Login bem-sucedido")
+			http.Redirect(w, r, "/perfil?id="+strconv.FormatUint(uint64(agente.ID), 10), http.StatusSeeOther)
+		} else {
+			log.Println("Credenciais inválidas")
+			http.Error(w, "Credenciais inválidas", http.StatusUnauthorized)
+		}
+	}
+}
+
+func buscaAgentePorEmailESenha(email, password string) *Agente {
+	log.Println("Buscando agente no banco de dados...")
+
+	row := db.QueryRow("SELECT id, nome, email, regiao, cpf, ine, cnes FROM agente WHERE email = $1 AND senha = $2", email, password)
+
+	var agente Agente
+	err := row.Scan(&agente.ID, &agente.Nome, &agente.Email, &agente.Regiao, &agente.CPF, &agente.INE, &agente.CNES)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			log.Println("Nenhum agente encontrado com as credenciais fornecidas")
+			return nil
+		}
+		log.Println("Erro ao buscar agente:", err)
+		return nil
+	}
+
+	log.Printf("Agente encontrado: %+v", agente)
+	return &agente
+}
+
+func perfilHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Acessando perfilHandler...")
+
+	idStr := r.URL.Query().Get("id")
+	if idStr == "" {
+		http.Error(w, "ID não fornecido", http.StatusBadRequest)
+		return
+	}
+
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		http.Error(w, "ID inválido", http.StatusBadRequest)
+		return
+	}
+
+	agente := buscaAgentePorID(id)
+	if agente == nil {
+		http.Error(w, "Agente não encontrado", http.StatusNotFound)
+		return
+	}
+
+	err = templates.ExecuteTemplate(w, "perfil.html", agente)
+	if err != nil {
+		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
+		log.Println("Erro ao renderizar template:", err)
+	}
+}
+
+func buscaAgentePorID(id uint64) *Agente {
+	log.Println("Buscando agente no banco de dados...")
+
+	row := db.QueryRow("SELECT id, nome, email, regiao, cpf, ine, cnes FROM agente WHERE id = $1", id)
+
+	var agente Agente
+	err := row.Scan(&agente.ID, &agente.Nome, &agente.Email, &agente.Regiao, &agente.CPF, &agente.INE, &agente.CNES)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			log.Println("Nenhum agente encontrado com o ID fornecido")
+			return nil
+		}
+		log.Println("Erro ao buscar agente:", err)
+		return nil
+	}
+
+	log.Printf("Agente encontrado: %+v", agente)
+	return &agente
+}
+
+type Agente struct {
+	ID     int
+	Nome   string
+	Email  string
+	Regiao string
+	CPF    string
+	INE    string
+	CNES   string
+	Senha  string
 }
 
 func normalizeDate(dateStr string) string {
