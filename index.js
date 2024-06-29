@@ -1,3 +1,4 @@
+//ADIÇÃO DO MAPA
 let map;
 
 async function initMap() {
@@ -10,6 +11,8 @@ async function initMap() {
 }
 
 initMap();
+//
+
 
 //MÁSCARAS
 
@@ -24,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 //
 
+//MUDAR TAMANHO DOS GRÁFICOS NO PERFIL
 function mudarTamanho(num, elemento) {
     if (!num || !elemento) {
         return;
@@ -38,6 +42,9 @@ function mudarTamanho(num, elemento) {
 mudarTamanho(document.getElementById("valor1"), document.getElementById("graf_atend"));
 mudarTamanho(document.getElementById("valor2"), document.getElementById("graf_encam"));
 
+//
+
+//ÍCONE DE OPÇÕES(MENU DROPDOWN)
 const menu = document.getElementById('opcoes_icon');
 const menucontent = document.getElementById('opcoes-content');
 
@@ -79,7 +86,9 @@ window.onclick = function(event) {
         }
     }
 }
+//
 
+//FUNÇÃO DELETAR PACIENTE
 let deletePatientId = null;
 
 function toggleDropdown(event) {
@@ -133,9 +142,10 @@ function deletePatient() {
         closeModal();
     });
 }
+//
 
 
-/* Editar paciente*/
+//FUNÇÃO EDITAR PACIENTE
 function editPatient(event, id) {
     event.preventDefault();
     window.location.href = `/cadastro.html?id=${id}`;
@@ -176,13 +186,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
+//
 
+//FORMATAR DADA PARA PADRÃO HTML5
 function formatarData(data) {
     var partes = data.split('/');
     return partes[0] + '-' + partes[1] + '-' + partes[2];
 }
+//
 
 
+//SLIDESHOW AUTOMÁTICO (CARROSSEL DE IMAGENS)
 const slides = document.querySelector('.slides');
 const slideCount = document.querySelectorAll('.slide').length;
 const navDots = document.querySelectorAll('.nav-dot');
@@ -225,3 +239,4 @@ navDots.forEach(dot => {
 
 slideInterval = setInterval(nextSlide, 10000);
 updateNavDots();
+//
