@@ -1419,6 +1419,54 @@ a {
       margin: 20px;
       font-size: 20px;
     }
+
+    .nome_login {
+      position: relative;
+      left: 10%;
+      color: #1790F7;
+
+    }
+
+    .user {
+      position: relative;
+      top: 50px;
+      left: 60px;
+      color: #1790F7;
+    }
+
+    .user2 {
+      position: relative;
+      font-size: 17px;
+      top: 50px;
+      left: 60px;;
+      height: 25px;
+      width: 250px;
+    }
+
+    .senha {
+      position: relative;
+      color: #1790F7;
+      top: 110px;
+      left: -260px;
+    }
+  
+    .senha2 {
+      position: relative;
+      font-size: 17px;
+      top: 110px;
+      left: -260px;
+      height: 25px;
+      width: 250px;
+    }
+
+    .bottun_login {
+      position: relative;
+      color: #1790F7;
+      width: 80px;
+      height: 30px;
+      top: 180px;
+      left: -350px;
+    }
 }
 
 @media (max-width:768px) {
