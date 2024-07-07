@@ -1,15 +1,86 @@
+//ADIÇÃO DO MAPA
 let map;
 
 async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -16.6917438, lng: -49.2649191},
+        zoom: 13.21
+    });
 
-  map = new Map(document.getElementById("map"), {
-    center: { lat: -16.6917438, lng: -49.2649191},
-    zoom: 13.21,
-  });
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+
+    fetch('/mapa?json=true')
+        .then(response => response.json())
+        .then(data => {
+            data.Enderecos.forEach(endereco => {
+                // Geocode para obter coordenadas
+                var geocoder = new google.maps.Geocoder();
+                var address = `${endereco.Rua}, ${endereco.Numero}, ${endereco.Bairro} ${endereco.Cidade}, ${endereco.CEP}`;
+                var nome = `${endereco.Nome}`
+                        
+                geocoder.geocode({ 'address': address }, function(results, status) {
+                    if (status === 'OK') {
+                        const icone = {
+                            url: "https://i.pinimg.com/originals/3a/8d/ad/3a8dad7f872542a95103cb9ca74dc415.png",
+                            scaledSize: new google.maps.Size(50, 50),
+                            anchor: new google.maps.Point(25, 25)
+                        };
+
+                        const marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location,
+                            title: nome + "\n" + address,
+                            animation: google.maps.Animation.DROP,
+                            icon: icone
+                        });
+
+                        marker.addListener("click", () => {
+                            calculateAndDisplayRoute(marker.getPosition());
+                        });
+
+                } else {
+                    console.error('Geocode error: ' + status);
+                }
+            });
+         });
+    })
+    .catch(error => console.error('Erro ao buscar endereços:', error));
 }
 
-initMap();
+function calculateAndDisplayRoute(destination) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const origin = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+
+        directionsService.route(
+          {
+            origin: origin,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+          },
+          (response, status) => {
+            if (status === "OK") {
+              directionsRenderer.setDirections(response);
+            } else {
+              window.alert("Erro ao calcular a rota: " + status);
+            }
+          }
+        );
+      });
+    } else {
+      window.alert("Geolocalização não é suportada pelo navegador.");
+    }
+  }
+
+//
+
+
+//MÁSCARAS
 
 document.addEventListener('DOMContentLoaded', function() {
     var cpfInput = document.getElementById('cpf');
@@ -20,10 +91,41 @@ document.addEventListener('DOMContentLoaded', function() {
     VMasker(telefoneInput).maskPattern('(99) 99999-9999');
     VMasker(cepInput).maskPattern('99999-999');
 });
+//
 
+//MUDAR TAMANHO DOS GRÁFICOS NO PERFIL
+function getElementWidth(selector) {
+    const element = document.querySelector(selector);
+    if (element) {
+        return parseFloat(window.getComputedStyle(element).width);
+    }
+    return null;
+}
 
-const menu = document.getElementById('opcoes_icon')
-const menucontent = document.getElementById('opcoes-content')
+const largura1 = getElementWidth('.graf_atendidos');
+const largura2 = getElementWidth('.graf_encaminhados');
+
+function mudarTamanho(largura, num, elemento) {
+    if (!largura || !num || !elemento) {
+        return;
+    }
+    const numero = parseInt(num.textContent);
+    if (isNaN(numero)) {
+        return;
+    }
+    elemento.style.width = largura + numero*0.3 + 'px';
+}
+
+if (largura1 !== null) {
+    mudarTamanho(largura1, document.getElementById("valor1"), document.getElementById("graf_atend"));
+    mudarTamanho(largura2, document.getElementById("valor2"), document.getElementById("graf_encam"));
+}
+
+//
+
+//ÍCONE DE OPÇÕES(MENU DROPDOWN)
+const menu = document.getElementById('opcoes_icon');
+const menucontent = document.getElementById('opcoes-content');
 
 
 let menuaberto = false;
@@ -63,7 +165,9 @@ window.onclick = function(event) {
         }
     }
 }
+//
 
+//FUNÇÃO DELETAR PACIENTE
 let deletePatientId = null;
 
 function toggleDropdown(event) {
@@ -86,7 +190,6 @@ window.onclick = function(event) {
 
 function confirmDelete(event, id) {
     event.preventDefault();
-    console.log(`Paciente a ser excluído com ID: ${id}`); // Log do ID do paciente
     deletePatientId = id;
     document.getElementById("deleteModal").style.display = "block";
 }
@@ -118,9 +221,10 @@ function deletePatient() {
         closeModal();
     });
 }
+//
 
 
-/* Editar paciente*/
+//FUNÇÃO EDITAR PACIENTE
 function editPatient(event, id) {
     event.preventDefault();
     window.location.href = `/cadastro.html?id=${id}`;
@@ -131,7 +235,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const patientId = urlParams.get('id');
 
     if (patientId) {
-        console.log(`Buscando dados do paciente com ID: ${patientId}`);
         fetch(`/getPaciente?id=${patientId}`)
             .then(response => {
                 if (!response.ok) {
@@ -139,11 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 return response.json();
             })
-            .then(data => {
-                console.log('Dados do paciente:', data);
-                
-                
-                // Verifique se cada campo está presente e defina um valor padrão se não estiver
+            .then(data => {                              
                 document.getElementById('patientId').value = data.Id || '';
                 document.getElementById('data_cadastro').value = formatarData(data.Data_cad);
                 document.getElementById('nome').value = data.nome || '';
@@ -155,20 +254,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('data_nascimento').value = formatarData(data.data_nasc);
                 document.getElementById('cidade').value = data.Cidade || '';
                 document.getElementById('cep').value = data.CEP || '';
+                document.getElementById('bairro').value = data.Bairro || '';
                 document.getElementById('logradouro').value = data.Rua || '';
                 document.getElementById('numero').value = data.Num_casa || '';
+                document.getElementById('bebe').checked = data.Bebe;
+                document.getElementById('fuma').checked = data.Fuma || '';
+                document.getElementById('possui_feridas_boca').checked = data.Possui_feridas_boca || '';
             })
             .catch(error => {
                 console.error('Erro ao carregar dados do paciente:', error);
             });
     }
 });
+//
 
+//FORMATAR DADA PARA PADRÃO HTML5
 function formatarData(data) {
     var partes = data.split('/');
     return partes[0] + '-' + partes[1] + '-' + partes[2];
 }
+//
 
+
+//SLIDESHOW AUTOMÁTICO (CARROSSEL DE IMAGENS)
 const slides = document.querySelector('.slides');
 const slideCount = document.querySelectorAll('.slide').length;
 const navDots = document.querySelectorAll('.nav-dot');
@@ -211,3 +319,4 @@ navDots.forEach(dot => {
 
 slideInterval = setInterval(nextSlide, 10000);
 updateNavDots();
+//

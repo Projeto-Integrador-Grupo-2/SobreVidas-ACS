@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Georreferenciamento</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="index.js" defer></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    
+    <link rel="icon" type="image/x-icon" href="assets/icon.PNG">
+    <script src="index.js" defer></script>  
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPC1_o7emC3PRVeNEqhrKzraVPDZ6nXiM&callback=initMap"></script>
+
 </head>
 <body>
     <div class="ret">
@@ -28,34 +28,19 @@
         </a>
     </div>
 
-    <div class="ttmap">
-        <p>GEORREFERENCIAMENTO - Vizualizar Regiões de Goiânia</p>
-    </div>
+    <h3 class="ttmap">GEORREFERENCIAMENTO - Vizualizar Regiões de Goiânia</h4>
 
     <div id="map"></div>
 
-    <!-- prettier-ignore -->
-    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyBPC1_o7emC3PRVeNEqhrKzraVPDZ6nXiM", v: "weekly"});</script>
-    
-    <!--<div class="img_mapa">
-        <img src="assets/map_viewt.svg" alt="Mapa de Goiânia">
-    </div>
-    
-    <div class="img_mapa_cllr">
-        <img src="assets/mapa2.svg" alt="mapa">
-    </div>
-    -->
-    
-    <div class="name_regions">
-        <h1>NOROESTE</h1>
-        <h1>NORTE</h1>
-        <h1>CENTRO</h1>
-        <h1>OESTE</h1>
-        <h1>LESTE</h1>
-        <h1>SUL</h1>
-        <h1>SUDESTE</h1>
-    </div>
+    <ul class="name_regions">
+        <li>NOROESTE</li>
+        <li>NORTE</li>
+        <li>CENTRO</li>
+        <li>OESTE</li>
+        <li>LESTE</li>
+        <li>SUL</li>
+        <li>SUDESTE</li>
+    </ul>
 
     <div class="rect"></div>
     <div class="navbar">

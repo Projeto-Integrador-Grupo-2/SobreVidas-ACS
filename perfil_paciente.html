@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de paciente</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <div class="ret">
+        <img id="opcoes_icon" src="assets/Hamburger_icon_white.svg" alt="Ícone de opções">
+        <div id="opcoes-content">
+          <ul style="color: white;">
+            <li><a class="paginas" href="home_page.html">Início</a></li>
+            <li><a class="paginas" href="listaPacientes">Pacientes</a></li>
+            <li><a class="paginas" href="perfil.html">Perfil</a></li>
+          </ul>
+        </div>
+        <img class="logo_topbar" src="assets/logo_sobrevidas.svg" alt="logo">
+        <h1 class="titulo_bar">Sobrevidas ACS</h1>
+        <a href=#>
+          <img class="notif_ring" src="assets/notif_ring.svg" alt="Notificações">
+        </a>
+      </div>
+
+    <img style="position:absolute;width:220px;height:auto;left:30px;top:60px;border-radius:10px;" src="assets/image 23.svg">
+
+    <div class="pacientes_">
+        <div class="par_paciente">
+            <span class="label_paciente">Data do cadastro</span>
+            <span class="value_paciente">{{.Data}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">Nome</span>
+            <span class="value_paciente">{{.Nome}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">Nome da mãe</span>
+            <span class="value_paciente">{{.Nome_mae}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">CPF</span>
+            <span class="value_paciente">{{.Cpf}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">Sexo</span>
+            <span class="value_paciente">{{.Sexo}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">Data de nascimento</span>
+            <span class="value_paciente">{{.DataNascimento}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">E-mail</span>
+            <span class="value_paciente">{{.email}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">Número de Telefone</span>
+            <span class="value_paciente">{{.Telefone}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">É etilista?</span>
+            <span class="value_paciente">{{.Bebe}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">É fumante?</span>
+            <span class="value_paciente">{{.Fuma}}</span>
+        </div>
+
+        <div class="par_paciente">
+            <span class="label_paciente">Possui feridas na boca?</span>
+            <span class="value_paciente">{{.Possui_ferias_boca}}</span>
+        </div>
+    </div>
+
+</body>
+</html>
