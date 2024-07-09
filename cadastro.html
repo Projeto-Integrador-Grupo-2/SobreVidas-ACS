@@ -52,24 +52,22 @@
         <div class="endereco">
             <h3 class="cadastro-head">Endereço</h3>
             <label for="cidade" class="cad-subtitle">Cidade</label>
-            <input autocomplete="off" id="cidade" class="cadastro-content" name="cidade" type="text" placeholder="Cidade">
+            <input autocomplete="off" id="cidade" class="cadastro-content" name="cidade" type="text" placeholder="Cidade" required>
             <label for="cep" class="cad-subtitle">CEP</label>
-            <input autocomplete="off" id="cep" class="cadastro-content" name="cep" type="text" placeholder="CEP">
+            <input autocomplete="off" id="cep" class="cadastro-content" name="cep" type="text" placeholder="CEP" required>
+            <label for="bairro" class="cad-subtitle">Bairro</label>
+            <input autocomplete="off" id="bairro" class="cadastro-content" name="bairro" type="text" placeholder="Bairro" required>
             <label for="logradouro" class="cad-subtitle">Logradouro</label>
-            <input autocomplete="off" id="logradouro" class="cadastro-content" name="logradouro" type="text" placeholder="Rua">
+            <input autocomplete="off" id="logradouro" class="cadastro-content" name="logradouro" type="text" placeholder="Rua" required>
             <label for="numero" class="cad-subtitle">Número</label>
             <input autocomplete="off" id="numero" class="cadastro-content" name="numero" type="number" placeholder="Número">
             
-            
             <label for="bebe">Alcoólatra:</label>
             <input type="checkbox" id="bebe" name="bebe">
-
             <label for="fuma">Tabagista:</label>
             <input type="checkbox" id="fuma" name="fuma">
-
             <label for="possui_feridas_boca">Possui feridas na boca:</label>
-            <input type="checkbox" id="possui_feridas_boca" name="possui_feridas_boca">
-            
+            <input type="checkbox" id="possui_feridas_boca" name="possui_feridas_boca"> 
             <button class="salvar" type="submit">SALVAR</button>
         </div>
     </form>
