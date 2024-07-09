@@ -15,10 +15,13 @@ import (
 
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"github.com/gorilla/sessions"
 )
 
 var db = fazConexaoComBanco()
 var templates = template.Must(template.ParseGlob("*.html"))
+var store = sessions.NewCookieStore([]byte("super-secret-key"))
+
 
 func main() {
 	// Configuração do servidor para servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
@@ -30,6 +33,7 @@ func main() {
 	http.HandleFunc("/getPaciente", getPacienteHandler)
 	http.HandleFunc("/perfil", perfilHandler)
 	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/logout", logoutHandler)
 
 	alimentaBancoDeDados()
 
@@ -198,28 +202,44 @@ func fazConexaoComBanco() *sql.DB {
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodGet {
-		log.Println("Acessando página de login")
-		err := templates.ExecuteTemplate(w, "login.html", nil)
-		if err != nil {
-			http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
-			log.Println("Erro ao renderizar template:", err)
-		}
-	} else if r.Method == http.MethodPost {
-		log.Println("Tentando realizar login")
-
+	if r.Method == http.MethodPost {
 		email := r.FormValue("email")
 		password := r.FormValue("password")
 
 		agente := buscaAgentePorEmailESenha(email, password)
 		if agente != nil {
 			log.Println("Login bem-sucedido")
-			http.Redirect(w, r, "/perfil?id="+strconv.FormatUint(uint64(agente.ID), 10), http.StatusSeeOther)
-		} else {
-			log.Println("Credenciais inválidas")
-			http.Error(w, "Credenciais inválidas", http.StatusUnauthorized)
+
+			// Inicia uma nova sessão e armazena o ID do agente
+			session, _ := store.Get(r, "session-name")
+			session.Values["agenteID"] = agente.ID
+			session.Save(r, w)
+
+			http.Redirect(w, r, "/perfil", http.StatusSeeOther)
+			return
 		}
+
+		log.Println("Credenciais inválidas")
+		http.Error(w, "Credenciais inválidas", http.StatusUnauthorized)
+		return
 	}
+
+	log.Println("Acessando página de login")
+	err := templates.ExecuteTemplate(w, "login.html", nil)
+	if err != nil {
+		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
+		log.Println("Erro ao renderizar template:", err)
+	}
+}
+
+
+func logoutHandler(w http.ResponseWriter, r *http.Request) {
+	session, _ := store.Get(r, "session-name")
+	delete(session.Values, "agenteID")
+	session.Options.MaxAge = -1
+	session.Save(r, w)
+
+	http.Redirect(w, r, "/login", http.StatusSeeOther)
 }
 
 func buscaAgentePorEmailESenha(email, password string) *Agente {
@@ -243,32 +263,22 @@ func buscaAgentePorEmailESenha(email, password string) *Agente {
 }
 
 func perfilHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("Acessando perfilHandler...")
-
-	idStr := r.URL.Query().Get("id")
-	if idStr == "" {
-		http.Error(w, "ID não fornecido", http.StatusBadRequest)
+	session, _ := store.Get(r, "session-name")
+	agenteID, ok := session.Values["agenteID"].(int)
+	if !ok {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
 		return
 	}
 
-	id, err := strconv.ParseUint(idStr, 10, 64)
-	if err != nil {
-		http.Error(w, "ID inválido", http.StatusBadRequest)
-		return
-	}
-
-	agente := buscaAgentePorID(id)
+	agente := buscaAgentePorID(uint64(agenteID))
 	if agente == nil {
 		http.Error(w, "Agente não encontrado", http.StatusNotFound)
 		return
 	}
 
-	err = templates.ExecuteTemplate(w, "perfil.html", agente)
-	if err != nil {
-		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
-		log.Println("Erro ao renderizar template:", err)
-	}
+	templates.ExecuteTemplate(w, "perfil.html", agente)
 }
+
 
 func buscaAgentePorID(id uint64) *Agente {
 	log.Println("Buscando agente no banco de dados...")
