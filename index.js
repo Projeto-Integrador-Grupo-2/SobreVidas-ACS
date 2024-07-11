@@ -23,9 +23,8 @@ async function initMap() {
                 geocoder.geocode({ 'address': address }, function(results, status) {
                     if (status === 'OK') {
                         const icone = {
-                            url: "https://i.pinimg.com/originals/3a/8d/ad/3a8dad7f872542a95103cb9ca74dc415.png",
-                            scaledSize: new google.maps.Size(50, 50),
-                            anchor: new google.maps.Point(25, 25)
+                            url: "assets/pointer_icon.png",
+                            scaledSize: new google.maps.Size(22, 22),
                         };
 
                         const marker = new google.maps.Marker({

@@ -13,15 +13,14 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gorilla/sessions"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-	"github.com/gorilla/sessions"
 )
 
 var db = fazConexaoComBanco()
 var templates = template.Must(template.ParseGlob("*.html"))
 var store = sessions.NewCookieStore([]byte("super-secret-key"))
-
 
 func main() {
 	// Configuração do servidor para servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
@@ -212,7 +211,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 			session.Values["agenteID"] = agente.ID
 			session.Save(r, w)
 
-			http.Redirect(w, r, "/perfil", http.StatusSeeOther)
+			http.Redirect(w, r, "/home_page.html", http.StatusSeeOther)
 			return
 		}
 
@@ -228,7 +227,6 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Erro ao renderizar template:", err)
 	}
 }
-
 
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "session-name")
@@ -275,7 +273,6 @@ func perfilHandler(w http.ResponseWriter, r *http.Request) {
 
 	templates.ExecuteTemplate(w, "perfil.html", agente)
 }
-
 
 func buscaAgentePorID(id uint64) *Agente {
 	log.Println("Buscando agente no banco de dados...")
