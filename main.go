@@ -249,7 +249,6 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Println("Acessando página de login")
 	err := templates.ExecuteTemplate(w, "login.html", nil)
 	if err != nil {
 		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
@@ -267,7 +266,6 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func buscaAgentePorEmailESenha(email, password string) *Agente {
-	log.Println("Buscando agente no banco de dados...")
 
 	row := db.QueryRow("SELECT id, nome, email, regiao, cpf, ine, cnes FROM agente WHERE email = $1 AND senha = $2", email, password)
 
@@ -281,8 +279,6 @@ func buscaAgentePorEmailESenha(email, password string) *Agente {
 		log.Println("Erro ao buscar agente:", err)
 		return nil
 	}
-
-	log.Printf("Agente encontrado: %+v", agente)
 	return &agente
 }
 
@@ -304,7 +300,6 @@ func perfilHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func buscaAgentePorID(id uint64) *Agente {
-	log.Println("Buscando agente no banco de dados...")
 
 	row := db.QueryRow("SELECT id, nome, email, regiao, cpf, ine, cnes FROM agente WHERE id = $1", id)
 
@@ -318,8 +313,6 @@ func buscaAgentePorID(id uint64) *Agente {
 		log.Println("Erro ao buscar agente:", err)
 		return nil
 	}
-
-	log.Printf("Agente encontrado: %+v", agente)
 	return &agente
 }
 
