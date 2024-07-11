@@ -26,7 +26,7 @@ Como configurar o SobreVidas ACS para uso.
 
    4.1. Utilizando um compilador (cmd, terminal ou outro) e com a linguagem Go instalada, navegue até a pasta do projeto (SobreVidas-ACS-main) e utilize o comando “go run main.go” para iniciar a hospedagem do projeto localmente.
 
-   4.2. Pelo seu navegador, acesse o site pela url http://localhost:8052.
+   4.2. Pelo seu navegador, acesse o site pela URL http://localhost:8052.
 
    4.3. Realize o login com as credenciais cadastradas.
 
