@@ -150,7 +150,7 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		// Insere novo paciente
-		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, bairro, rua, num_casa, bebe, fuma, possui_feridas_boca) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, bairro, rua, num_casa, bebe, fuma, possui_feridas_boca) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
 			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Bairro, paciente.Rua, paciente.Numero, paciente.Bebe, paciente.Fuma, paciente.PossuiFeridasBoca)
 		if err != nil {
 			http.Error(w, "Erro ao salvar paciente", http.StatusInternalServerError)
