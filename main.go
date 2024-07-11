@@ -47,27 +47,31 @@ func main() {
 }
 
 func perfilPacienteHandler(w http.ResponseWriter, r *http.Request) {
-    id := r.URL.Query().Get("id")
-    if id == "" {
-        http.Error(w, "Missing id parameter", http.StatusBadRequest)
-        return
-    }
+	id := r.URL.Query().Get("id")
+	if id == "" {
+		http.Error(w, "Missing id parameter", http.StatusBadRequest)
+		return
+	}
 
-    paciente := Paciente{}
-    query := `SELECT data, nome, nome_mae, cpf, sexo, data_nascimento, email, telefone, bebe, fuma, possui_feridas_boca FROM pacientes WHERE id=$1`
-    row := db.QueryRow(query, id)
-    err := row.Scan(&paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.DataNascimento, &paciente.Email, &paciente.Telefone, &paciente.Bebe, &paciente.Fuma, &paciente.PossuiFeridasBoca)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
+	paciente := Paciente{}
+	query := `SELECT data_cadastro, nome, nome_da_mae, cpf, sexo, data_nascimento, email, telefone_celular, bebe, fuma, possui_feridas_boca FROM paciente WHERE id=$1`
+	row := db.QueryRow(query, id)
+	err := row.Scan(&paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.DataNascimento, &paciente.Email, &paciente.Telefone, &paciente.Bebe, &paciente.Fuma, &paciente.PossuiFeridasBoca)
+	data_cad := strings.Split(paciente.DataCadastro, "/")
+	paciente.DataCadastro = data_cad[2] + "/" + data_cad[1] + "/" + data_cad[0]
+	data_nasc := strings.Split(paciente.DataNascimento, "/")
+	paciente.DataNascimento = data_nasc[2] + "/" + data_nasc[1] + "/" + data_nasc[0]
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-    tmpl, err := template.ParseFiles("templates/perfil_paciente.html")
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-        return
-    }
-    tmpl.Execute(w, paciente)
+	tmpl, err := template.ParseFiles("perfil_paciente.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	tmpl.Execute(w, paciente)
 }
 
 func pacientes(w http.ResponseWriter, r *http.Request) {
