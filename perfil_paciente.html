@@ -25,64 +25,71 @@
         </a>
       </div>
 
-    <img style="position:absolute;width:220px;height:auto;left:30px;top:60px;border-radius:10px;" src="assets/image 23.svg">
+    <img class="img_pac" src="assets/image 23.svg">
 
-    <div class="pacientes_">
-        <div class="par_paciente">
-            <span class="label_paciente">Data do cadastro</span>
-            <span class="value_paciente">{{.DataCadastro}}</span>
+    <div class="info_perfil">
+        <div class="par_info">
+            <span class="label">Data do cadastro:</span>
+            <span class="value">{{.DataCadastro}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">Nome</span>
-            <span class="value_paciente">{{.Nome}}</span>
+        <div class="par_info">
+            <span class="label">Nome:</span>
+            <span class="value">{{.Nome}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">Nome da mãe</span>
-            <span class="value_paciente">{{.NomeMae}}</span>
+        <div class="par_info">
+            <span class="label">Nome da mãe:</span>
+            <span class="value">{{.NomeMae}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">CPF</span>
-            <span class="value_paciente">{{.Cpf}}</span>
+        <div class="par_info">
+            <span class="label">CPF:</span>
+            <span class="value">{{.Cpf}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">Sexo</span>
-            <span class="value_paciente">{{.Sexo}}</span>
+        <div class="par_info">
+            <span class="label">Sexo:</span>
+            <span class="value">{{.Sexo}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">Data de nascimento</span>
-            <span class="value_paciente">{{.DataNascimento}}</span>
+        <div class="par_info">
+            <span class="label">Data de nascimento:</span>
+            <span class="value">{{.DataNascimento}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">E-mail</span>
-            <span class="value_paciente">{{.Email}}</span>
+        <div class="par_info">
+            <span class="label">E-mail:</span>
+            <span class="value">{{.Email}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">Número de Telefone</span>
-            <span class="value_paciente">{{.Telefone}}</span>
+        <div class="par_info">
+            <span class="label">Número de Telefone:</span>
+            <span class="value">{{.Telefone}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">É etilista?</span>
-            <span class="value_paciente">{{.Bebe}}</span>
+        <div class="par_info">
+            <span class="label">É etilista?</span>
+            <span class="value">{{.Bebe}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">É fumante?</span>
-            <span class="value_paciente">{{.Fuma}}</span>
+        <div class="par_info">
+            <span class="label">É fumante?</span>
+            <span class="value">{{.Fuma}}</span>
         </div>
 
-        <div class="par_paciente">
-            <span class="label_paciente">Possui feridas na boca?</span>
-            <span class="value_paciente">{{.PossuiFeridasBoca}}</span>
+        <div class="par_info">
+            <span class="label">Feridas na boca?</span>
+            <span class="value">{{.PossuiFeridasBoca}}</span>
         </div>
     </div>
-
+    
+  <div class="rodape" style="position:relative;top:180px;"></div> 
+  <div class="rect"></div>
+   <div class="navbar">
+    <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
+    <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
+    <a class="no-link" href="perfil"><img src="assets/Perfil.svg" alt="Perfil"></a>
+  </div>
 </body>
 </html>
