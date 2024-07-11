@@ -717,6 +717,31 @@ a {
     width: 90%; 
     height: 300px;
   }
+  
+  /*perfil paciente */
+  
+  .label_paciente {
+    position: relative;
+    color: #877e7f;
+    font-size: 16px;
+    top: 250px;
+    left: 10%;
+  }
+  
+  .value_paciente {
+    position: relative;
+    font-size: 16px;
+    top: 250px;
+    left: 10%;
+  }
+  
+  .img_pac {
+    position: relative;
+    width: 250px;
+    height: auto;
+    transform: translateX(-50%);
+    left: 50%;
+  }
 }
 
 
