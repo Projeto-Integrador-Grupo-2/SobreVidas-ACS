@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="graphsstyles.css">
+    <title>Estatísticas | SobreVidas ACS</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -28,21 +28,21 @@
     <div class="navbar">
         <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
         <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
-        <a class="no-link" href="perfil.html"><img src="assets/Perfil.svg" alt="Perfil"></a>
+        <a class="no-link" href="perfil"><img src="assets/Perfil.svg" alt="Perfil"></a>
     </div>
-    <div class="content">
+    <div class="conteudo">
         <div class="top-row">
             <div class="card">
                 <h2>Novos pacientes</h2>
-                <p class="value">+{{.Novospacientes}}</p>
+                <p class="valor">+{{.Novospacientes}}</p>
             </div>
             <div class="card">
                 <h2>Visitas realizadas</h2>
-                <p class="value">{{.Visitasrealizadas}}</p>
+                <p class="valor">{{.Visitasrealizadas}}</p>
             </div>
             <div class="card">
                 <h2>Pacientes em área de risco</h2>
-                <p class="value">{{.Pacientesrisco}}</p>
+                <p class="valor">{{.Pacientesrisco}}</p>
             </div>
         </div>
         <div class="charts-row">
