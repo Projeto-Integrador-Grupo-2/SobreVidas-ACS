@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="graphsstyles.css">
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
         </div>
         <img class="logo_topbar" src="assets/logo_sobrevidas.svg" alt="logo">
         <h1 class="titulo_bar">SobreVidas ACS</h1>
-        <a href=#>
+        <a href=>
             <img class="notif_ring" src="assets/notif_ring.svg" alt="Notificações">
         </a>
     </div>
@@ -29,6 +29,45 @@
         <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
         <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
         <a class="no-link" href="perfil.html"><img src="assets/Perfil.svg" alt="Perfil"></a>
+    </div>
+    <div class="content">
+        <div class="top-row">
+            <div class="card">
+                <h2>Novos pacientes</h2>
+                <p class="value">+{{.Novospacientes}}</p>
+            </div>
+            <div class="card">
+                <h2>Visitas realizadas</h2>
+                <p class="value">{{.Visitasrealizadas}}</p>
+            </div>
+            <div class="card">
+                <h2>Pacientes em área de risco</h2>
+                <p class="value">{{.Pacientesrisco}}</p>
+            </div>
+        </div>
+        <div class="charts-row">
+            <div class="chart-card">
+              <h2>Novos pacientes</h2>
+                  <div class="image-container">
+                    <img src="assets/graficos/Novos pacientes.png" alt="Gráfico de novos pacientes" class="imagem">
+                  </div>
+                  <h3>Crescimento Geral: {{.Crescimentogeral}}%</h3>
+                  <h3>Mensal: {{.Crescimentomensal}}%</h3>    
+                  <h3>Diário: {{.Crescimentodiario}}%</h3>
+            </div>
+            <div class="chart-card">
+                <h2>Assíduos x Absentistas</h2>
+                  <div class="image-container">
+                    <img src="assets/graficos/assiduos x absenteistas.png" alt="Gráfico de assíduos x absenteístas" class="imagem">
+                  </div>
+            </div>
+            <div class="chart-card">
+                <h2>Relação de visitas</h2>
+                <div class="image-container">
+                  <img src="assets/graficos/bairros.png" alt="Gráfico de bairros" class="imagem">
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
