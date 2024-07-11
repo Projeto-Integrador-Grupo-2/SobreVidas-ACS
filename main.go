@@ -34,6 +34,7 @@ func main() {
 	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/logout", logoutHandler)
 	http.HandleFunc("/mapa", mapHandler)
+	http.HandleFunc("/perfil_paciente", perfilPacienteHandler)
 
 	alimentaBancoDeDados()
 
@@ -43,6 +44,30 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func perfilPacienteHandler(w http.ResponseWriter, r *http.Request) {
+    id := r.URL.Query().Get("id")
+    if id == "" {
+        http.Error(w, "Missing id parameter", http.StatusBadRequest)
+        return
+    }
+
+    paciente := Paciente{}
+    query := `SELECT data, nome, nome_mae, cpf, sexo, data_nascimento, email, telefone, bebe, fuma, possui_feridas_boca FROM pacientes WHERE id=$1`
+    row := db.QueryRow(query, id)
+    err := row.Scan(&paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.DataNascimento, &paciente.Email, &paciente.Telefone, &paciente.Bebe, &paciente.Fuma, &paciente.PossuiFeridasBoca)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    tmpl, err := template.ParseFiles("templates/perfil_paciente.html")
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    tmpl.Execute(w, paciente)
 }
 
 func pacientes(w http.ResponseWriter, r *http.Request) {
