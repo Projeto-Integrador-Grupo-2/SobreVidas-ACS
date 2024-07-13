@@ -45,9 +45,6 @@ func main() {
 
 	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/logout", logoutHandler)
-	http.HandleFunc("/mapa", mapHandler)
-	http.HandleFunc("/perfil_paciente", perfilPacienteHandler)
-	http.HandleFunc("/graphs", graphsHandler)
 
 	alimentaBancoDeDados()
 
