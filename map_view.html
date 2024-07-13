@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="assets/icon.PNG">
     <script src="index.js" defer></script>  
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPC1_o7emC3PRVeNEqhrKzraVPDZ6nXiM&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPC1_o7emC3PRVeNEqhrKzraVPDZ6nXiM&loading=async&callback=initMap"></script>
 
 </head>
 <body>
@@ -16,7 +16,7 @@
         <img id="opcoes_icon" src="assets/Hamburger_icon_white.svg" alt="Ícone de opções">
         <div id="opcoes-content">
             <ul style="color: white;">
-                <li><a class="paginas" href="home_page.html">Início</a></li>
+                <li><a class="paginas" href="home">Início</a></li>
                 <li><a class="paginas" href="listaPacientes">Pacientes</a></li>
                 <li><a class="paginas" href="perfil">Perfil</a></li>
             </ul>
@@ -33,18 +33,19 @@
     <div id="map"></div>
 
     <ul class="name_regions">
-        <li>NOROESTE</li>
-        <li>NORTE</li>
-        <li>CENTRO</li>
-        <li>OESTE</li>
-        <li>LESTE</li>
-        <li>SUL</li>
-        <li>SUDESTE</li>
+        <li id="norte">NORTE</li>
+        <li id="leste">LESTE</li>
+        <li id="sudeste">SUDESTE</li>
+        <li id="sul">SUL</li>
+        <li id="centro">CENTRO</li>
+        <li id="sudoeste">SUDOESTE</li>
+        <li id="oeste">OESTE</li>
+        <li id="noroeste">NOROESTE</li>
     </ul>
 
     <div class="rect"></div>
     <div class="navbar">
-        <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
+        <a class="no-link" href="home"><img src="assets/Início.svg" alt="Início"></a>
         <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
         <a class="no-link" href="perfil"><img src="assets/Perfil.svg" alt="Perfil"></a>
     </div>

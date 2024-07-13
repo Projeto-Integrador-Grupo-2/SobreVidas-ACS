@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="assets/icon.PNG">
     <script src="index.js" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPC1_o7emC3PRVeNEqhrKzraVPDZ6nXiM&loading=async&callback=initMap" async defer></script>
 </head>
 <body>
     <div class="ret">
         <img id="opcoes_icon" src="assets/Hamburger_icon_white.svg" alt="Ícone de opções">
         <div id="opcoes-content">
           <ul style="color: white;">
-            <li><a class="paginas" href="home_page.html">Início</a></li>
+            <li><a class="paginas" href="home">Início</a></li>
             <li><a class="paginas" href="listaPacientes">Pacientes</a></li>
             <li><a class="paginas" href="perfil">Perfil</a></li>
           </ul>
@@ -27,7 +28,7 @@
 
     <img class="img_pac" src="assets/image 23.svg">
 
-    <div class="info_perfil">
+    <div class="info_perfil_paciente">
         <div class="par_info">
             <span class="label">Data do cadastro:</span>
             <span class="value">{{.DataCadastro}}</span>
@@ -35,7 +36,7 @@
 
         <div class="par_info">
             <span class="label">Nome:</span>
-            <span class="value">{{.Nome}}</span>
+            <span class="value" id="nome">{{.Nome}}</span>
         </div>
 
         <div class="par_info">
@@ -70,24 +71,58 @@
 
         <div class="par_info">
             <span class="label">É etilista?</span>
-            <span class="value">{{.Bebe}}</span>
+            {{if .Bebe}}
+            <span class="value">Sim</span>
+            {{else}}
+            <span class="value">Não</span>
+            {{end}}
         </div>
 
         <div class="par_info">
             <span class="label">É fumante?</span>
-            <span class="value">{{.Fuma}}</span>
+            {{if .Fuma}}
+            <span class="value">Sim</span>
+            {{else}}
+            <span class="value">Não</span>
+            {{end}}
         </div>
 
         <div class="par_info">
-            <span class="label">Feridas na boca?</span>
-            <span class="value">{{.PossuiFeridasBoca}}</span>
+            <span class="label">Possui feridas na boca?</span>
+            {{if .PossuiFeridasBoca}}
+            <span class="value">Sim</span>
+            {{else}}
+            <span class="value">Não</span>
+            {{end}}
+        </div>
+        <div class="par_info">
+            <span class="label">Cidade:</span>
+            <span class="value" id="cidade">{{.Cidade}}</span>
+        </div>
+        <div class="par_info">
+            <span class="label">CEP:</span>
+            <span class="value" id="cep">{{.CEP}}</span>
+        </div>
+        <div class="par_info">
+            <span class="label">Bairro:</span>
+            <span class="value" id="bairro">{{.Bairro}}</span>
+        </div>
+        <div class="par_info">
+            <span class="label">Rua:</span>
+            <span class="value" id="rua">{{.Rua}}</span>
+        </div>
+        <div class="par_info">
+            <span class="label">Número da casa:</span>
+            <span class="value" id="numero">{{.Numero}}</span>
         </div>
     </div>
+
+    <div id="map_paciente"></div>
     
   <div class="rodape" style="position:relative;top:180px;"></div> 
   <div class="rect"></div>
    <div class="navbar">
-    <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
+    <a class="no-link" href="home"><img src="assets/Início.svg" alt="Início"></a>
     <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
     <a class="no-link" href="perfil"><img src="assets/Perfil.svg" alt="Perfil"></a>
   </div>
