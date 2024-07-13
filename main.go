@@ -26,18 +26,8 @@ func main() {
 	// Configuração do servidor para servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
 	fs := http.FileServer(http.Dir("./"))
 	http.Handle("/", fs)
-	http.HandleFunc("/listaPacientes", pacientes)
-	http.HandleFunc("/cadastro", cadastroPacienteHandler)
-	http.HandleFunc("/deletePaciente", deletePacienteHandler)
-	http.HandleFunc("/getPaciente", getPacienteHandler)
-	
 	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/logout", logoutHandler)
-	http.HandleFunc("/mapa", mapHandler)
-	
-    
-    
-	http.HandleFunc("/perfil_paciente", perfilPacienteHandler)
 
 	alimentaBancoDeDados()
 
@@ -94,7 +84,7 @@ func pacientes(w http.ResponseWriter, r *http.Request) {
 
 func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+		http.ServeFile(w, r, "cadastro.html")
 		return
 	}
 
@@ -169,7 +159,7 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 
 func deletePacienteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		http.Error(w, "Método não permitido", http.StatusMethodNotAllowed)
+		http.Redirect(w, r, "/listaPacientes", http.StatusSeeOther)
 		return
 	}
 
@@ -232,27 +222,26 @@ func fazConexaoComBanco() *sql.DB {
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
-    if r.Method == http.MethodPost {
-        email := r.FormValue("email")
-        password := r.FormValue("password")
+	if r.Method == http.MethodPost {
+		email := r.FormValue("email")
+		password := r.FormValue("password")
 
 		agente := buscaAgentePorEmailESenha(email, password)
 		if agente != nil {
 
-            session, _ := store.Get(r, "session-name")
-            session.Values["authenticated"] = true
-            session.Values["agenteID"] = agente.ID
-            session.Save(r, w)
+			session, _ := store.Get(r, "session-name")
+			session.Values["authenticated"] = true
+			session.Values["agenteID"] = agente.ID
+			session.Save(r, w)
 
-            http.Redirect(w, r, "/home_page.html", http.StatusSeeOther)
-            return
-        }
-		
+			http.Redirect(w, r, "/home", http.StatusSeeOther)
+			return
+		}
 
-        log.Println("Credenciais inválidas")
-        http.Error(w, "Credenciais inválidas", http.StatusUnauthorized)
-        return
-    }
+		log.Println("Credenciais inválidas")
+		http.Error(w, "Credenciais inválidas", http.StatusUnauthorized)
+		return
+	}
 
 	err := templates.ExecuteTemplate(w, "index.html", nil)
 	if err != nil {
@@ -260,7 +249,6 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println("Erro ao renderizar template:", err)
 	}
 }
-
 
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "session-name")
@@ -306,55 +294,61 @@ func perfilHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func authMiddleware(next http.Handler) http.Handler {
-    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        session, _ := store.Get(r, "session-name")
-        authenticated, ok := session.Values["authenticated"].(bool)
-        if !ok || !authenticated {
-            http.Redirect(w, r, "/login", http.StatusFound)
-            return
-        }
-        next.ServeHTTP(w, r)
-    })
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		session, _ := store.Get(r, "session-name")
+		authenticated, ok := session.Values["authenticated"].(bool)
+		if !ok || !authenticated {
+			http.Redirect(w, r, "/login", http.StatusFound)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
 }
 
 func registerProtectedRoutes() {
-    protectedRoutes := map[string]http.HandlerFunc{
-        "/listaPacientes.html":   listaPacientesHandler,
-        "/map_view.html":             map_viewHandler,
-        "/graphs.html":            graphsHandler,
-        "/perfil_paciente.html":  perfilpacienteHandler,
-        "/home_page.html":         homepageHandler,
-        "/perfil":             perfilHandler,
-		"/perfil.html":        perfilhtmlHandler,
-    }
+	protectedRoutes := map[string]http.HandlerFunc{
+		"/listaPacientes.html":  listaPacientesHandler,
+		"/map_view.html":        map_viewHandler,
+		"/graphs":               graphsHandler,
+		"/perfil_paciente.html": perfilpacienteHandler,
+		"/home":                 homepageHandler,
+		"/perfil":               perfilHandler,
+		"/perfil.html":          perfilhtmlHandler,
+		"/listaPacientes":       pacientes,
+		"/cadastro":             cadastroPacienteHandler,
+		"/deletePaciente":       deletePacienteHandler,
+		"/getPaciente":          getPacienteHandler,
+		"/mapa":                 mapHandler,
+		"/perfil_paciente":      perfilPacienteHandler,
+	}
 
-    for route, handler := range protectedRoutes {
-        http.Handle(route, authMiddleware(http.HandlerFunc(handler)))
-    }
+	for route, handler := range protectedRoutes {
+		http.Handle(route, authMiddleware(http.HandlerFunc(handler)))
+	}
 }
 
 func graphsHandler(w http.ResponseWriter, r *http.Request) {
-    templates.ExecuteTemplate(w, "graphs.html", nil)
+	templates.ExecuteTemplate(w, "graphs.html", nil)
 }
 
 func homepageHandler(w http.ResponseWriter, r *http.Request) {
-    templates.ExecuteTemplate(w, "home_page.html", nil)
+	templates.ExecuteTemplate(w, "home_page.html", nil)
 }
 
 func listaPacientesHandler(w http.ResponseWriter, r *http.Request) {
-    templates.ExecuteTemplate(w, "listaPacientes.html", nil)
+	templates.ExecuteTemplate(w, "listaPacientes.html", nil)
 }
 
 func map_viewHandler(w http.ResponseWriter, r *http.Request) {
-    templates.ExecuteTemplate(w, "map_view.html", nil)
+	templates.ExecuteTemplate(w, "map_view.html", nil)
 }
 
 func perfilpacienteHandler(w http.ResponseWriter, r *http.Request) {
-    templates.ExecuteTemplate(w, "perfil_paciente.html", nil)
+	templates.ExecuteTemplate(w, "perfil_paciente.html", nil)
 }
 
 func perfilhtmlHandler(w http.ResponseWriter, r *http.Request) {
-    templates.ExecuteTemplate(w, "perfil.html", nil)
+	templates.ExecuteTemplate(w, "perfil.html", nil)
 }
 
 func buscaAgentePorID(id uint64) *Agente {

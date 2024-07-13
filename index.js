@@ -1,16 +1,17 @@
 //ADIÇÃO DO MAPA
 async function initMap() {
+    
     // Função para criar um infoWindow com botões dinâmicos
     function createInfoWindow(content, marker, map) {
         const infoWindow = new google.maps.InfoWindow({
             content: content
         });
-
+        
         // Adiciona um evento de clique para abrir o infoWindow
         marker.addListener("click", () => {
             infoWindow.open(map, marker);
         });
-
+        
         // Configura os eventos dos botões dentro do infoWindow
         infoWindow.addListener('domready', function() {
             // Adiciona um evento de clique para "Traçar Rota"
@@ -21,7 +22,7 @@ async function initMap() {
                 // Fecha o InfoWindow após clicar
                 infoWindow.close();
             });
-
+            
             // Adiciona um evento de clique para "Abrir no Google Maps"
             document.getElementById('btnGoogleMaps').addEventListener('click', function(event) {
                 event.preventDefault(); // Evita a ação padrão do navegador
@@ -32,15 +33,16 @@ async function initMap() {
                 infoWindow.close();
             });
         });
-
+        
         return infoWindow;
     }
-
+    
     if (document.getElementById('map')) {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -16.6917438, lng: -49.2649191},
             zoom: 13.21
         });
+        zoomMapLoc(map);
 
         directionsService = new google.maps.DirectionsService();
         directionsRenderer = new google.maps.DirectionsRenderer({
@@ -131,7 +133,7 @@ async function initMap() {
                 // Cria o conteúdo do infoWindow para o marcador do paciente
                 const infoWindowContent = `
                     <div>
-                        <h2>Opções do Marcador</h2>
+                        <h1 style="position:relative;margin-bottom:40px" >Opções do Marcador</h1>
                         <button id="btnRota">Traçar Rota</button>
                         <button id="btnGoogleMaps">Abrir no Google Maps</button>
                     </div>
@@ -156,6 +158,33 @@ async function geocodeAddress(geocoder, address) {
             }
         });
     });
+}
+
+function zoomMapLoc(map) {
+        document.getElementById('noroeste').addEventListener('click', function(event) {
+            map.panTo({lat: -16.624041, lng: -49.335088});
+        });
+        document.getElementById('norte').addEventListener('click', function(event) {
+            map.panTo({lat: -16.621392, lng: -49.282103});
+        });
+        document.getElementById('centro').addEventListener('click', function(event) {
+            map.panTo({lat: -16.654146, lng: -49.263644});
+        });
+        document.getElementById('oeste').addEventListener('click', function(event) {
+            map.panTo({lat: -16.690508, lng: -49.373100});
+        });
+        document.getElementById('leste').addEventListener('click', function(event) {
+            map.panTo({lat: -16.695559, lng: -49.182288});
+        });
+        document.getElementById('sul').addEventListener('click', function(event) {
+            map.panTo({lat: -16.728938, lng: -49.277995});
+        });
+        document.getElementById('sudeste').addEventListener('click', function(event) {
+            map.panTo({lat: -16.739157, lng: -49.203613});
+        });
+        document.getElementById('sudoeste').addEventListener('click', function(event) {
+            map.panTo({lat: -16.751362, lng: -49.359509});
+        });
 }
 
 function calculateAndDisplayRoute(destination, mapa) {

@@ -122,7 +122,7 @@ a {
   }
   
   body {
-    padding-bottom: 100px;
+    margin-bottom: 50px;
   }
   
   .rodape {
@@ -659,21 +659,16 @@ a {
     .label {
       color: #877e7f;
       font-family: 'Lexend Deca', cursive;
-      font-size: 15px;
+      font-size: 20px;
     }
   
     .value {
       display: inline-block;
       position: absolute;
-      left: 50%;
+      right: 0px;
       font-family: 'Lexend Deca', cursive;
-      font-size: 15px;
-      max-width: 90%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 20px;
     }
-  
     .stats {
       position: relative;
       left: 50%;
@@ -729,6 +724,7 @@ a {
       position: relative;
       top: 10px;
       left: 50%;
+      padding-bottom: 100px;
     }
 
   /* MAPA */ 
@@ -743,6 +739,7 @@ a {
     margin: 0px;
     padding: 0px;
     font-size: 25px;
+    margin-bottom: 70px;
   }
 
   li {
@@ -783,9 +780,11 @@ a {
   /*perfil paciente */
   
   .label {
+    position: relative;
     color: #877e7f;
     font-family: 'Lexend Deca', cursive;
     font-size: 12px;
+    top: 50%;
   }
 
   .value {
@@ -1174,11 +1173,11 @@ a {
     flex: 1 1 calc(33.333% - 20px);
     box-sizing: border-box;
     position: relative;
-    border: 1px solid black;
     margin: 10px;
     border-radius: 15px;
     top: 0px;
     max-width: calc(33.333% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   .infos {
@@ -1329,14 +1328,14 @@ a {
     transform: translateX(-50%);
     top: 20px;
     left: 50%;
-    margin-bottom: 100px;
+    margin-bottom: 65px;
     border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   .nome_perfil {
     position: relative;
-    margin-left: 20px;
+    font-size: 25px;
   }
 
   .img_pac {
@@ -1350,6 +1349,7 @@ a {
     border-radius:10px;
     border: 4px solid rgb(152, 152, 152);
     background-color: white;
+    
   }
 
   .info_perfil {
@@ -1360,6 +1360,10 @@ a {
     max-width: 400px;
     max-height: 350px;
     margin-bottom: 40px;
+    background-color: white;
+    border: 25px solid white;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   .par_info {
@@ -1464,18 +1468,29 @@ a {
     width: 60%;
     height: 500px;
     border-radius: 10px;
-    border: 12px solid rgb(90, 142, 255);
+    border: 7px solid rgb(90, 142, 255);
     margin-bottom: 100px;
     }
 
   .name_regions {
     position: relative;
     color: #877e7f;
-    display: inline-block;
     list-style-type: none;
     top: 30px;
-    margin: 10px;
+    padding: 0px;
     font-size: 25px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .name_regions li {
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  .name_regions li:hover {
+    cursor: pointer;
   }
 
   /*CADASTRO*/
@@ -1572,7 +1587,7 @@ a {
     background-color: white;
     border: 40px solid white;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   .conteudo {
@@ -1586,21 +1601,22 @@ a {
   }
     
   .card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      text-align: center;
-      width: 30%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 30%;
   }
-    
+  
   .card h2 {
-      margin-top: 0;
+    margin-top: 0;
   }
-    
+  
   .card .valor {
-      font-size: 24px;
-      font-weight: bold;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
   }
     
   .charts-row {
