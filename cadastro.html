@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Cadastro de paciente | SobreVidas ACS</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/icon.PNG">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-masker/build/vanilla-masker.min.js"></script>
     <script src="index.js" defer></script>
 </head>
@@ -15,11 +16,11 @@
             <ul style="color: white;">
                 <li><a class="paginas" href="home_page.html">Início</a></li>
                 <li><a class="paginas" href="listaPacientes">Pacientes</a></li>
-                <li><a class="paginas" href="perfil.html">Perfil</a></li>
+                <li><a class="paginas" href="perfil">Perfil</a></li>
             </ul>
         </div>
         <img class="logo_topbar" src="assets/logo_sobrevidas.svg" alt="logo">
-        <h1 class="titulo_bar">Sobrevidas ACS</h1>
+        <h1 class="titulo_bar">SobreVidas ACS</h1>
         <a href=#>
             <img class="notif_ring" src="assets/notif_ring.svg" alt="Notificações">
         </a>
@@ -30,15 +31,15 @@
             <h3 class="cadastro-head">Cadastro de paciente</h3>
             <input autocomplete="off" type="hidden" id="patientId" name="id">
             <label for="data_cadastro" class="cad-subtitle">Data do cadastro</label>
-            <input autocomplete="off" id="data_cadastro" class="cadastro-content" name="data_cadastro" type="date">
+            <input autocomplete="off" id="data_cadastro" class="cadastro-content" name="data_cadastro" type="date" required>
             <label for="nome" class="cad-subtitle">Nome</label>
-            <input autocomplete="off" id="nome" class="cadastro-content" name="nome" type="text" placeholder="Nome do paciente">
+            <input autocomplete="off" id="nome" class="cadastro-content" name="nome" type="text" placeholder="Nome do paciente" required>
             <label for="nome_mae" class="cad-subtitle">Nome da mãe</label>
-            <input autocomplete="off" id="nome_mae" class="cadastro-content" name="nome_mae" type="text" placeholder="Nome da mãe">
+            <input autocomplete="off" id="nome_mae" class="cadastro-content" name="nome_mae" type="text" placeholder="Nome da mãe" required>
             <label class="cad-subtitle">CPF</label>
-            <input autocomplete="off" id="cpf" class="cadastro-content" name="cpf" type="text" placeholder="CPF do paciente">
+            <input autocomplete="off" id="cpf" class="cadastro-content" name="cpf" type="text" placeholder="CPF do paciente" required>
             <label for="sexo" class="cad-subtitle">Sexo</label>
-            <select id="sexo" name="sexo" class="cadastro-content">
+            <select id="sexo" name="sexo" class="cadastro-content" required>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
             </select>
@@ -47,7 +48,7 @@
             <label for="telefone" class="cad-subtitle">Telefone</label>
             <input autocomplete="off" class="cadastro-content" id="telefone" name="telefone" type="text" placeholder="(99) 99999-9999">
             <label for="data_nascimento" class="cad-subtitle">Data de nascimento</label>
-            <input autocomplete="off" id="data_nascimento" class="cadastro-content" name="data_nascimento" type="date">
+            <input autocomplete="off" id="data_nascimento" class="cadastro-content" name="data_nascimento" type="date" required>
         </div>
         <div class="endereco">
             <h3 class="cadastro-head">Endereço</h3>
@@ -62,26 +63,22 @@
             <label for="numero" class="cad-subtitle">Número</label>
             <input autocomplete="off" id="numero" class="cadastro-content" name="numero" type="number" placeholder="Número">
             
-            <label for="bebe">Alcoólatra:</label>
-            <input type="checkbox" id="bebe" name="bebe">
-            <label for="fuma">Tabagista:</label>
-            <input type="checkbox" id="fuma" name="fuma">
-            <label for="possui_feridas_boca">Possui feridas na boca:</label>
-            <input type="checkbox" id="possui_feridas_boca" name="possui_feridas_boca"> 
+            <div class="checklist">
+                <label for="bebe">Alcoólatra:</label>
+                <input type="checkbox" id="bebe" name="bebe">
+                <label for="fuma">Tabagista:</label>
+                <input type="checkbox" id="fuma" name="fuma">
+                <label for="possui_feridas_boca">Possui feridas na boca:</label>
+                <input type="checkbox" id="possui_feridas_boca" name="possui_feridas_boca"> 
+            </div>
             <button class="salvar" type="submit">SALVAR</button>
         </div>
     </form>
-    
-<!--<div class="imagem_paciente">
-        <p>Insira imagens da lesão do paciente aqui, <br> caso o mesmo tenha autorizado</p>
-        <input type="button" style="width: 250px; height: 40px;" value="+">
-    </div>
-    -->
     <div class="rect"></div>
     <div class="navbar">
         <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
         <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
-        <a class="no-link" href="perfil.html"><img src="assets/Perfil.svg" alt="Perfil"></a>
+        <a class="no-link" href="perfil"><img src="assets/Perfil.svg" alt="Perfil"></a>
     </div>
 </body>
 </html>

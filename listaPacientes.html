@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Pacientes</title>
+    <title>Lista de Pacientes | SobreVidas ACS</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/icon.PNG">
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -18,7 +19,7 @@
         </ul>
       </div>
       <img class="logo_topbar" src="assets/logo_sobrevidas.svg" alt="logo">
-      <h1 class="titulo_bar">Sobrevidas ACS</h1>
+      <h1 class="titulo_bar">SobreVidas ACS</h1>
       <a href=#>
         <img class="notif_ring" src="assets/notif_ring.svg" alt="Notificações">
       </a>
@@ -28,7 +29,7 @@
       <h2 class="titulo-topo">Pacientes</h2>
       <form action="" method="get">
         <div class="barrabusca">
-          <input type="search" placeholder="Buscar pelo nome" name="busca" class="campo">
+          <input type="search" placeholder="Buscar pelo nome" name="busca" class="campo" autocomplete="off">
           <button type="submit" class="search_button"><img style="width: 30px;height: auto;" src="assets/lupa.svg"></button>
         </div>
       </form>
@@ -39,7 +40,7 @@
       <div class="quadro" data-id="{{.Id}}">
         <img style="position:absolute;width:110px;height:auto;left:5px;top:13px;border-radius:10px;" src="assets/image 23.svg">
         <ul class="infos">
-          <a class="no-link" href="perfil_paciente.html">
+          <a class="no-link" href="perfil_paciente?id={{.Id}}">
             <li class="nome">{{.Nome}}</li>
           </a>
           <li class="infopaciente">{{.Sexo}}</li>
@@ -70,7 +71,7 @@
   <div class="navbar">
     <a class="no-link" href="home_page.html"><img src="assets/Início.svg" alt="Início"></a>
     <a class="no-link" href="listaPacientes"><img src="assets/Pacientes.svg" alt="Pacientes"></a>
-    <a class="no-link" href="perfil.html"><img src="assets/Perfil.svg" alt="Perfil"></a>
+    <a class="no-link" href="perfil"><img src="assets/Perfil.svg" alt="Perfil"></a>
   </div>
 </body>
 </html>

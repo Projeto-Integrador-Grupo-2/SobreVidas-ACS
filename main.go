@@ -13,15 +13,14 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gorilla/sessions"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-	"github.com/gorilla/sessions"
 )
 
 var db = fazConexaoComBanco()
 var templates = template.Must(template.ParseGlob("*.html"))
 var store = sessions.NewCookieStore([]byte("super-secret-key"))
-
 
 func main() {
 	// Configuração do servidor para servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
@@ -38,6 +37,7 @@ func main() {
 	
     
     
+	http.HandleFunc("/perfil_paciente", perfilPacienteHandler)
 
 	alimentaBancoDeDados()
 
@@ -49,6 +49,34 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func perfilPacienteHandler(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+	if id == "" {
+		http.Error(w, "Missing id parameter", http.StatusBadRequest)
+		return
+	}
+
+	paciente := Paciente{}
+	query := `SELECT data_cadastro, nome, nome_da_mae, cpf, sexo, data_nascimento, email, telefone_celular, bebe, fuma, possui_feridas_boca FROM paciente WHERE id=$1`
+	row := db.QueryRow(query, id)
+	err := row.Scan(&paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.DataNascimento, &paciente.Email, &paciente.Telefone, &paciente.Bebe, &paciente.Fuma, &paciente.PossuiFeridasBoca)
+	data_cad := strings.Split(paciente.DataCadastro, "/")
+	paciente.DataCadastro = data_cad[2] + "/" + data_cad[1] + "/" + data_cad[0]
+	data_nasc := strings.Split(paciente.DataNascimento, "/")
+	paciente.DataNascimento = data_nasc[2] + "/" + data_nasc[1] + "/" + data_nasc[0]
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	tmpl, err := template.ParseFiles("perfil_paciente.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	tmpl.Execute(w, paciente)
 }
 
 func pacientes(w http.ResponseWriter, r *http.Request) {
@@ -127,7 +155,7 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		// Insere novo paciente
-		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, bairro, rua, num_casa, bebe, fuma, possui_feridas_boca) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+		_, err = db.Exec(`INSERT INTO paciente (data_cadastro, nome, nome_da_mae, cpf, sexo, email, telefone_celular, data_nascimento, cidade, cep, bairro, rua, num_casa, bebe, fuma, possui_feridas_boca) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
 			paciente.DataCadastro, paciente.Nome, paciente.NomeMae, paciente.Cpf, paciente.Sexo, paciente.Email, paciente.Telefone, paciente.DataNascimento, paciente.Cidade, paciente.CEP, paciente.Bairro, paciente.Rua, paciente.Numero, paciente.Bebe, paciente.Fuma, paciente.PossuiFeridasBoca)
 		if err != nil {
 			http.Error(w, "Erro ao salvar paciente", http.StatusInternalServerError)
@@ -217,10 +245,10 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
             session.Values["agenteID"] = agente.ID
             session.Save(r, w)
 
-            // Redireciona para a rota protegida /homepageMW após o login bem-sucedido
             http.Redirect(w, r, "/home_page.html", http.StatusSeeOther)
             return
         }
+		
 
         log.Println("Credenciais inválidas")
         http.Error(w, "Credenciais inválidas", http.StatusUnauthorized)
@@ -234,7 +262,6 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
         log.Println("Erro ao renderizar template:", err)
     }
 }
-
 
 
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
