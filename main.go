@@ -261,42 +261,6 @@ func fazConexaoComBanco() *sql.DB {
 	return database
 }
 
-func graphsHandler(w http.ResponseWriter, r *http.Request) {
-	rows, err := db.Query("SELECT id, numero, novospacientes, visitasrealizadas, pacientesrisco, crescimentogeral, crescimentomensal, crescimentodiario FROM public.graphs")
-	if err != nil {
-		http.Error(w, "Erro ao buscar dados", http.StatusInternalServerError)
-		return
-	}
-	defer rows.Close()
-
-	var graphs []Graph
-	for rows.Next() {
-		var graph Graph
-		err := rows.Scan(&graph.ID, &graph.Numero, &graph.NovosPacientes, &graph.VisitasRealizadas, &graph.PacientesRisco, &graph.CrescimentoGeral, &graph.CrescimentoMensal, &graph.CrescimentoDiario)
-		if err != nil {
-			http.Error(w, "Erro ao ler dados", http.StatusInternalServerError)
-			return
-		}
-		graphs = append(graphs, graph)
-	}
-
-	err = templates.ExecuteTemplate(w, "graphs.html", graphs)
-	if err != nil {
-		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
-	}
-}
-
-type Graph struct {
-	ID                int
-	Numero            float64
-	NovosPacientes    int
-	VisitasRealizadas int
-	PacientesRisco    int
-	CrescimentoGeral  float64
-	CrescimentoMensal float64
-	CrescimentoDiario float64
-}
-
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "session-name")
 	if session.Values["authenticated"] == true {
