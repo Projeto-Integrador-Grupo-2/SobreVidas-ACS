@@ -73,6 +73,9 @@ a {
 
 /* CELULAR CELULAR CELULAR CELUAR*/
 @media screen and (max-width: 600px) {
+  body {
+    margin-bottom: 140px;
+  }
 
   .login {
     position: absolute;
@@ -119,10 +122,6 @@ a {
     font-family: 'Lexend Deca', cursive;
     font-size: 17px;
     cursor: pointer;
-  }
-  
-  body {
-    margin-bottom: 50px;
   }
   
   .rodape {
@@ -193,7 +192,7 @@ a {
     left: 0px;
     bottom: 0%;
     width: 100%;
-    height: 12%;
+    height: 87px;
     background-color: #FFFAFA;
     z-index: 1;
   }
@@ -632,9 +631,10 @@ a {
       left: 50%;
       width: 300px;
       height: auto;
-      margin-bottom: 100px;
+      margin-bottom: 50px;
       border-radius: 15px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      border: 2px solid grey;
     }
 
     .nome_perfil {
@@ -646,10 +646,16 @@ a {
       position: relative;
       left: 50%;
       transform: translateX(-50%);
-      width: 98%;
-      max-height: 900px;
+      min-width: 35%;
+      max-width: 400px;
+      max-height: 350px;
       margin-bottom: 40px;
+      background-color: white;
+      border: 25px solid white;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
+  
   
     .par_info {
       margin: 20px;
@@ -724,7 +730,6 @@ a {
       position: relative;
       top: 10px;
       left: 50%;
-      padding-bottom: 100px;
     }
 
   /* MAPA */ 
@@ -1643,6 +1648,11 @@ a {
     border: 2px solid #000000; 
     border-radius: 8px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+
+  .teste {
+    position: relative;
+    background-color: #000000;
   }
 
 }

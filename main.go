@@ -22,10 +22,27 @@ var db = fazConexaoComBanco()
 var templates = template.Must(template.ParseGlob("*.html"))
 var store = sessions.NewCookieStore([]byte("super-secret-key"))
 
+func init() {
+	store.Options = &sessions.Options{
+		Path:     "/",
+		Domain:   "localhost",
+		MaxAge:   1800,
+		HttpOnly: true,
+	}
+}
+
 func main() {
 	// Configuração do servidor para servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
 	fs := http.FileServer(http.Dir("./"))
-	http.Handle("/", fs)
+
+	http.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/" || r.URL.Path == "" {
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
+			return
+		}
+		fs.ServeHTTP(w, r)
+	}))
+
 	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/logout", logoutHandler)
 
@@ -222,6 +239,11 @@ func fazConexaoComBanco() *sql.DB {
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
+	session, _ := store.Get(r, "session-name")
+	if session.Values["authenticated"] == true {
+		http.Redirect(w, r, "/home", http.StatusSeeOther)
+	}
+
 	if r.Method == http.MethodPost {
 		email := r.FormValue("email")
 		password := r.FormValue("password")
