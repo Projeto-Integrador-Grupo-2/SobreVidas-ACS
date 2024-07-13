@@ -13,6 +13,18 @@
     <img id="ondas" src="assets/waves.svg" alt="ondas azúis no final da página de login">
   </div>
   <h1 id="titulo">SOBREVIDAS ACS</h1>
-  <a href="login.html" id="login">Entrar com <b>gov.br</b></a>
+  <div class="login">
+    <form action="/login" method="post">
+      <div class="line">
+        <label for="email" class="chave">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Email" class="valor" autocomplete="off">
+      </div>
+      <div class="line">
+        <label for="password" class="chave">Senha:</label>
+        <input type="password" id="password" name="password" required placeholder="Senha" class="valor" autocomplete="off">
+      </div>
+      <button type="submit" class="button_login">Entrar</button>
+    </form>
+  </div>
 </body>
 </html>

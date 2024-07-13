@@ -54,9 +54,9 @@ func perfilPacienteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	paciente := Paciente{}
-	query := `SELECT data_cadastro, nome, nome_da_mae, cpf, sexo, data_nascimento, email, telefone_celular, bebe, fuma, possui_feridas_boca FROM paciente WHERE id=$1`
+	query := `SELECT data_cadastro, nome, nome_da_mae, cpf, sexo, data_nascimento, email, telefone_celular, bebe, fuma, possui_feridas_boca, cidade, cep, bairro, rua, num_casa FROM paciente WHERE id=$1`
 	row := db.QueryRow(query, id)
-	err := row.Scan(&paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.DataNascimento, &paciente.Email, &paciente.Telefone, &paciente.Bebe, &paciente.Fuma, &paciente.PossuiFeridasBoca)
+	err := row.Scan(&paciente.DataCadastro, &paciente.Nome, &paciente.NomeMae, &paciente.Cpf, &paciente.Sexo, &paciente.DataNascimento, &paciente.Email, &paciente.Telefone, &paciente.Bebe, &paciente.Fuma, &paciente.PossuiFeridasBoca, &paciente.Cidade, &paciente.CEP, &paciente.Bairro, &paciente.Rua, &paciente.Numero)
 	data_cad := strings.Split(paciente.DataCadastro, "/")
 	paciente.DataCadastro = data_cad[2] + "/" + data_cad[1] + "/" + data_cad[0]
 	data_nasc := strings.Split(paciente.DataNascimento, "/")
@@ -233,7 +233,6 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 		agente := buscaAgentePorEmailESenha(email, password)
 		if agente != nil {
-			log.Println("Login bem-sucedido")
 
 			// Inicia uma nova sessão e armazena o ID do agente
 			session, _ := store.Get(r, "session-name")
@@ -249,7 +248,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := templates.ExecuteTemplate(w, "login.html", nil)
+	err := templates.ExecuteTemplate(w, "index.html", nil)
 	if err != nil {
 		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
 		log.Println("Erro ao renderizar template:", err)
