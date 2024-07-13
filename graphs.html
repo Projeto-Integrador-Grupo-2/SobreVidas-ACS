@@ -33,16 +33,12 @@
     <div class="conteudo">
         <div class="top-row">
             <div class="card">
-                <h2>Novos pacientes</h2>
-                <span class="valor">+{{.Novospacientes}}</span>
+                <h2>Novos pacientes em 24 horas</h2>
+                <span class="valor">+{{.NovosPacientes}}</span>
             </div>
             <div class="card">
-                <h2>Visitas realizadas</h2>
-                <p class="valor">{{.Visitasrealizadas}}</p>
-            </div>
-            <div class="card">
-                <h2>Pacientes em área de risco</h2>
-                <p class="valor">{{.Pacientesrisco}}</p>
+                <h2>Pacientes Cadastrados</h2>
+                <p class="valor">{{.PacientesCadastrados}}</p>
             </div>
         </div>
         <div class="charts-row">
@@ -51,9 +47,9 @@
                   <div class="image-container">
                     <img src="assets/graficos/Novos pacientes.png" alt="Gráfico de novos pacientes" class="imagem">
                   </div>
-                  <h3>Crescimento Geral: {{.Crescimentogeral}}%</h3>
-                  <h3>Mensal: {{.Crescimentomensal}}%</h3>    
-                  <h3>Diário: {{.Crescimentodiario}}%</h3>
+                  <h3>Crescimento Geral: %</h3>
+                  <h3>Mensal: %</h3>    
+                  <h3>Diário: %</h3>
             </div>
             <div class="chart-card">
                 <h2>Assíduos x Absentistas</h2>

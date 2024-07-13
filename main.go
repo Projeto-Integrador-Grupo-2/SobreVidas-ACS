@@ -169,6 +169,12 @@ func cadastroPacienteHandler(w http.ResponseWriter, r *http.Request) {
 			log.Println("Erro ao salvar paciente:", err)
 			return
 		}
+		_, err = db.Exec(`UPDATE graphs SET novos_pacientes = novos_pacientes + 1`)
+		if err != nil {
+			http.Error(w, "Erro ao somar", http.StatusInternalServerError)
+			log.Println("Erro ao somar:", err)
+			return
+		}
 	}
 
 	http.Redirect(w, r, "/listaPacientes", http.StatusSeeOther)
@@ -349,10 +355,6 @@ func registerProtectedRoutes() {
 	}
 }
 
-func graphsHandler(w http.ResponseWriter, r *http.Request) {
-	templates.ExecuteTemplate(w, "graphs.html", nil)
-}
-
 func homepageHandler(w http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(w, "home_page.html", nil)
 }
@@ -512,7 +514,6 @@ func getPacienteHandler(w http.ResponseWriter, r *http.Request) {
 func alimentaBancoDeDados() {
 	var Pacientes Pacientes
 
-	//Erro ao salvar pacientelê o arquivo paciente.json e passa para o Go
 	jsonFile, _ := os.Open("paciente.json")
 	byteJson, _ := io.ReadAll(jsonFile)
 
@@ -593,4 +594,49 @@ func mapHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+func graphsHandler(w http.ResponseWriter, r *http.Request) {
+	rows, err := db.Query("SELECT novos_pacientes FROM graphs")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	defer rows.Close()
+
+	var graph Graph
+	for rows.Next() {
+		err := rows.Scan(&graph.NovosPacientes)
+		if err != nil {
+			http.Error(w, "Erro ao ler dados", http.StatusInternalServerError)
+			return
+		}
+	}
+
+	rows, err = db.Query("SELECT count(*) AS exact_count FROM paciente;")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&graph.PacientesCadastrados)
+		if err != nil {
+			http.Error(w, "Erro ao ler dados", http.StatusInternalServerError)
+			return
+		}
+	}
+
+	tmpl, err := template.ParseFiles("graphs.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	tmpl.Execute(w, graph)
+}
+
+type Graph struct {
+	NovosPacientes       int
+	PacientesCadastrados int
 }
