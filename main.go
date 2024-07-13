@@ -30,7 +30,11 @@ func main() {
 	http.HandleFunc("/getPaciente", getPacienteHandler)
 	http.HandleFunc("/perfil", perfilHandler)
 	http.HandleFunc("/login", loginHandler)
+<<<<<<< Updated upstream
 	http.HandleFunc("/mapa", mapHandler)
+=======
+	http.HandleFunc("/logout", logoutHandler)
+>>>>>>> Stashed changes
 
 	alimentaBancoDeDados()
 
@@ -194,6 +198,45 @@ func fazConexaoComBanco() *sql.DB {
 	return database
 }
 
+<<<<<<< Updated upstream
+=======
+func graphsHandler(w http.ResponseWriter, r *http.Request) {
+	rows, err := db.Query("SELECT id, numero, novospacientes, visitasrealizadas, pacientesrisco, crescimentogeral, crescimentomensal, crescimentodiario FROM public.graphs")
+	if err != nil {
+		http.Error(w, "Erro ao buscar dados", http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	var graphs []Graph
+	for rows.Next() {
+		var graph Graph
+		err := rows.Scan(&graph.ID, &graph.Numero, &graph.Novospacientes, &graph.VisitasRealizadas, &graph.PacientesRisco, &graph.CrescimentoGeral, &graph.CrescimentoMensal, &graph.CrescimentoDiario)
+		if err != nil {
+			http.Error(w, "Erro ao ler dados", http.StatusInternalServerError)
+			return
+		}
+		graphs = append(graphs, graph)
+	}
+
+	err = templates.ExecuteTemplate(w, "graphs.html", graphs)
+	if err != nil {
+		log.Println(err)  
+	}
+}
+
+type Graph struct {
+	ID                int
+	Numero            float64
+	Novospacientes    int
+	VisitasRealizadas int
+	PacientesRisco    int
+	CrescimentoGeral  float64
+	CrescimentoMensal float64
+	CrescimentoDiario float64
+}
+
+>>>>>>> Stashed changes
 func loginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		log.Println("Acessando página de login")
@@ -265,6 +308,33 @@ func perfilHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Erro ao renderizar template", http.StatusInternalServerError)
 		log.Println("Erro ao renderizar template:", err)
 	}
+<<<<<<< Updated upstream
+=======
+
+	for route, handler := range protectedRoutes {
+		http.Handle(route, authMiddleware(http.HandlerFunc(handler)))
+	}
+}
+
+func homepageHandler(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "home_page.html", nil)
+}
+
+func listaPacientesHandler(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "listaPacientes.html", nil)
+}
+
+func map_viewHandler(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "map_view.html", nil)
+}
+
+func perfilpacienteHandler(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "perfil_paciente.html", nil)
+}
+
+func perfilhtmlHandler(w http.ResponseWriter, r *http.Request) {
+	templates.ExecuteTemplate(w, "perfil.html", nil)
+>>>>>>> Stashed changes
 }
 
 func buscaAgentePorID(id uint64) *Agente {
