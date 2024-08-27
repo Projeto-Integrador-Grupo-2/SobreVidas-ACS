@@ -242,15 +242,10 @@ func fazConexaoComBanco() *sql.DB {
 	}
 
 	_, err = database.Query(`CREATE TABLE IF NOT EXISTS graphs (
-		id SERIAL PRIMARY KEY,
-		numero NUMERIC(6,2),
-		novospacientes INTEGER,
-		visitasrealizadas INTEGER,
-		pacientesrisco INTEGER,
-		crescimentogeral NUMERIC(6,2),
-		crescimentomensal NUMERIC(6,2),
-		crescimentodiario NUMERIC(6,2)
+		novos_pacientes INT,
+		pacientes_cadastrados INT
 		)`)
+
 	if err != nil {
 		log.Fatal(err)
 	}
